@@ -1,3 +1,3 @@
-function myFunction() {
-    document.getElementById("crmain").innerHTML="X";
-}
+const editmode=0, runmode=1;
+let mode=editmode;
+

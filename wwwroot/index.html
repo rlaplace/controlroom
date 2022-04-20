@@ -3,10 +3,21 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <title>Control Room main page</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"/>
   <script src="croom.js"></script>
 </head>
 <body>
-  <img src="main.svg" width="300" height="200">
+  <div id="mainpanel">
+    <div id="editpanel">
+      <svg viewport="0 0 130 430"><g transform="translate(0.5,0.5)">
+	<rect x="0" y="0" width="75" height="75" fill="white" stroke="black" stroke-width="1" onclick="alert('P0')"/>
+	<rect x="5" y="5" width="30" height="30" fill="white" stroke="black" stroke-width="1" onclick="alert('P1')"/>
+	<rect x="40" y="5" width="30" height="30" fill="red" stroke="black" stroke-width="1" onclick="alert('P2')"/>
+	<rect x="5" y="40" width="30" height="30" fill="green" stroke="black" stroke-width="1" onclick="alert('P3')"/>
+	<rect x="40" y="40" width="30" height="30" fill="orange" stroke="black" stroke-width="1" onclick="alert('P4')"/>
+      </g></svg>
+    </div>
+    <img src="main.svg" width="300" height="200"/>
+  </div>
 </body>
 </html>
