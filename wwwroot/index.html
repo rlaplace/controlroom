@@ -9,13 +9,55 @@
 <body>
   <div id="mainpanel">
     <div id="editpanel">
-      <svg viewport="0 0 130 430"><g transform="translate(0.5,0.5)">
-	<rect x="0" y="0" width="75" height="75" fill="white" stroke="black" stroke-width="1" onclick="alert('P0')"/>
-	<rect x="5" y="5" width="30" height="30" fill="white" stroke="black" stroke-width="1" onclick="alert('P1')"/>
-	<rect x="40" y="5" width="30" height="30" fill="red" stroke="black" stroke-width="1" onclick="alert('P2')"/>
-	<rect x="5" y="40" width="30" height="30" fill="green" stroke="black" stroke-width="1" onclick="alert('P3')"/>
-	<rect x="40" y="40" width="30" height="30" fill="orange" stroke="black" stroke-width="1" onclick="alert('P4')"/>
-      </g></svg>
+      <svg viewport="0 0 800 600" width="800" height="600">
+	<g class="uiWindow">
+	  <path d="M1,9v106h104v-106" fill="#224422" stroke="#002200" stroke-width="2"/>
+	  <g class="uiDrager">
+	    <path d="M1,9v-8h104v8" fill="#446644" stroke="#002200" stroke-width="2"/>
+	    <path d="M4,4h98M4,7h98" stroke="#224422" stroke-linecap="round" stroke-width="2"/>
+	  </g>
+	  <g class="uiButton" transform="translate(5,14)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	    <path d="M17.5,5.5v5h5v15h-15v-20zm0,0v5h5z" fill="white" stroke="black" stroke-linejoin="round" stroke-width="1"/>
+	  </g>
+	  <g class="uiButton" transform="translate(38,14)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	    <path d="M6.5,11.5v-3l2,-3h5l2,3h10v14l-1,1m0,0h-19l-3,-12h19z" fill="#FFFF99" stroke="black" stroke-linejoin="round" stroke-width="1"/>
+	  </g>
+	  <g class="uiButton" transform="translate(71,14)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	    <path d="M5.5,5.5v17l3,3h17v-20z" fill="#9999FF" stroke="none"/>
+	    <rect x="8.5" y="5.5" rx="1" width="14" height="10" fill="white" stroke="none"/>
+	    <path d="M8.5,5.5h-3v17l3,3h1.5m10,0h5.5v-20h-3" fill="none" stroke="#666699" stroke-width="1"/>
+	    <path d="M8.5,5.5h14" fill="none" stroke="#992222" stroke-width="1"/>
+	    <path d="M8.5,7h14" fill="none" stroke="#FF4444" stroke-width="2"/>
+	    <path d="M10,9.5h9M10,11.5h5M10,13.5h6" fill="none" stroke="#BBBBBB" stroke-width="1" stroke-linecap="round"/>
+	    <rect x="10.5" y="17.5" width="9" height="8" fill="#BBBBBB" stroke="#999999" stroke-width="1"/>
+	    <rect x="12.5" y="19.5" width="2" height="4" fill="#9999FF" stroke="#999999" stroke-width="1"/>
+	  </g>
+
+	  <g class="uiButton" transform="translate(5,47) scale(1,1)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	    <path d="M10.5,20.5v-17l12,12l-4,1.5l2.5,7l-4,1.5l-2.5,-6.5z" fill="white" stroke="black" stroke-linejoin="round" stroke-width="1"/>
+	  </g>
+	  <g class="uiButton" transform="translate(38,47)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	  </g>
+	  <g class="uiButton" transform="translate(71,47)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	  </g>
+
+	  <g class="uiButton" transform="translate(5,80)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	  </g>
+	  <g class="uiButton" transform="translate(38,80)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	  </g>
+	  <g class="uiButton" transform="translate(71,80)">
+	    <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+	  </g>
+	</g>
+      </svg>
     </div>
     <img src="main.svg" width="300" height="200"/>
   </div>
