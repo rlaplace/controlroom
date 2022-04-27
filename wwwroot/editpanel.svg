@@ -1,0 +1,109 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200" width="800" height="200">
+  <g class="uiWindow">
+    <path d="M 1,9 v 172 h 104 v -172" fill="#224422" stroke="#002200" stroke-width="2"/>
+    <g class="uiDrager">
+      <path d="M 1,9 v -8 h 104 v 8" fill="#446644" stroke="#002200" stroke-width="2"/>
+      <path d="M 4,4 h 98 M 4,7 h 98" stroke="#224422" stroke-linecap="round" stroke-width="2"/>
+    </g>
+    <g class="uiButton" transform="translate(5,14)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <path d="M 17.5,5.5 v 5 h 5 v 15 h -15 v -20 z m 0,0 v 5 h 5 z" fill="white" stroke="black" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+    <g class="uiButton" transform="translate(38,14)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <path d="M 6.5,11.5 v -3 l 2,-3 h 5 l 2,3 h 10 v 14 l -1,1 m 0,0 h -19 l -3,-12 h 19 z" fill="#FFFF99" stroke="black" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+    <g class="uiButton" transform="translate(71,14)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <path d="M 5.5,5.5 v 17 l 3,3 h 17 v -20 z" fill="#9999FF" stroke="none"/>
+      <rect x="8.5" y="5.5" rx="1" width="14" height="10" fill="white" stroke="none"/>
+      <path d="M 8.5,5.5 h -3 v 17 l 3,3 h 1.5 m 10,0 h 5.5 v -20 h -3" fill="none" stroke="#666699" stroke-width="1"/>
+      <path d="M 8.5,5.5 h 14" fill="none" stroke="#992222" stroke-width="1"/>
+      <path d="M 8.5,7 h 14" fill="none" stroke="#FF4444" stroke-width="2"/>
+      <path d="M 10,9.5 h 9 M 10,11.5 h 5 M 10,13.5 h 6" fill="none" stroke="#BBBBBB" stroke-width="1" stroke-linecap="round"/>
+      <rect x="10.5" y="17.5" width="9" height="8" fill="#BBBBBB" stroke="#999999" stroke-width="1"/>
+      <rect x="12.5" y="19.5" width="2" height="4" fill="#9999FF" stroke="#999999" stroke-width="1"/>
+    </g>
+
+    <g class="uiButton" transform="translate(5,47) scale(1,1)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <path d="M 10.5,20.5 v -17 l 12,12 l -4,1.5 l 2.5,7 l -4,1.5 l -2.5,-6.5 z" fill="white" stroke="black" stroke-linejoin="round" stroke-width="1"/>
+    </g>
+    <g class="uiButton" transform="translate(38,47)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <image x="6" y="1.5" width="18" height="27" href="img.jpg"/>
+    </g>
+    <g class="uiButton" transform="translate(71,47)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <text x="15" y="20" text-anchor="middle">Txt</text>
+    </g>
+
+    <g class="uiButton" transform="translate(5,80)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <path d="M 5,25 l 7,-15 l 6,10 l 7,-15" fill="none" stroke="black" stroke-linecap="round" stroke-width="1"/>
+    </g>
+    <g class="uiButton" transform="translate(38,80)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <circle cx="15" cy="15" r="7" fill="blue" stroke="black" stroke-width="1"/>
+    </g>
+    <g class="uiButton" transform="translate(71,80)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <rect x="11.5" y="3.5" rx="2" ry="2" width="7" height="23" fill="blue" stroke="black" stroke-width="1"/>
+    </g>
+
+    <g class="uiButton" transform="translate(5,113)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <g fill="white" fill-opacity="0.5" transform="translate(15,15) scale(0.4,0.4)">
+	<circle cx="0" cy="0" r="25" stroke="black" stroke-width="2"/>
+	<path d="M 20,0 a 20,20 0 0,0 -20,-20" fill="none" stroke="red" stroke-width="5" transform="rotate(-120)"/>
+	<path d="M 20,0 a 20,20 0 0,0 -40,0" fill="none" stroke="yellow" stroke-width="5" transform="rotate(-10)"/>
+	<path d="M 20,0 a 20,20 0 0,0 -20,-20" fill="none" stroke="green" stroke-width="5" transform="rotate(30)"/>
+	<line x1="16" y1="0" x2="23" y2="0" stroke="black" stroke-width="1" transform="rotate(-210)"/>
+	<line x1="16" y1="0" x2="23" y2="0" stroke="black" stroke-width="1" transform="rotate(-190)"/>
+	<line x1="16" y1="0" x2="23" y2="0" stroke="black" stroke-width="1" transform="rotate(-60)"/>
+	<line x1="16" y1="0" x2="23" y2="0" stroke="black" stroke-width="1" transform="rotate(30)"/>
+	<text class="etiqueta" x="0" y="19" text-anchor="middle" font-size="8" stroke="none" fill="gray" fill-opacity="1">CRoom</text>
+	<circle cx="-12" cy="10" r="0.3" fill="black" fill-opacity="1" stroke="black"/>
+	<circle cx="12" cy="10" r="0.3" fill="black" fill-opacity="1" stroke="black"/>
+	<circle cx="0" cy="0" r="3" fill="black" fill-opacity="1" stroke="black"/>
+	<line class="ponteiro" x1="0" y1="0" x2="21" y2="0" stroke="black" stroke-width="1" transform="rotate(144)"/>
+      </g>
+    </g>
+    <g class="uiButton" transform="translate(38,113)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <path fill="gray" fill_def="gray" stroke="black" stroke_def="black" d="M 15,20 l 10,6 v -12 l -20,12 v -12 l 10,6 v -8 h -6 v -6 h 12 v 6 h -6 z"/>
+    </g>
+    <g class="uiButton" transform="translate(71,113)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <path fill="gray" fill_def="gray" stroke="black" stroke_def="black" d="M 15,20 l 10,6 v -12 l -20,12 v -12 l 10,6 v -9 h -8 a4,4 0 0,1 16,0 h -8 z"/>
+    </g>
+
+    <g class="uiButton" transform="translate(5,146)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <g id="objBomba1" fill="gray" fill_def="gray" stroke="black" stroke_def="black" transform="translate(15,15) scale(0.6,0.6)">
+	<path d="M -9.6,11.52 l -5.4,6.48 h 30 l -5.4,-6.48 A 15,15 0 0,0 14.15,-5 h 5.85 v -9 h -14.6 A 15,15 0 0,0 -9.6,11.52" stroke="none"/>
+	<path d="M -9.6,11.52 l -5.4,6.48 h 30 l -5.4,-6.48 M 14.15,-5 h 5.85 v -9 h -14.6" fill="none"/>
+	<circle cx="0" cy="0" r="15" fill="none"/>
+	<circle cx="0" cy="0" r="4" fill="none"/>
+      </g>
+    </g>
+    <g class="uiButton" transform="translate(38,146)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+      <g id="objGraph" transform="translate(15.5,15.5) scale(0.2,0.2)" fill="lightyellow" fill-opacity="0.5" stroke="black" stroke-width="2">
+	<rect x="-50" y="-50" rx="10" ry="10" width="100" height="100" stroke-width="4"/>
+	<svg x="-40" y="-40" width="80" height="80">
+          <g transform="translate(-6,-4) scale(0.15,0.12)">
+	    <path d="m 41.835029,367 c 0,0 68.194321,-328.534321 132.779151,-327.904735 64.58484,0.629586 133.27283,326.964625 133.27283,326.964625 0,0 71.57237,327.99535 134.50622,328.21674 62.93385,0.22138 134.83616,-328.21674 134.83616,-328.21674" fill="none" stroke="blue" stroke-width="9"/>
+	    <path d="m 41.835029,695 c 62.93385,0.22138 134.83616,-328.21674 134.83616,-328.21674 0,0 71.68101,-327.695698 133.53752,-326.779143 61.85652,0.916556 135.3348,326.779143 135.3348,326.779143 0,0 72.47055,328.05286 133.03406,328.63862 60.56353,0.58575 134.42813,-328.16857 134.42813,-328.16857" fill="none" stroke="red" stroke-width="9"/>
+	  </g>
+	</svg>
+	<path d="M -43,40 h 85 M -40,43 v -85" stroke="black" stroke-width="2"/>
+      </g>
+    </g>
+    <g class="uiButton" transform="translate(71,146)">
+      <rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
+    </g>
+
+    <comment tipo="on/off" url="https://piwebapicorp.petrobras.com.br/piwebapi/streams/F1DPws7bmqSvBU2NEBsT7t5xqAxiQDAAU0FVUklPUEkwMVxGUFNPLVBMXzIzX1hWXzEwMTVfQkNI/plot"/>
+  </g>
+</svg>

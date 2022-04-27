@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 120">
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="100" viewBox="0 0 200 100">
   <g stroke-linejoin="round" stroke-linecap="round">
-    <path d="M0,5h30M0,12h30M0,19h30" stroke="#00F" stroke-width="3"/>
+    <path d="M5,5h20M5,10h20M5,15h20" stroke="#00F" stroke-width="3"/>
     <path d="M40,5h18v14h-18z" fill="#FF0" stroke="#00F" stroke-width="2"/>
     <text x="70" y="15">tag 1</text>
+    <text x="120" y="15">tag 2</text>
   </g>
 </svg>
