@@ -1,28 +1,44 @@
 const editmode=0, runmode=1;
 let mode=editmode;
-var mainSVGDoc, editMenuDoc;
-var mainSVG, editMenu;
+var mainPanel, editPanel;
 
-function getSubDocument(embedding_element) {
-  if (embedding_element.contentDocument) {
-    return embedding_element.contentDocument;
-  } else {
-    var subdoc = null;
-    try {
-      subdoc = embedding_element.getSVGDocument();
-    } catch(e) {}
-    return subdoc;
+function init() {
+  mainPanel = document.getElementById("mainpanel");
+  editPanel = document.getElementById("editpanel");
+}
+
+function setPosition(el, x, y) {
+  switch (el.tagName) {
+    case "image":
+    case "text":
+      el.setAttribute("x", x);
+      el.setAttribute("y", y);
+      break;
+    case "g":
+    case "path":
+      el.setAttribute("transform", "translate(50,50)");
+      break;
+    default:
+      window.alert (el.tagName) ;
   }
 }
 
-function docLoad(mainDoc, menuDoc) {
-  mainSVGDoc = getSubDocument(mainDoc);
-  editMenuDoc = getSubDocument(menuDoc);
-  mainSVG = mainSVGDoc.firstChild;
-  editMenu = editMenuDoc.firstChild;
+function insertText() {
 }
 
-function duplicateSVGElement(element) {
-window.alert(mainSVG);
-  mainSVG.appendChild();
+function insertPath() {
+}
+
+function insertCircle() {
+}
+
+function insertRect() {
+}
+
+function insertElement(element) {
+  var newNode = element.cloneNode(true);
+  newNode.removeAttribute("id");
+  setPosition(newNode, 20, 20);
+  mainPanel.appendChild(newNode);
+  editPanel.style.display = "none";
 }
