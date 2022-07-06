@@ -16,14 +16,11 @@ function setPosition(el, x, y) {
       break;
     case "g":
     case "path":
-      el.setAttribute("transform", "translate(50,50)");
+      el.setAttribute("transform", "translate(" + x + "," + y + ")");
       break;
     default:
       window.alert (el.tagName) ;
   }
-}
-
-function insertText() {
 }
 
 function insertPath() {
@@ -38,7 +35,7 @@ function insertRect() {
 function insertElement(element) {
   var newNode = element.cloneNode(true);
   newNode.removeAttribute("id");
-  setPosition(newNode, 20, 20);
+  setPosition(newNode, 50, 50);
   mainPanel.appendChild(newNode);
   editPanel.style.display = "none";
 }
