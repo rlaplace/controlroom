@@ -3,6 +3,62 @@ let mode=editmode;
 var mainPanel, editPanel;
 var svgNS="http://www.w3.org/2000/svg";
 var idcount=0;
+var objCurrent=null;
+var objSelected=null;
+var objDragging=null;
+var dx=0, dy=0;
+
+function touch(evt)
+{
+alert("z1");
+  try
+  {
+    if (evt.target==mainPanel)
+    {
+alert("z2");
+      objDragging=null;
+      objCurrent=null;
+      selectObj(null);
+    }
+    else if (evt.target.id=="background")
+    {
+alert("z3");
+      objDragging=null;
+      objCurrent=null;
+      selectObj(evt.target);
+    }
+    else
+    {
+alert("z4");
+      var newtarget=null;
+      while ((newtarget.parentNode!=mainPanel)&&(newtarget.parentNode!=null))
+	newtarget=newtarget.parentNode;
+      objCurrent=newtarget;
+      var changed=false;
+      if (objSel!=newtarget)
+      {
+	selectObj(newtarget);
+	changed=true;
+      }
+      objDragging=newtarget;
+      if (objDragging.nodeName=="circle")
+      {
+	dx=parseFloat(objDragging.getAttribute("cx"))-evt.clientX;
+	dy=parseFloat(objDragging.getAttribute("cy"))-evt.clientY;
+      }
+      else
+      {
+	dx=parseFloat(objDragging.getAttribute("x"))-evt.clientX;
+	dy=parseFloat(objDragging.getAttribute("y"))-evt.clientY;
+      }
+    }
+alert("z5");
+  }
+  catch (err)
+  {
+    window.alert("Erro (A30): "+err);
+  }
+}
 
 function init() {
   mainPanel = document.getElementById("mainpanel");
@@ -54,6 +110,10 @@ function insertCircle() {
   editPanel.style.display = "none";
 }
 
+function teste() {
+  alert("hello world!");
+}
+
 function insertRect() {
   var newNode = document.createElementNS(svgNS,'rect');
   setPosition(newNode, 70, 70);
@@ -67,8 +127,6 @@ function insertRect() {
   idcount=idcount+1;
   newNode.setAttribute('id','elid'+idcount);
 //  newNode.setAttribute('onclick','setPosition(document.getElementById("elid'+idcount+'"),200,200)');
-  newNode.setAttribute('onclick','function(){alert("hello world!");}');
-alert("onclick="+newNode.getAttribute('onclick'));
   mainPanel.appendChild(newNode);
   editPanel.style.display = "none";
 }
