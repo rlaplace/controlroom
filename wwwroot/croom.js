@@ -6,11 +6,16 @@ var objCurrent=null;
 var objSelected=null;
 var objDragged=null;
 var pntDragged=null;
+var oldX, oldY;
 
 
 function init() {
   mainPanel = document.getElementById("mainpanel");
   editPanel = document.getElementById("editpanel");
+}
+
+function selectObj(obj)
+{
 }
 
 function selecionaObj(obj)
@@ -167,71 +172,23 @@ function selecionaObj(obj)
   }
 }
 
-
-
 function touch(evt)
 {
   try
   {
-    if (evt.target==mainPanel)
-    {
-      objDragged=null;
-      objCurrent=null;
-      selectObj(null);
-    }
-    else if (evt.target.id=="background")
-    {
-      objDragged=null;
-      objCurrent=null;
-      selectObj(evt.target);
-    }
-    else if (evt.target.getAttribute("class")=="pontojunta")
-    {
-      objDragged=null;
-      objCurrent=null;
+    objDragged=null;
+    objCurrent=null;
+    oldX=evt.clientX;
+    oldY=evt.clientY;
+    if (evt.target.getAttribute("class")=="pontojunta")
       pntDragged=evt.target;
-      dx = parseFloat(pntDragged.parentNode.getAttribute("x"));
-      dy = parseFloat(pntDragged.parentNode.getAttribute("y"));
-    }
-    else
+    else if (evt.target.id!="background")
     {
       var newtarget=evt.target;
       while ((newtarget.parentNode!=mainPanel)&&(newtarget.parentNode!=null))
 	newtarget=newtarget.parentNode;
-      objCurrent=newtarget;
-      var trocou = false;
-      if (objSelected!=newtarget)
-      {
-	selectObj(newtarget);
-	trocou = true;
-      }
       objDragged=newtarget;
-      if (objDragged.nodeName=="circle")
-      {
-	dx=parseFloat(objDragged.getAttribute("cx")) - evt.clientX;
-	dy=parseFloat(objDragged.getAttribute("cy")) - evt.clientY;
-      }
-      else if (objDragged.nodeName=="path")
-      {
-	var dxedy = params[1].split(/[\s,]/);
-	dx=parseFloat(dxedy[0]) - evt.clientX;
-	dy=parseFloat(dxedy[1]) - evt.clientY;
-	if (trocou)
-	{
-	  Mx=parseFloat(dxedy[0]);
-	  My=parseFloat(dxedy[1]);
-	}
-      }
-      else if (objDragged.nodeName=="g")
-      {
-	dx = parseFloat(document.getElementById("x").value) - evt.clientX;
-	dy = parseFloat(document.getElementById("y").value) - evt.clientY;
-      }
-      else
-      {
-	dx = parseFloat(objDragged.getAttribute("x")) - evt.clientX;
-	dy = parseFloat(objDragged.getAttribute("y")) - evt.clientY;
-      }
+      objCurrent=newtarget;
     }
   }
   catch (err)
@@ -263,16 +220,12 @@ function drag(evt)
     }
     else
     {
-      var x=evt.clientX+dx;
-      var y=evt.clientY+dy;
-      if ((x-dx<0)||(y-dy<0)||(x-dx>800)||(y-dy>600))
-	return;
+      var dx=oldX-evt.clientX;
+      var dy=oldY-evt.clientY;
       if (objDragged.nodeName=="circle")
       {
-	objDragged.setAttribute("cx", x);
-	objDragged.setAttribute("cy", y);
-	document.getElementById("cx").value=x;
-	document.getElementById("cy").value=y;
+	objDragged.setAttribute("cx", parseFloat(objDragged.getAttribute("cx")) + dx;
+	objDragged.setAttribute("cy", parseFloat(objDragged.getAttribute("cy")) + dy;
       }
       else
       {
@@ -296,8 +249,8 @@ function drag(evt)
 	  objDragged.setAttribute("x", x);
 	  objDragged.setAttribute("y", y);
 	}
-	document.getElementById("x").value=x;
-	document.getElementById("y").value=y;
+//	document.getElementById("x").value=x;
+//	document.getElementById("y").value=y;
       }
     }
   }
