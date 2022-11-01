@@ -6,7 +6,7 @@
   <link rel="stylesheet" href="styles.css"/>
   <script type="text/javascript" src="croom.js"></script>
 </head>
-<body onload="init();" style="margin:0">
+<body onload="init()" style="margin:0">
   <svg style="position:absolute" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
     <defs>
       <g id="el-graph" fill="lightyellow" fill-opacity="0.5" stroke="black" stroke-width="2">
@@ -51,41 +51,35 @@
 	<rect x="12.5" y="19.5" width="2" height="4" fill="#9999FF" stroke="#999999" stroke-width="1"/>
       </g>
 
-      <g transform="translate(5,47) scale(1,1)">
-	<!-- select -->
-	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
-	<path d="M 10.5,20.5 v -17 l 12,12 l -4,1.5 l 2.5,7 l -4,1.5 l -2.5,-6.5 z" fill="white" stroke="black" stroke-linejoin="round" stroke-width="1"/>
-      </g>
-      <g onclick="insertElement(document.getElementById('el-image'))" transform="translate(38,47)">
+      <g onclick="insertElement(document.getElementById('el-image'))" transform="translate(5,47)">
 	<!-- element.image -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<g transform="scale(0.1,0.1)">
 	  <image id="el-image" x="60" y="15" width="184" height="274" href="img.jpg"/>
 	</g>
       </g>
-      <g onclick="insertElement(document.getElementById('el-text'))" transform="translate(71,47)">
+      <g onclick="insertElement(document.getElementById('el-text'))" transform="translate(38,47)">
 	<!-- element.text -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<text id="el-text" x="15" y="20" text-anchor="middle">Txt</text>
       </g>
-
-      <g onclick="insertPath()" transform="translate(5,80)">
+      <g onclick="insertPath()" transform="translate(71,47)">
 	<!-- element.path -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<path d="M 5,25 l 7,-15 l 6,10 l 7,-15" fill="none" stroke="black" stroke-linecap="round" stroke-width="1"/>
       </g>
-      <g onclick="insertCircle()" transform="translate(38,80)">
+
+      <g onclick="insertCircle()" transform="translate(5,80)">
 	<!-- element.circle -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<circle cx="15" cy="15" r="7" fill="blue" stroke="black" stroke-width="1"/>
       </g>
-      <g onclick="insertRect()" transform="translate(71,80)">
+      <g onclick="insertRect()" transform="translate(38,80)">
 	<!-- element.rect -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<rect x="11.5" y="3.5" rx="2" ry="2" width="7" height="23" fill="blue" stroke="black" stroke-width="1"/>
       </g>
-
-      <g onclick="insertElement(document.getElementById('el-gauge01'))" transform="translate(5,113)">
+      <g onclick="insertElement(document.getElementById('el-gauge01'))" transform="translate(71,80)">
 	<!-- element.gauge01 -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<g id="el-gauge01" fill="white" fill-opacity="0.5" transform="translate(15,15) scale(0.4,0.4)">
@@ -104,18 +98,18 @@
 	  <line class="ponteiro" x1="0" y1="0" x2="21" y2="0" stroke="black" stroke-width="1" transform="rotate(144)"/>
 	</g>
       </g>
-      <g onclick="insertElement(document.getElementById('el-valve01'))" transform="translate(38,113)">
+
+      <g onclick="insertElement(document.getElementById('el-valve01'))" transform="translate(5,113)">
 	<!-- element.valve01 -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<path id="el-valve01" fill="gray" stroke="black" d="M 15,20 l 10,6 v -12 l -20,12 v -12 l 10,6 v -8 h -6 v -6 h 12 v 6 h -6 z"/>
       </g>
-      <g onclick="insertElement(document.getElementById('el-valve02'))" transform="translate(71,113)">
+      <g onclick="insertElement(document.getElementById('el-valve02'))" transform="translate(38,113)">
 	<!-- element.valve02 -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<path id="el-valve02" fill="gray" stroke="black" d="M 15,20 l 10,6 v -12 l -20,12 v -12 l 10,6 v -9 h -8 a4,4 0 0,1 16,0 h -8 z"/>
       </g>
-
-      <g onclick="insertElement(document.getElementById('el-pump01'))" transform="translate(5,146)">
+      <g onclick="insertElement(document.getElementById('el-pump01'))" transform="translate(71,113)">
 	<!-- element.pump -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<g id="el-pump01" fill="gray" stroke="black" transform="translate(15,15) scale(0.6,0.6)">
@@ -125,7 +119,8 @@
 	  <circle cx="0" cy="0" r="4" fill="none"/>
 	</g>
       </g>
-      <g onclick="insertElement(document.getElementById('el-graph'))" transform="translate(38,146)">
+
+      <g onclick="insertElement(document.getElementById('el-graph'))" transform="translate(5,146)">
 	<!-- element.graph -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
 	<g transform="translate(15.5,15.5) scale(0.2,0.2)" fill="lightyellow" fill-opacity="0.5" stroke="black" stroke-width="2">
@@ -138,6 +133,9 @@
 	  </svg>
           <path d="M -43,40 h 85 M -40,43 v -85" stroke="black" stroke-width="2"/>
 	</g>
+      </g>
+      <g transform="translate(38,146)">
+	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
       </g>
       <g transform="translate(71,146)">
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="#446644" stroke="#002200" stroke-width="1"/>
