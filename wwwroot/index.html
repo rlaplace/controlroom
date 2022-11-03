@@ -22,7 +22,30 @@
         <rect id="background" x="-10" y="-10" width="800" height="600" stroke="none" fill="lightblue"/>
       </g>
     </svg>
-    <g id="editpanel" class="uiWindow">
+    <g id="editpanel" class="uiWindow" visibility="hidden">
+      <path d="M 1,9 v 172 h 104 v -172" fill="#442222" stroke="#220000" stroke-width="2"/>
+      <g class="uiDrager">
+	<path d="M 1,9 v -8 h 104 v 8" fill="#664444" stroke="#220000" stroke-width="2"/>
+	<path d="M 4,4 h 90 M 4,7 h 90" stroke="#442222" stroke-linecap="round" stroke-width="2"/>
+      </g>
+      <g onclick="editPanel.setAttribute('visibility', 'hidden'); menuPanel.setAttribute('visibility', 'visible');" class="uiClose">
+	<rect x="97" y="2" width="7" height="7" fill="#DD4444" stroke="none"/>
+	<path d="M 99,4 l 3,3 m 0,-3 l -3,3" stroke="#664444" stroke-linecap="round" stroke-width="1.5"/>
+      </g>
+      <g id="edititems" transform="translate(5,14)">
+	<g>
+	  <text x="5" y="20" text-anchor="left" fill="#FFDDDD">x</text>
+	  <rect x="40" y="2" rx="3" ry="3" width="30" height="25" fill="#FFDDDD" stroke="#220000" stroke-width="1"/>
+	  <text x="45" y="20" text-anchor="left">25</text>
+	</g>
+	<g transform="translate(0,30)">
+	  <text x="5" y="20" text-anchor="left" fill="#FFDDDD">y</text>
+	  <rect x="40" y="2" rx="3" ry="3" width="30" height="25" fill="#FFDDDD" stroke="#220000" stroke-width="1"/>
+	  <text x="45" y="20" text-anchor="left">25</text>
+	</g>
+      </g>
+    </g>
+    <g id="menupanel" class="uiWindow">
       <path d="M 1,9 v 172 h 104 v -172" fill="#224422" stroke="#002200" stroke-width="2"/>
       <g class="uiDrager">
 	<path d="M 1,9 v -8 h 104 v 8" fill="#446644" stroke="#002200" stroke-width="2"/>

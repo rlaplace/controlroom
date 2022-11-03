@@ -1,6 +1,6 @@
 const editmode=0, runmode=1;
 let mode=editmode;
-var mainPanel, editPanel;
+var mainPanel, editPanel, editItems, menuPanel;
 var svgNS="http://www.w3.org/2000/svg";
 var objDragged=null;
 var pntDragged=null;
@@ -10,6 +10,8 @@ var params=new Array();
 function init() {
   mainPanel = document.getElementById("mainpanel");
   editPanel = document.getElementById("editpanel");
+  editItems = document.getElementById("edititems");
+  menuPanel = document.getElementById("menupanel");
 }
 
 function touch(evt)
@@ -42,7 +44,7 @@ function touch(evt)
 	    params[i] = params[i].trim();
       }
     }
-    editPanel.style.display = "none";
+    menuPanel.setAttribute("visibility", "hidden");
   }
   catch (err)
   {
@@ -125,7 +127,42 @@ function drop(evt)
 {
   objDragged=null;
   pntDragged=null;
-  editPanel.style.display = "inline";
+  while (editItems.hasChildNodes())
+    editItems.removeChild(editItems.firstChild);
+  var realtarget=evt.target;
+  while ((realtarget.parentNode!=mainPanel)&&(realtarget.parentNode!=null))
+    realtarget=realtarget.parentNode;
+  for(var i=0; i<3; i++)
+  {
+    var newItem = document.createElementNS(svgNS,'g');
+    newItem.setAttribute("transform", "translate(0.5,"+(25*i+0.5)+")");
+    var label = document.createElementNS(svgNS,'text');
+    label.textContent="x";
+    label.setAttribute("x", "5");
+    label.setAttribute("y", "17");
+    label.setAttribute("text-anchor", "left");
+    label.setAttribute("fill", "#FFDDDD");
+    newItem.appendChild(label);
+    var inputBox = document.createElementNS(svgNS,'rect');
+    inputBox.setAttribute("x", "40");
+    inputBox.setAttribute("y", "1");
+    inputBox.setAttribute("rx", "3");
+    inputBox.setAttribute("ry", "3");
+    inputBox.setAttribute("width", "80");
+    inputBox.setAttribute("height", "22");
+    inputBox.setAttribute("fill", "#FFDDDD");
+    inputBox.setAttribute("stroke", "#220000");
+    inputBox.setAttribute("stroke-width", "1");
+    newItem.appendChild(inputBox);
+    var inputText = document.createElementNS(svgNS,'text');
+    inputText.textContent="250";
+    inputText.setAttribute("x", "45");
+    inputText.setAttribute("y", "17");
+    inputText.setAttribute("text-anchor", "left");
+    newItem.appendChild(inputText);
+    editItems.appendChild(newItem);
+  }
+  editPanel.setAttribute("visibility", "display");
 }
 
 function setPosition(el, x, y) {
@@ -159,7 +196,7 @@ function insertPath() {
   newNode.setAttribute('stroke-linecap','round');
   newNode.setAttribute('stroke-width','2');
   mainPanel.appendChild(newNode);
-  editPanel.style.display = "none";
+  menuPanel.setAttribute("visibility", "hidden");
 }
 
 function insertCircle() {
@@ -170,7 +207,7 @@ function insertCircle() {
   newNode.setAttribute('stroke','black');
   newNode.setAttribute('stroke-width','2');
   mainPanel.appendChild(newNode);
-  editPanel.style.display = "none";
+  menuPanel.setAttribute("visibility", "hidden");
 }
 
 function insertRect() {
@@ -184,7 +221,7 @@ function insertRect() {
   newNode.setAttribute('stroke','black');
   newNode.setAttribute('stroke-width','2');
   mainPanel.appendChild(newNode);
-  editPanel.style.display = "none";
+  menuPanel.setAttribute("visibility", "hidden");
 }
 
 function insertElement(element) {
@@ -192,5 +229,5 @@ function insertElement(element) {
   newNode.removeAttribute("id");
   setPosition(newNode, 50, 50);
   mainPanel.appendChild(newNode);
-  editPanel.style.display = "none";
+  menuPanel.setAttribute("visibility", "hidden");
 }
