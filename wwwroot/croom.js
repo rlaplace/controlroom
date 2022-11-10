@@ -7,6 +7,7 @@ var pntDragged=null;
 var oldX, oldY;
 var params=new Array();
 var uiNumberPickers;
+var itemCount;
 
 function plusButtonClick()
 {
@@ -50,9 +51,6 @@ function init() {
   editPanel = document.getElementById("editpanel");
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
-  uiNumberPickers = document.getElementsByClassName("uiNumberPicker");
-  for(var i=0; i<uiNumberPickers.length; i++)
-    assemblyUiNumberPicker(uiNumberPickers[i]);
 }
 
 function touch(evt)
@@ -129,9 +127,9 @@ function drag(evt)
       {
 	if (objDragged.nodeName=="path")
 	{
-	  var xey = params[1].split(/([,])/);
+	  var xey = params[1].split(/[\s,]/);
 	  var newx = parseFloat(xey[0].trim()) + dx;
-	  var newy = parseFloat(xey[2].trim()) + dy;
+	  var newy = parseFloat(xey[1].trim()) + dy;
 	  params[1]= "" + newx + " " + newy;
 	  objDragged.setAttribute("d", params.join(" "));
 	}
@@ -164,6 +162,22 @@ function drag(evt)
   }
 }
 
+function createItem(fieldName, fieldClass, fieldValue)
+{
+  var label = document.createElementNS(svgNS,'text');
+  label.textContent=fieldName;
+  label.setAttribute("x", "5");
+  label.setAttribute("y", ""+(itemCount*25+17));
+  label.setAttribute("text-anchor", "left");
+  label.setAttribute("fill", "#FFDDDD");
+  editItems.appendChild(label);
+  var g = document.createElementNS(svgNS,'g');
+  g.setAttribute("class", fieldClass);
+  g.setAttribute("transform", "translate(95,"+(itemCount*25+17)+")");
+  editItems.appendChild(g);
+  itemCount++;
+}
+
 function drop(evt)
 {
   objDragged=null;
@@ -171,38 +185,71 @@ function drop(evt)
   var realtarget=evt.target;
   while ((realtarget.parentNode!=mainPanel)&&(realtarget.parentNode!=null))
     realtarget=realtarget.parentNode;
-  var vtrue=true;
-  if (vtrue==false)
-  for(var i=0; i<3; i++)
-  {
-    var newItem = document.createElementNS(svgNS,'g');
-    newItem.setAttribute("transform", "translate(0.5,"+(25*i+0.5)+")");
-    var label = document.createElementNS(svgNS,'text');
-    label.textContent="x";
-    label.setAttribute("x", "5");
-    label.setAttribute("y", "17");
-    label.setAttribute("text-anchor", "left");
-    label.setAttribute("fill", "#FFDDDD");
-    newItem.appendChild(label);
-    var inputBox = document.createElementNS(svgNS,'rect');
-    inputBox.setAttribute("x", "40");
-    inputBox.setAttribute("y", "1");
-    inputBox.setAttribute("rx", "3");
-    inputBox.setAttribute("ry", "3");
-    inputBox.setAttribute("width", "80");
-    inputBox.setAttribute("height", "22");
-    inputBox.setAttribute("fill", "#FFDDDD");
-    inputBox.setAttribute("stroke", "#220000");
-    inputBox.setAttribute("stroke-width", "1");
-    newItem.appendChild(inputBox);
-    var inputText = document.createElementNS(svgNS,'text');
-    inputText.textContent="250";
-    inputText.setAttribute("x", "45");
-    inputText.setAttribute("y", "17");
-    inputText.setAttribute("text-anchor", "left");
-    newItem.appendChild(inputText);
-    editItems.appendChild(newItem);
+  while (editItems.hasChildNodes())
+    editItems.removeChild(editItems.firstChild);
+  itemCount=0;
+  switch (realtarget.tagName) {
+    case "text":
+    case "image":
+    case "rect":
+      createItem("x", "uiNumberPicker", realtarget.getAttribute("x"));
+      createItem("y", "uiNumberPicker", realtarget.getAttribute("y"));
+      break;
+    case "circle":
+      createItem("cx", "uiNumberPicker", realtarget.getAttribute("cx"));
+      createItem("cy", "uiNumberPicker", realtarget.getAttribute("cy"));
+      createItem("radius", "uiNumberPicker", realtarget.getAttribute("r"));
+      break;
+    case "path":
+      createItem("d", "uiText", realtarget.getAttribute("d"));
+      break;
   }
+  switch (realtarget.tagName) {
+    case "text":
+      createItem("Text", "uiText", realtarget.textContent);
+      break;
+    case "image":
+    case "rect":
+      createItem("width", "uiNumberPicker", realtarget.getAttribute("width"));
+      createItem("height", "uiNumberPicker", realtarget.getAttribute("height"));
+      break;
+  }
+  switch (realtarget.tagName) {
+    case "image":
+      createItem("Source", "uiText", realtarget.getAttribute("href"));
+      break;
+    case "text":
+    case "rect":
+    case "circle":
+    case "path":
+      createItem("fill", "uiColorPicker", realtarget.getAttribute("fill"));
+      break;
+  }
+  switch (realtarget.tagName) {
+    case "text":
+    case "image":
+    case "rect":
+      break;
+    case "circle":
+      break;
+    case "g":
+    case "path":
+      break;
+  }
+  switch (realtarget.tagName) {
+    case "text":
+    case "image":
+    case "rect":
+      break;
+    case "circle":
+      break;
+    case "g":
+    case "path":
+      break;
+  }
+  uiNumberPickers = document.getElementsByClassName("uiNumberPicker");
+  for(var i=0; i<uiNumberPickers.length; i++)
+    assemblyUiNumberPicker(uiNumberPickers[i]);
   editPanel.setAttribute("visibility", "display");
 }
 
@@ -219,8 +266,14 @@ function setPosition(el, x, y) {
       el.setAttribute("cx", x);
       el.setAttribute("cy", y);
       break;
-    case "g":
     case "path":
+      var xey = params[1].split(/[\s,]/);
+      var newx = parseFloat(xey[0].trim()) + dx;
+      var newy = parseFloat(xey[1].trim()) + dy;
+      params[1]= "" + newx + " " + newy;
+      objDragged.setAttribute("d", params.join(" "));
+      break;
+    case "g":
       el.setAttribute("transform", "translate(" + x + "," + y + ")");
       break;
     default:
@@ -230,8 +283,7 @@ function setPosition(el, x, y) {
 
 function insertPath() {
   var newNode = document.createElementNS(svgNS,'path');
-  setPosition(newNode, 70, 220);
-  newNode.setAttribute('d','M 0 0 l 70 -150 l 60 100 l 70 -150');
+  newNode.setAttribute('d','M 70 220 l 70 -150 l 60 100 l 70 -150');
   newNode.setAttribute('fill','none');
   newNode.setAttribute('stroke','black');
   newNode.setAttribute('stroke-linecap','round');
@@ -242,7 +294,8 @@ function insertPath() {
 
 function insertCircle() {
   var newNode = document.createElementNS(svgNS,'circle');
-  setPosition(newNode, 70, 90);
+  newNode.setAttribute('cx',70);
+  newNode.setAttribute('cy',90);
   newNode.setAttribute('r',40);
   newNode.setAttribute('fill','blue');
   newNode.setAttribute('stroke','black');
@@ -253,11 +306,13 @@ function insertCircle() {
 
 function insertRect() {
   var newNode = document.createElementNS(svgNS,'rect');
-  setPosition(newNode, 70, 70);
+  newNode.setAttribute('x',70);
+  newNode.setAttribute('y',70);
   newNode.setAttribute('width',50);
   newNode.setAttribute('height',150);
   newNode.setAttribute('rx',5);
   newNode.setAttribute('ry',5);
+//  newNode.setAttribute('fill','url("#myGradient")');
   newNode.setAttribute('fill','blue');
   newNode.setAttribute('stroke','black');
   newNode.setAttribute('stroke-width','2');
