@@ -6,7 +6,6 @@ var objDragged=null;
 var pntDragged=null;
 var oldX, oldY;
 var params=new Array();
-var uiNumberPickers;
 var itemCount;
 
 function plusButtonClick()
@@ -14,43 +13,25 @@ function plusButtonClick()
 alert("S1");
 }
 
-function assemblyUiNumberPicker(element)
-{
-  while (element.hasChildNodes())
-    element.removeChild(element.firstChild);
-  var width=56;
-  var inputBox = document.createElementNS(svgNS,'path');
-  inputBox.setAttribute("d", "M 0.5 2.5 a 4 4 90 0 1 2 -2 h "+(width-4)+" a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -"+(width-4)+" a 4 4 90 0 1 -2 -2 z");
-  inputBox.setAttribute("fill", "#FFDDDD");
-  inputBox.setAttribute("stroke", "#220000");
-  inputBox.setAttribute("stroke-width", "1");
-  element.appendChild(inputBox);
-  var inputText = document.createElementNS(svgNS,'text');
-  inputText.textContent="250";
-  inputText.setAttribute("x", "5");
-  inputText.setAttribute("y", "16");
-  inputText.setAttribute("text-anchor", "left");
-  element.appendChild(inputText);
-  var plusButton = document.createElementNS(svgNS,'path');
-  plusButton.setAttribute("d", "M "+(width-10)+".5 4.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M "+(width-8)+".5 6.5 h 4 M "+(width-6)+".5 4.5 v 4");
-  plusButton.setAttribute("onclick", "plusButtonClick()");
-  plusButton.setAttribute("fill", "#FFDDDD");
-  plusButton.setAttribute("stroke", "#220000");
-  plusButton.setAttribute("stroke-width", "1");
-  element.appendChild(plusButton);
-  var minusButton = document.createElementNS(svgNS,'path');
-  minusButton.setAttribute("d", "M "+(width-10)+".5 14.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M "+(width-8)+".5 16.5 h 4 M "+(width-6)+".5 4.5 v 4");
-  minusButton.setAttribute("fill", "#FFDDDD");
-  minusButton.setAttribute("stroke", "#220000");
-  minusButton.setAttribute("stroke-width", "1");
-  element.appendChild(minusButton);
-}
-
 function init() {
   mainPanel = document.getElementById("mainpanel");
   editPanel = document.getElementById("editpanel");
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
+}
+
+function prepParams(element)
+{
+  var d = element.getAttribute("d");
+  params = d.split(/([MmZzLlHhVvCcSsQqTtAa])/);
+  for (var i=0; i<params.length; i++)
+    if (params[i]=="")
+    {
+      params.splice(i, 1);
+      i--;
+    }
+    else
+    params[i] = params[i].trim();
 }
 
 function touch(evt)
@@ -70,24 +51,13 @@ function touch(evt)
 	realtarget=realtarget.parentNode;
       objDragged=realtarget;
       if (objDragged.nodeName=="path")
-      {
-	var d = objDragged.getAttribute("d");
-	params = d.split(/([MmZzLlHhVvCcSsQqTtAa])/);
-	for (var i=0; i<params.length; i++)
-	  if (params[i]=="")
-	  {
-	    params.splice(i, 1);
-	    i--;
-	  }
-	  else
-	    params[i] = params[i].trim();
-      }
+	prepParams(objDragged);
     }
     menuPanel.setAttribute("visibility", "hidden");
   }
   catch (err)
   {
-    window.alert("Erro (A30): "+err);
+    window.alert("Error (A30): "+err);
   }
 }
 
@@ -118,47 +88,42 @@ function drag(evt)
       var dy=evt.clientY-oldY;
       oldX=evt.clientX;
       oldY=evt.clientY;
-      if (objDragged.nodeName=="circle")
-      {
-	objDragged.setAttribute("cx", parseFloat(objDragged.getAttribute("cx")) + dx);
-	objDragged.setAttribute("cy", parseFloat(objDragged.getAttribute("cy")) + dy);
-      }
-      else
-      {
-	if (objDragged.nodeName=="path")
-	{
+      switch (objDragged.tagName) {
+	case "image":
+	case "rect":
+	case "text":
+	  objDragged.setAttribute("x", parseFloat(objDragged.getAttribute("x")) + dx);
+	  objDragged.setAttribute("y", parseFloat(objDragged.getAttribute("y")) + dy);
+	  break;
+	case "circle":
+	  objDragged.setAttribute("cx", parseFloat(objDragged.getAttribute("cx")) + dx);
+	  objDragged.setAttribute("cy", parseFloat(objDragged.getAttribute("cy")) + dy);
+	  break;
+	case "path":
 	  var xey = params[1].split(/[\s,]/);
-	  var newx = parseFloat(xey[0].trim()) + dx;
-	  var newy = parseFloat(xey[1].trim()) + dy;
-	  params[1]= "" + newx + " " + newy;
+	  params[1]= "" + (parseFloat(xey[0].trim()) + dx) + " " + (parseFloat(xey[1].trim()) + dy);
 	  objDragged.setAttribute("d", params.join(" "));
-	}
-	else if (objDragged.nodeName=="g")
-	{
+	  break;
+	case "g":
 	  var trans = objDragged.getAttribute("transform").split(/([\(\)])/);
-	  var newx, newy;
+	  var newx = dx, newy = dy;
 	  for (var i=0; i<trans.length; i++)
 	    if (trans[i]=="translate")
 	    {
 	      var xey = trans[i+2].split(/([,])/);
-	      newx = parseFloat(xey[0].trim()) + dx;
-	      newy = parseFloat(xey[2].trim()) + dy;
-	      objDragged.setAttribute("transform", "translate("+newx+","+newy+")");
+	      newx += parseFloat(xey[0].trim());
+	      newy += parseFloat(xey[2].trim());
 	    }
-	}
-	else
-	{
-	  objDragged.setAttribute("x", parseFloat(objDragged.getAttribute("x")) + dx);
-	  objDragged.setAttribute("y", parseFloat(objDragged.getAttribute("y")) + dy);
-	}
-//	document.getElementById("x").value=x;
-//	document.getElementById("y").value=y;
+	  objDragged.setAttribute("transform", "translate(" + newx + "," + newy + ")");
+	  break;
+	default:
+	  window.alert('Error (A31): Unnexpected tagName "'+el.tagName+'"') ;
       }
     }
   }
   catch (err)
   {
-    window.alert("Erro (A29): "+err);
+    window.alert("Error (A29): "+err);
   }
 }
 
@@ -167,13 +132,58 @@ function createItem(fieldName, fieldClass, fieldValue)
   var label = document.createElementNS(svgNS,'text');
   label.textContent=fieldName;
   label.setAttribute("x", "5");
-  label.setAttribute("y", ""+(itemCount*25+17));
+  label.setAttribute("y", ""+(itemCount*25+16));
   label.setAttribute("text-anchor", "left");
   label.setAttribute("fill", "#FFDDDD");
   editItems.appendChild(label);
   var g = document.createElementNS(svgNS,'g');
   g.setAttribute("class", fieldClass);
-  g.setAttribute("transform", "translate(95,"+(itemCount*25+17)+")");
+  g.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
+  var width=56;
+  var viewBox = document.createElementNS(svgNS,'svg');
+  viewBox.setAttribute("x", "1");
+  viewBox.setAttribute("y", "1");
+  viewBox.setAttribute("width", ""+(width-2));
+  viewBox.setAttribute("height", "21");
+  viewBox.setAttribute("viewbox", "0 0 "+(width-2)+" 21");
+  g.appendChild(viewBox);
+  var inputText = document.createElementNS(svgNS,'text');
+  inputText.setAttribute("x", "3");
+  inputText.setAttribute("y", "16");
+  inputText.setAttribute("text-anchor", "left");
+  viewBox.appendChild(inputText);
+  var inputBox = document.createElementNS(svgNS,'path');
+  inputBox.setAttribute("d", "M 0.5 2.5 a 4 4 90 0 1 2 -2 h "+(width-5)+" a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -"+(width-5)+" a 4 4 90 0 1 -2 -2 z");
+  inputBox.setAttribute("fill", "none");
+  inputBox.setAttribute("stroke", "#220000");
+  inputBox.setAttribute("stroke-width", "1");
+  g.appendChild(inputBox);
+  switch (fieldClass) {
+    case "uiNumberPicker":
+      if (fieldValue==null)
+	inputText.textContent="0";
+      else
+	inputText.textContent=""+parseFloat(fieldValue);
+      var plusButton = document.createElementNS(svgNS,'path');
+      plusButton.setAttribute("d", "M "+(width-11)+".5 4.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M "+(width-9)+".5 6.5 h 4 M "+(width-7)+".5 4.5 v 4");
+      plusButton.setAttribute("onclick", "plusButtonClick()");
+      plusButton.setAttribute("fill", "#FFDDDD");
+      plusButton.setAttribute("stroke", "#220000");
+      plusButton.setAttribute("stroke-width", "1");
+      g.appendChild(plusButton);
+      var minusButton = document.createElementNS(svgNS,'path');
+      minusButton.setAttribute("d", "M "+(width-11)+".5 14.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M "+(width-9)+".5 16.5 h 4");
+      minusButton.setAttribute("fill", "#FFDDDD");
+      minusButton.setAttribute("stroke", "#220000");
+      minusButton.setAttribute("stroke-width", "1");
+      g.appendChild(minusButton);
+    break;
+    default:
+      if (fieldValue==null)
+	inputText.textContent="";
+      else
+	inputText.textContent=""+fieldValue;
+  }
   editItems.appendChild(g);
   itemCount++;
 }
@@ -216,69 +226,27 @@ function drop(evt)
   }
   switch (realtarget.tagName) {
     case "image":
-      createItem("Source", "uiText", realtarget.getAttribute("href"));
+      createItem("href", "uiText", realtarget.getAttribute("href"));
       break;
     case "text":
     case "rect":
     case "circle":
+    case "g":
     case "path":
       createItem("fill", "uiColorPicker", realtarget.getAttribute("fill"));
+      createItem("stroke", "uiColorPicker", realtarget.getAttribute("stroke"));
       break;
   }
   switch (realtarget.tagName) {
     case "text":
     case "image":
     case "rect":
-      break;
     case "circle":
-      break;
     case "g":
     case "path":
       break;
   }
-  switch (realtarget.tagName) {
-    case "text":
-    case "image":
-    case "rect":
-      break;
-    case "circle":
-      break;
-    case "g":
-    case "path":
-      break;
-  }
-  uiNumberPickers = document.getElementsByClassName("uiNumberPicker");
-  for(var i=0; i<uiNumberPickers.length; i++)
-    assemblyUiNumberPicker(uiNumberPickers[i]);
   editPanel.setAttribute("visibility", "display");
-}
-
-function setPosition(el, x, y) {
-//alert("x="+x+" y="+y);
-  switch (el.tagName) {
-    case "image":
-    case "rect":
-    case "text":
-      el.setAttribute("x", x);
-      el.setAttribute("y", y);
-      break;
-    case "circle":
-      el.setAttribute("cx", x);
-      el.setAttribute("cy", y);
-      break;
-    case "path":
-      var xey = params[1].split(/[\s,]/);
-      var newx = parseFloat(xey[0].trim()) + dx;
-      var newy = parseFloat(xey[1].trim()) + dy;
-      params[1]= "" + newx + " " + newy;
-      objDragged.setAttribute("d", params.join(" "));
-      break;
-    case "g":
-      el.setAttribute("transform", "translate(" + x + "," + y + ")");
-      break;
-    default:
-      window.alert('Error (A31): Unnexpected tagName "'+el.tagName+'"') ;
-  }
 }
 
 function insertPath() {
@@ -323,7 +291,28 @@ function insertRect() {
 function insertElement(element) {
   var newNode = element.cloneNode(true);
   newNode.removeAttribute("id");
-  setPosition(newNode, 50, 50);
+  switch (newNode.tagName) {
+    case "image":
+    case "rect":
+    case "text":
+      newNode.setAttribute("x", "50");
+      newNode.setAttribute("y", "50");
+      break;
+    case "circle":
+      newNode.setAttribute("cx", "50");
+      newNode.setAttribute("cy", "50");
+      break;
+    case "path":
+      prepParams(newNode);
+      params[1]= "50 50";
+      newNode.setAttribute("d", params.join(" "));
+      break;
+    case "g":
+      newNode.setAttribute("transform", "translate(50,50)");
+      break;
+    default:
+      window.alert('Error (A32): Unnexpected tagName "'+newNode.tagName+'"') ;
+  }
   mainPanel.appendChild(newNode);
   menuPanel.setAttribute("visibility", "hidden");
 }
