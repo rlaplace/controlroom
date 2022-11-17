@@ -129,30 +129,35 @@ function drag(evt)
 
 function createItem(fieldName, fieldClass, fieldValue)
 {
-  var label = document.createElementNS(svgNS,'text');
+  var label = document.createElementNS(svgNS,"text");
   label.textContent=fieldName;
   label.setAttribute("x", "5");
   label.setAttribute("y", ""+(itemCount*25+16));
   label.setAttribute("text-anchor", "left");
   label.setAttribute("fill", "#FFDDDD");
   editItems.appendChild(label);
-  var g = document.createElementNS(svgNS,'g');
+  var g = document.createElementNS(svgNS,"g");
   g.setAttribute("class", fieldClass);
   g.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
   var width=56;
-  var viewBox = document.createElementNS(svgNS,'svg');
+  var viewBox = document.createElementNS(svgNS,"svg");
   viewBox.setAttribute("x", "1");
   viewBox.setAttribute("y", "1");
   viewBox.setAttribute("width", ""+(width-2));
   viewBox.setAttribute("height", "21");
   viewBox.setAttribute("viewbox", "0 0 "+(width-2)+" 21");
   g.appendChild(viewBox);
-  var inputText = document.createElementNS(svgNS,'text');
+  var background = document.createElementNS(svgNS,"path");
+  background.setAttribute("d", "M -0.5 1.5 a 4 4 90 0 1 2 -2 h "+(width-5)+" a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -"+(width-5)+" a 4 4 90 0 1 -2 -2 z");
+  background.setAttribute("fill", "#FFDDDD");
+  background.setAttribute("stroke", "none");
+  viewBox.appendChild(background);
+  var inputText = document.createElementNS(svgNS,"text");
   inputText.setAttribute("x", "3");
   inputText.setAttribute("y", "16");
   inputText.setAttribute("text-anchor", "left");
   viewBox.appendChild(inputText);
-  var inputBox = document.createElementNS(svgNS,'path');
+  var inputBox = document.createElementNS(svgNS,"path");
   inputBox.setAttribute("d", "M 0.5 2.5 a 4 4 90 0 1 2 -2 h "+(width-5)+" a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -"+(width-5)+" a 4 4 90 0 1 -2 -2 z");
   inputBox.setAttribute("fill", "none");
   inputBox.setAttribute("stroke", "#220000");
@@ -164,14 +169,14 @@ function createItem(fieldName, fieldClass, fieldValue)
 	inputText.textContent="0";
       else
 	inputText.textContent=""+parseFloat(fieldValue);
-      var plusButton = document.createElementNS(svgNS,'path');
+      var plusButton = document.createElementNS(svgNS,"path");
       plusButton.setAttribute("d", "M "+(width-11)+".5 4.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M "+(width-9)+".5 6.5 h 4 M "+(width-7)+".5 4.5 v 4");
       plusButton.setAttribute("onclick", "plusButtonClick()");
       plusButton.setAttribute("fill", "#FFDDDD");
       plusButton.setAttribute("stroke", "#220000");
       plusButton.setAttribute("stroke-width", "1");
       g.appendChild(plusButton);
-      var minusButton = document.createElementNS(svgNS,'path');
+      var minusButton = document.createElementNS(svgNS,"path");
       minusButton.setAttribute("d", "M "+(width-11)+".5 14.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M "+(width-9)+".5 16.5 h 4");
       minusButton.setAttribute("fill", "#FFDDDD");
       minusButton.setAttribute("stroke", "#220000");
@@ -210,9 +215,26 @@ function drop(evt)
       createItem("cy", "uiNumberPicker", realtarget.getAttribute("cy"));
       createItem("radius", "uiNumberPicker", realtarget.getAttribute("r"));
       break;
+    case "g":
+      var trans = realtarget.getAttribute("transform").split(/([\(\)])/);
+      var x = 0, y = 0;
+      for (var i=0; i<trans.length; i++)
+	if (trans[i]=="translate")
+	{
+	  var xey = trans[i+2].split(/([,])/);
+	  x += parseFloat(xey[0].trim());
+	  y += parseFloat(xey[2].trim());
+	}
+      createItem("x", "uiNumberPicker", x);
+      createItem("y", "uiNumberPicker", y);
+      break;
     case "path":
       createItem("d", "uiText", realtarget.getAttribute("d"));
       break;
+  }
+  if (realtarget.getAttribute("class")=="graph") {
+    createItem("width", "uiNumberPicker", realtarget.getAttribute("width"));
+    createItem("height", "uiNumberPicker", realtarget.getAttribute("height"));
   }
   switch (realtarget.tagName) {
     case "text":
@@ -250,40 +272,40 @@ function drop(evt)
 }
 
 function insertPath() {
-  var newNode = document.createElementNS(svgNS,'path');
-  newNode.setAttribute('d','M 70 220 l 70 -150 l 60 100 l 70 -150');
-  newNode.setAttribute('fill','none');
-  newNode.setAttribute('stroke','black');
-  newNode.setAttribute('stroke-linecap','round');
-  newNode.setAttribute('stroke-width','2');
+  var newNode = document.createElementNS(svgNS,"path");
+  newNode.setAttribute("d","M 70 220 l 70 -150 l 60 100 l 70 -150");
+  newNode.setAttribute("fill","none");
+  newNode.setAttribute("stroke","black");
+  newNode.setAttribute("stroke-linecap","round");
+  newNode.setAttribute("stroke-width","2");
   mainPanel.appendChild(newNode);
   menuPanel.setAttribute("visibility", "hidden");
 }
 
 function insertCircle() {
-  var newNode = document.createElementNS(svgNS,'circle');
-  newNode.setAttribute('cx',70);
-  newNode.setAttribute('cy',90);
-  newNode.setAttribute('r',40);
-  newNode.setAttribute('fill','blue');
-  newNode.setAttribute('stroke','black');
-  newNode.setAttribute('stroke-width','2');
+  var newNode = document.createElementNS(svgNS,"circle");
+  newNode.setAttribute("cx","70");
+  newNode.setAttribute("cy","90");
+  newNode.setAttribute("r","40");
+  newNode.setAttribute("fill","blue");
+  newNode.setAttribute("stroke","black");
+  newNode.setAttribute("stroke-width","2");
   mainPanel.appendChild(newNode);
   menuPanel.setAttribute("visibility", "hidden");
 }
 
 function insertRect() {
-  var newNode = document.createElementNS(svgNS,'rect');
-  newNode.setAttribute('x',70);
-  newNode.setAttribute('y',70);
-  newNode.setAttribute('width',50);
-  newNode.setAttribute('height',150);
-  newNode.setAttribute('rx',5);
-  newNode.setAttribute('ry',5);
-//  newNode.setAttribute('fill','url("#myGradient")');
-  newNode.setAttribute('fill','blue');
-  newNode.setAttribute('stroke','black');
-  newNode.setAttribute('stroke-width','2');
+  var newNode = document.createElementNS(svgNS,"rect");
+  newNode.setAttribute("x","70");
+  newNode.setAttribute("y","70");
+  newNode.setAttribute("width","50");
+  newNode.setAttribute("height","150");
+  newNode.setAttribute("rx","5");
+  newNode.setAttribute("ry","5");
+//  newNode.setAttribute("fill","url('#myGradient')");
+  newNode.setAttribute("fill","blue");
+  newNode.setAttribute("stroke","black");
+  newNode.setAttribute("stroke-width","2");
   mainPanel.appendChild(newNode);
   menuPanel.setAttribute("visibility", "hidden");
 }
