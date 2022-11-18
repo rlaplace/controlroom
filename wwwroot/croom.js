@@ -182,7 +182,15 @@ function createItem(fieldName, fieldClass, fieldValue)
       minusButton.setAttribute("stroke", "#220000");
       minusButton.setAttribute("stroke-width", "1");
       g.appendChild(minusButton);
-    break;
+      break;
+    case "uiColorPicker":
+      var pickerButton = document.createElementNS(svgNS,"path");
+      pickerButton.setAttribute("d", "M "+(width-20)+".5 0.5 h 20 a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -20 z");
+      pickerButton.setAttribute("fill", "#FFDDDD");
+      pickerButton.setAttribute("stroke", "#220000");
+      pickerButton.setAttribute("stroke-width", "1");
+      g.appendChild(pickerButton);
+      break;
     default:
       if (fieldValue==null)
 	inputText.textContent="";
