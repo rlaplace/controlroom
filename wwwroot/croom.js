@@ -4,13 +4,27 @@ var mainPanel, editPanel, editItems, menuPanel;
 var svgNS="http://www.w3.org/2000/svg";
 var objDragged=null;
 var pntDragged=null;
-var oldX, oldY;
+var oldX, oldY, did=0;
 var params=new Array();
 var itemCount;
+var elementBeingChanged;
 
-function plusButtonClick()
+function plusButtonTouch(targetId)
 {
-alert("S1");
+  elementBeingChanged = document.getElementById("dinamic_id_"+targetId);
+  if (elementBeingChanged!=null)
+    elementBeingChanged.textContent=parseFloat(elementBeingChanged.textContent)+1;
+}
+
+function plusButtonScrub()
+{
+  if (elementBeingChanged!=null)
+    elementBeingChanged.textContent=parseFloat(elementBeingChanged.textContent)+1;
+}
+
+function plusButtonDrop()
+{
+  elementBeingChanged=null;
 }
 
 function init() {
@@ -136,68 +150,55 @@ function createItem(fieldName, fieldClass, fieldValue)
   label.setAttribute("text-anchor", "left");
   label.setAttribute("fill", "#FFDDDD");
   editItems.appendChild(label);
-  var g = document.createElementNS(svgNS,"g");
-  g.setAttribute("class", fieldClass);
-  g.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
-  var width=56;
-  var viewBox = document.createElementNS(svgNS,"svg");
-  viewBox.setAttribute("x", "1");
-  viewBox.setAttribute("y", "1");
-  viewBox.setAttribute("width", ""+(width-2));
-  viewBox.setAttribute("height", "21");
-  viewBox.setAttribute("viewbox", "0 0 "+(width-2)+" 21");
-  g.appendChild(viewBox);
-  var background = document.createElementNS(svgNS,"path");
-  background.setAttribute("d", "M -0.5 1.5 a 4 4 90 0 1 2 -2 h "+(width-5)+" a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -"+(width-5)+" a 4 4 90 0 1 -2 -2 z");
-  background.setAttribute("fill", "#FFDDDD");
-  background.setAttribute("stroke", "none");
-  viewBox.appendChild(background);
-  var inputText = document.createElementNS(svgNS,"text");
-  inputText.setAttribute("x", "3");
-  inputText.setAttribute("y", "16");
-  inputText.setAttribute("text-anchor", "left");
-  viewBox.appendChild(inputText);
-  var inputBox = document.createElementNS(svgNS,"path");
-  inputBox.setAttribute("d", "M 0.5 2.5 a 4 4 90 0 1 2 -2 h "+(width-5)+" a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -"+(width-5)+" a 4 4 90 0 1 -2 -2 z");
-  inputBox.setAttribute("fill", "none");
-  inputBox.setAttribute("stroke", "#220000");
-  inputBox.setAttribute("stroke-width", "1");
-  g.appendChild(inputBox);
   switch (fieldClass) {
-    case "uiNumberPicker":
-      if (fieldValue==null)
-	inputText.textContent="0";
-      else
-	inputText.textContent=""+parseFloat(fieldValue);
-      var plusButton = document.createElementNS(svgNS,"path");
-      plusButton.setAttribute("d", "M "+(width-11)+".5 4.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M "+(width-9)+".5 6.5 h 4 M "+(width-7)+".5 4.5 v 4");
-      plusButton.setAttribute("onclick", "plusButtonClick()");
-      plusButton.setAttribute("fill", "#FFDDDD");
-      plusButton.setAttribute("stroke", "#220000");
-      plusButton.setAttribute("stroke-width", "1");
-      g.appendChild(plusButton);
-      var minusButton = document.createElementNS(svgNS,"path");
-      minusButton.setAttribute("d", "M "+(width-11)+".5 14.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M "+(width-9)+".5 16.5 h 4");
-      minusButton.setAttribute("fill", "#FFDDDD");
-      minusButton.setAttribute("stroke", "#220000");
-      minusButton.setAttribute("stroke-width", "1");
-      g.appendChild(minusButton);
-      break;
-    case "uiColorPicker":
-      var pickerButton = document.createElementNS(svgNS,"path");
-      pickerButton.setAttribute("d", "M "+(width-20)+".5 0.5 h 20 a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -20 z");
-      pickerButton.setAttribute("fill", "#FFDDDD");
-      pickerButton.setAttribute("stroke", "#220000");
-      pickerButton.setAttribute("stroke-width", "1");
-      g.appendChild(pickerButton);
-      break;
-    default:
+    case "uiText":
+      var newNode = document.getElementById("uiTextSeed").cloneNode(true);
+      newNode.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
+      newNode.removeAttribute("id");
+      var inputText = newNode.getElementsByTagName("text")[0];
+      did++;
+      inputText.setAttribute("id", "dinamic_id_"+did);
       if (fieldValue==null)
 	inputText.textContent="";
       else
 	inputText.textContent=""+fieldValue;
+      editItems.appendChild(newNode);
+      break;
+    case "uiNumberPicker":
+      var newNode = document.getElementById("uiNumberPickerSeed").cloneNode(true);
+      newNode.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
+      newNode.removeAttribute("id");
+      var inputText = newNode.getElementsByTagName("text")[0];
+      did++;
+      inputText.setAttribute("id", "dinamic_id_"+did);
+      if (fieldValue==null)
+	inputText.textContent="0";
+      else
+	inputText.textContent=""+parseFloat(fieldValue);
+      editItems.appendChild(newNode);
+      break;
+    case "uiColorPicker":
+      var newNode = document.getElementById("uiColorPickerSeed").cloneNode(true);
+      newNode.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
+      newNode.removeAttribute("id");
+      editItems.appendChild(newNode);
+      var colorBox = newNode.getElementsByTagName("path")[0];
+      did++;
+      colorBox.setAttribute("id", "dinamic_id_"+did);
+      if (fieldValue==null)
+	colorBox.setAttribute("fill", "url(#ptrn_fillnotset)");
+      else if (fieldValue=="none")
+	colorBox.setAttribute("fill", "url(#ptrn_fillnone)");
+      else
+	colorBox.setAttribute("fill", fieldValue);
+      editItems.appendChild(newNode);
+      break;
+    default:
+//      if (fieldValue==null)
+//	inputText.textContent="";
+//      else
+//	inputText.textContent=""+fieldValue;
   }
-  editItems.appendChild(g);
   itemCount++;
 }
 

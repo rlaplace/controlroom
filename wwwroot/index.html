@@ -9,6 +9,27 @@
 <body onload="init()" style="margin:0">
   <svg style="position:absolute" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
     <defs>
+      <linearGradient id="myGradient" gradientTransform="rotate(90)">
+	<stop offset="0" stop-opacity="0"/>
+	<stop offset="20%" stop-opacity="0"/>
+	<stop stop-color="blue"/>
+      </linearGradient>
+      <pattern id="ptrn_fillnotset" x="0" y="10" width="40" height="20" patternUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="40" height="20" fill="#FFDDDD" stroke="none"/>
+	<text x="0" y="10" fill="#DDBBBB" font-family="Arial Black" font-size="8">Not Set</text>
+	<circle cx="37" cy="7" r="2" fill="#DDBBBB" stroke="none"/>
+	<text x="20" y="20" fill="#DDBBBB" font-family="Arial Black" font-size="8">Not Set</text>
+	<text x="-20" y="20" fill="#DDBBBB" font-family="Arial Black" font-size="8">Not Set</text>
+	<circle cx="17" cy="17" r="2" fill="#DDBBBB" stroke="none"/>
+      </pattern>
+      <pattern id="ptrn_fillnone" x="0" y="10" width="32" height="20" patternUnits="userSpaceOnUse">
+        <rect x="0" y="0" width="32" height="20" fill="#FFDDDD" stroke="none"/>
+        <text x="0" y="10" fill="#DDBBBB" font-family="Arial Black" font-size="8">None</text>
+	<circle cx="27" cy="7" r="2" fill="#DDBBBB" stroke="none"/>
+        <text x="16" y="20" fill="#DDBBBB" font-family="Arial Black" font-size="8">None</text>
+        <text x="-16" y="20" fill="#DDBBBB" font-family="Arial Black" font-size="8">None</text>
+	<circle cx="11" cy="17" r="2" fill="#DDBBBB" stroke="none"/>
+      </pattern>
       <g id="el-graph" class="graph" fill="lightyellow" fill-opacity="0.5" stroke="black" stroke-width="2">
 	<rect x="0" y="0" rx="10" ry="10" width="100" height="100" stroke-width="2"/>
 	<svg x="10" y="10" width="80" height="80">
@@ -16,15 +37,28 @@
 	</svg>
         <path d="M 6.5,90.5 h 85 M 9.5,93.5 v -85" stroke="black" stroke-width="1"/>
       </g>
+      <g id="uiTextSeed" width="56" height="23" class="uiText">
+	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
+	  <path d="M -0.5 1.5 a 4 4 90 0 1 2 -2 h 51 a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -51 a 4 4 90 0 1 -2 -2 z" fill="#FFDDDD" stroke="none"/>
+	  <text x="3" y="16" text-anchor="left"></text>
+	</svg>
+	<path d="M 0.5 2.5 a 4 4 90 0 1 2 -2 h 51 a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -51 a 4 4 90 0 1 -2 -2 z" fill="none" stroke="#220000" stroke-width="1"/>
+      </g>
+      <g id="uiNumberPickerSeed" width="56" height="23" class="uiNumberPicker">
+	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
+	  <path d="M -0.5 1.5 a 4 4 90 0 1 2 -2 h 51 a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -51 a 4 4 90 0 1 -2 -2 z" fill="#FFDDDD" stroke="none"/>
+	  <text x="3" y="16" text-anchor="left"></text>
+	</svg>
+	<path d="M 0.5 2.5 a 4 4 90 0 1 2 -2 h 51 a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -51 a 4 4 90 0 1 -2 -2 z" fill="none" stroke="#220000" stroke-width="1"/>
+	<path d="M 45.5 4.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M 47.5 6.5 h 4 M 49.5 4.5 v 4" fill="#FFDDDD" stroke="#220000" stroke-width="1"/>
+	<path d="M 45.5 14.5 a 4 4 90 0 1 2 -2 h 4 a 4 4 90 0 1 2 2 v 4 a 4 4 90 0 1 -2 2 h -4 a 4 4 90 0 1 -2 -2 z M 47.5 16.5 h 4" fill="#FFDDDD" stroke="#220000" stroke-width="1"/>
+      </g>
+      <g id="uiColorPickerSeed" width="56" height="23" class="uiColorPicker">
+	<path d="M 0.5 2.5 a 4 4 90 0 1 2 -2 h 51 a 4 4 90 0 1 2 2 v 18 a 4 4 90 0 1 -2 2 h -51 a 4 4 90 0 1 -2 -2 z" fill="#FFDDDD" stroke="#220000" stroke-width="1"/>
+	<path d="M 43.5 4.5 a 4 4 90 0 1 2 -2 h 6 a 4 4 90 0 1 2 2 v 6 a 4 4 90 0 1 -2 2 h -6 a 4 4 90 0 1 -2 -2 z M 46.5 6.5 l 4 4" fill="#FFDDDD" stroke="#220000" stroke-width="1"/>
+      </g>
     </defs>
     <svg onmousedown="touch(evt)" onmousemove="drag(evt)" onmouseup="drop(evt)" style="position:absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
-      <defs>
-	<linearGradient id="myGradient" gradientTransform="rotate(90)">
-	  <stop offset="0" stop-opacity="0"/>
-	  <stop offset="20%" stop-opacity="0"/>
-	  <stop stop-color="blue"/>
-	</linearGradient>
-      </defs>
       <g id="mainpanel">
         <rect id="background" x="0" y="0" width="800" height="600" stroke="none" fill="lightblue"/>
       </g>
