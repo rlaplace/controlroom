@@ -182,7 +182,7 @@ function createItem(fieldName, fieldClass, fieldValue)
       newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
       editItems.appendChild(newNode);
-      var colorBox = newNode.getElementsByTagName("path")[0];
+      var colorBox = newNode.getElementsByTagName("rect")[1];
       did++;
       colorBox.setAttribute("id", "dinamic_id_"+did);
       if (fieldValue==null)
