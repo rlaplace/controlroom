@@ -153,7 +153,7 @@ function createItem(fieldName, fieldClass, fieldValue)
   switch (fieldClass) {
     case "uiText":
       var newNode = document.getElementById("uiTextSeed").cloneNode(true);
-      newNode.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
+      newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
       var inputText = newNode.getElementsByTagName("text")[0];
       did++;
@@ -166,7 +166,7 @@ function createItem(fieldName, fieldClass, fieldValue)
       break;
     case "uiNumberPicker":
       var newNode = document.getElementById("uiNumberPickerSeed").cloneNode(true);
-      newNode.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
+      newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
       var inputText = newNode.getElementsByTagName("text")[0];
       did++;
@@ -179,7 +179,7 @@ function createItem(fieldName, fieldClass, fieldValue)
       break;
     case "uiColorPicker":
       var newNode = document.getElementById("uiColorPickerSeed").cloneNode(true);
-      newNode.setAttribute("transform", "translate(95,"+(itemCount*25)+")");
+      newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
       editItems.appendChild(newNode);
       var colorBox = newNode.getElementsByTagName("path")[0];
