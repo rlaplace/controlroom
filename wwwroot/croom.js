@@ -1,10 +1,11 @@
 const editmode=0, runmode=1;
 let mode=editmode;
 var mainPanel, editPanel, editItems, menuPanel;
+var colorPicker;
 var svgNS="http://www.w3.org/2000/svg";
 var objDragged=null;
 var pntDragged=null;
-var oldX, oldY, did=0;
+var oldX, oldY;
 var params=new Array();
 var itemCount;
 var elementBeingChanged;
@@ -32,6 +33,7 @@ function init() {
   editPanel = document.getElementById("editpanel");
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
+  colorPicker = document.getElementById("uiColorPickerWindow");
 }
 
 function prepParams(element)
@@ -156,8 +158,6 @@ function createItem(fieldName, fieldClass, fieldValue)
       newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
       var inputText = newNode.getElementsByTagName("text")[0];
-      did++;
-      inputText.setAttribute("id", "dinamic_id_"+did);
       if (fieldValue==null)
 	inputText.textContent="";
       else
@@ -169,8 +169,6 @@ function createItem(fieldName, fieldClass, fieldValue)
       newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
       var inputText = newNode.getElementsByTagName("text")[0];
-      did++;
-      inputText.setAttribute("id", "dinamic_id_"+did);
       if (fieldValue==null)
 	inputText.textContent="0";
       else
@@ -183,14 +181,15 @@ function createItem(fieldName, fieldClass, fieldValue)
       newNode.removeAttribute("id");
       editItems.appendChild(newNode);
       var colorBox = newNode.getElementsByTagName("rect")[1];
-      did++;
-      colorBox.setAttribute("id", "dinamic_id_"+did);
-      if (fieldValue==null)
-	colorBox.setAttribute("fill", "url(#ptrn_fillnotset)");
-      else if (fieldValue=="none")
-	colorBox.setAttribute("fill", "url(#ptrn_fillnone)");
+      if ((fieldValue==null)||(fieldValue=="none"))
+	colorBox.setAttribute("fill", "none");
       else
 	colorBox.setAttribute("fill", fieldValue);
+      var inputText = newNode.getElementsByTagName("text")[0];
+      if (fieldValue==null)
+	inputText.textContent="not set";
+      else
+	inputText.textContent=""+fieldValue;
       editItems.appendChild(newNode);
       break;
     default:
@@ -200,6 +199,11 @@ function createItem(fieldName, fieldClass, fieldValue)
 //	inputText.textContent=""+fieldValue;
   }
   itemCount++;
+}
+
+function openColorPicker(evt)
+{
+  colorPicker.setAttribute("visibility", "display");
 }
 
 function drop(evt)
