@@ -1,35 +1,56 @@
-      <path transform="translate(6,39)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="gray" stroke-width="1"/>
-      <text x="28" y="47" text-anchor="left" fill="#DDDDFF">none</text>
-      <path transform="translate(16.6602540378,56)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="black" stroke="gray" stroke-width="1"/>
-      <text x="38" y="64" text-anchor="left" fill="#DDDDFF">black</text>
-      <path transform="translate(6,73)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="white" stroke="gray" stroke-width="1"/>
-      <text x="28" y="81" text-anchor="left" fill="#DDDDFF">white</text>
+<!DOCTYPE svg>
+<svg version="1.1" width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <path transform="translate(6,39)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="gray" stroke-width="1"/>
+  <text x="28" y="47" text-anchor="left" fill="#DDDDFF">none</text>
+  <path transform="translate(16.6602540378,56)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="black" stroke="gray" stroke-width="1"/>
+  <text x="38" y="64" text-anchor="left" fill="#DDDDFF">black</text>
+  <path transform="translate(6,73)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="white" stroke="gray" stroke-width="1"/>
+  <text x="28" y="81" text-anchor="left" fill="#DDDDFF">white</text>
 
 
-      <path transform="translate(26.1489352,94)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(330,100%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(46.2978704,94)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,100%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(66.4468056,94)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(30,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(26.1489352,94)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(330,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(46.2978704,94)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(66.4468056,94)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(30,100%,60%)" stroke="gray" stroke-width="1"/>
 
-      <path transform="translate(16.0744676,112)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(300,100%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(36.2234028,112)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(330,50%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(56.372338,112)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(30,50%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(76.5212732,112)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(60,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(16.0744676,112)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(300,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(36.2234028,112)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(330,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(56.372338,112)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(30,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(76.5212732,112)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(60,100%,60%)" stroke="gray" stroke-width="1"/>
 
-      <path transform="translate(6,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(270,100%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(26.1489352,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(270,50%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(46.2978704,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,0%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(66.4468056,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(90,50%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(86.5957408,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(90,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(6,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(270,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(26.1489352,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(270,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(46.2978704,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,0%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(66.4468056,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(90,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(86.5957408,130)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(90,100%,60%)" stroke="gray" stroke-width="1"/>
 
-      <path transform="translate(16.0744676,148)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(240,100%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(36.2234028,148)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(210,50%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(56.372338,148)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(150,50%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(76.5212732,148)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(120,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(16.0744676,148)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(240,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(36.2234028,148)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(210,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(56.372338,148)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(150,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(76.5212732,148)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(120,100%,60%)" stroke="gray" stroke-width="1"/>
 
-      <path transform="translate(26.1489352,166)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(210,100%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(46.2978704,166)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(180,100%,60%)" stroke="gray" stroke-width="1"/>
-      <path transform="translate(66.4468056,166)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(150,100%,60%)" stroke="gray" stroke-width="1"/>
-    </g>
-  </svg>
-</body>
-</html>
+  <path transform="translate(26.1489352,166)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(210,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(46.2978704,166)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(180,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(66.4468056,166)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(150,100%,60%)" stroke="gray" stroke-width="1"/>
+
+
+
+  <path transform="translate(145,109.2154)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(0,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(161,119.6077)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(30,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(177,130)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(60,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(177,149.05256)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(90,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(177,168.10512)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(120,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(161,178.4974)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(150,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(145,188.8897)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(180,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(129,178.4974)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(210,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(113,168.10512)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(240,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(113,149.05256)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(270,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(113,130)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(300,100%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(129,119.6077)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(330,100%,60%)" stroke="gray" stroke-width="1"/>
+
+  <path transform="translate(245,109.2154)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(0,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(261,130)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(60,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(261,168.10512)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(120,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(245,188.8897)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(180,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(229,168.10512)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(240,50%,60%)" stroke="gray" stroke-width="1"/>
+  <path transform="translate(229,130)" d="M 0.5 0.5 h 10 l 5 8.6602540378 l -5 8.6602540378 h -10 l -5 -8.6602540378 z" fill="hsl(300,50%,60%)" stroke="gray" stroke-width="1"/>
+</svg>

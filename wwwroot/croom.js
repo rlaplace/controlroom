@@ -34,6 +34,62 @@ function init() {
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
   colorPicker = document.getElementById("uiColorPickerWindow");
+  var midx=130, midy=60, hexdx=0, hexdy=0, hexsize=8, n=3, spacing=1, lightning=50;
+  const sin60=0.86602540378;
+  var hex = document.createElementNS(svgNS,"path");
+  hex.setAttribute("onmouseenter", "enterColor(evt)");
+  hex.setAttribute("onmouseleave", "leaveColor(evt)");
+  hex.setAttribute("d", "M 0 0 h " + hexsize + " l " + (hexsize/2) + " " + (hexsize*sin60) + "l -" + (hexsize/2) + " " + (hexsize*sin60) + " h -" + hexsize + " l -" + (hexsize/2) + " -" + (hexsize*sin60) + " z");
+  hex.setAttribute("fill", "hsl(0,0%," + lightning + "%)");
+  hex.setAttribute("stroke", "none");
+  hex.setAttribute("stroke-width", "1");
+  hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
+  colorPicker.appendChild(hex);
+  for (var i=1; i<=n; i++)
+  {
+    hexdx = 0;
+    hexdy = 0 - i*((hexsize*sin60*2) + spacing);
+    for (var j=0; j<i; j++)
+    {
+      hexdx += (hexsize*1.5) + (spacing*sin60);
+      hexdy += (hexsize*sin60) + (spacing/2);
+      hex = hex.cloneNode(true);
+      hex.setAttribute("fill", "hsl(" + Math.trunc((60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
+      colorPicker.appendChild(hex);
+      hex = hex.cloneNode(true);
+      hex.setAttribute("fill", "hsl(" + Math.trunc(180+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("transform",  "translate(" + (midx-hexdx) + "," + (midy-hexdy) + ")");
+      colorPicker.appendChild(hex);
+    }
+    for (var j=0; j<i; j++)
+    {
+      hexdy += (hexsize*sin60*2) + spacing;
+      hex = hex.cloneNode(true);
+      hex.setAttribute("fill", "hsl(" + Math.trunc(60+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
+      colorPicker.appendChild(hex);
+      hex = hex.cloneNode(true);
+      hex.setAttribute("fill", "hsl(" + Math.trunc(240+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("transform",  "translate(" + (midx-hexdx) + "," + (midy-hexdy) + ")");
+      colorPicker.appendChild(hex);
+    }
+    for (var j=0; j<i; j++)
+    {
+      hexdx -= (hexsize*1.5) + (spacing*sin60);
+      hexdy += (hexsize*sin60) + (spacing/2);
+      hex = hex.cloneNode(true);
+      hex.setAttribute("fill", "hsl(" + Math.trunc(120+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
+      colorPicker.appendChild(hex);
+      hex = hex.cloneNode(true);
+      hex.setAttribute("fill", "hsl(" + Math.trunc(300+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("transform",  "translate(" + (midx-hexdx) + "," + (midy-hexdy) + ")");
+      colorPicker.appendChild(hex);
+    }
+    hexdx = 0;
+    hexdy = i*((hexsize*sin60*2) + spacing);
+  }
 }
 
 function prepParams(element)
@@ -204,6 +260,16 @@ function createItem(fieldName, fieldClass, fieldValue)
 function openColorPicker(evt)
 {
   colorPicker.setAttribute("visibility", "display");
+}
+
+function enterColor(evt)
+{
+  evt.target.setAttribute("stroke", "white");
+}
+
+function leaveColor(evt)
+{
+  evt.target.setAttribute("stroke", "none");
 }
 
 function drop(evt)
