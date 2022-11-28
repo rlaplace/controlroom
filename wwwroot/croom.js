@@ -28,6 +28,12 @@ function plusButtonDrop()
   elementBeingChanged=null;
 }
 
+function hexClick(evt)
+{
+  var currentColorEl = document.getElementById("currentColor");
+  currentColorEl.setAttribute ("fill", evt.target.getAttribute ("fill"));
+}
+
 function init() {
   mainPanel = document.getElementById("mainpanel");
   editPanel = document.getElementById("editpanel");
@@ -39,6 +45,7 @@ function init() {
   var hex = document.createElementNS(svgNS,"path");
   hex.setAttribute("onmouseenter", "enterColor(evt)");
   hex.setAttribute("onmouseleave", "leaveColor(evt)");
+  hex.setAttribute("onclick", "hexClick(evt)");
   hex.setAttribute("d", "M 0 0 h " + hexsize + " l " + (hexsize/2) + " " + (hexsize*sin60) + "l -" + (hexsize/2) + " " + (hexsize*sin60) + " h -" + hexsize + " l -" + (hexsize/2) + " -" + (hexsize*sin60) + " z");
   hex.setAttribute("fill", "hsl(0,0%," + lightning + "%)");
   hex.setAttribute("stroke", "none");
@@ -90,6 +97,16 @@ function init() {
     hexdx = 0;
     hexdy = i*((hexsize*sin60*2) + spacing);
   }
+  hexdx = 2*((hexsize*1.5) + (spacing*sin60));
+  hexdy = 0 - 2*((hexsize*sin60*2) + spacing);
+  hex = hex.cloneNode(true);
+  hex.setAttribute("fill", "none");
+  hex.setAttribute("stroke", "white");
+  hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
+  hex.removeAttribute("onmouseenter");
+  hex.removeAttribute("onmouseleave");
+  hex.removeAttribute("onclick");
+  colorPicker.appendChild(hex);
 }
 
 function prepParams(element)
