@@ -28,10 +28,52 @@ function plusButtonDrop()
   elementBeingChanged=null;
 }
 
-function hexClick(evt)
+function clickColor(evt)
 {
   var currentColorEl = document.getElementById("currentColor");
-  currentColorEl.setAttribute ("fill", evt.target.getAttribute ("fill"));
+  var fill=evt.target.getAttribute ("fill");
+  if (fill==null)
+  {
+    currentColorEl.removeAttribute ("fill");
+    fill="hsl(0,0%,0%)";
+  }
+  else
+    currentColorEl.setAttribute ("fill", fill);
+  if (fill=="none")
+    fill="hsl(0,0%,0%)";
+  if (fill.startsWith("hsl("))
+    var hs = fill.replace(/,\d*\%\)/, "");
+  else
+    var hs = "hsl(0,0%";
+  var lightElements = document.getElementById("lightgroup").getElementsByTagName("rect");
+  for (var i=0; i<lightElements.length; i++)
+    lightElements[i].setAttribute ("fill", hs+","+(100-(i*10))+"%)");
+  var alphaElements = document.getElementById("alphagroup").getElementsByTagName("rect");
+  for (var i=0; i<alphaElements.length; i++)
+    alphaElements[i].setAttribute ("fill", fill);
+}
+
+function clickLight(evt)
+{
+  var currentColorEl = document.getElementById("currentColor");
+  var fill=evt.target.getAttribute ("fill");
+  if (fill.startsWith("hsl("))
+    var light = fill.replace(/hsl\(\d*,\d*\%,/, ",");
+  else
+    var light = ",50%)";
+  var colorElements = document.getElementById("colorgroup").getElementsByTagName("path");
+  for (var i=0; i<colorElements.length; i++)
+    colorElements[i].setAttribute ("fill", colorElements[i].getAttribute ("fill").replace(/,\d*\%\)/, "")+light);
+  var alphaElements = document.getElementById("alphagroup").getElementsByTagName("rect");
+  for (var i=0; i<alphaElements.length; i++)
+    alphaElements[i].setAttribute ("fill", fill);
+  currentColorEl.setAttribute ("fill", fill);
+}
+
+function clickAlpha(evt)
+{
+  var currentColorEl = document.getElementById("currentColor");
+  currentColorEl.setAttribute ("fill-opacity", evt.target.getAttribute ("fill-opacity"));
 }
 
 function init() {
@@ -40,18 +82,21 @@ function init() {
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
   colorPicker = document.getElementById("uiColorPickerWindow");
-  var midx=130, midy=60, hexdx=0, hexdy=0, hexsize=8, n=3, spacing=1, lightning=50;
+  var midx=130, midy=60, hexdx=0, hexdy=0, hexsize=8, n=3, spacing=1, light=50;
   const sin60=0.86602540378;
+  var g = document.createElementNS(svgNS,"g");
+  g.setAttribute("id", "colorgroup");
+  colorPicker.appendChild(g);
   var hex = document.createElementNS(svgNS,"path");
   hex.setAttribute("onmouseenter", "enterColor(evt)");
   hex.setAttribute("onmouseleave", "leaveColor(evt)");
-  hex.setAttribute("onclick", "hexClick(evt)");
+  hex.setAttribute("onclick", "clickColor(evt)");
   hex.setAttribute("d", "M 0 0 h " + hexsize + " l " + (hexsize/2) + " " + (hexsize*sin60) + "l -" + (hexsize/2) + " " + (hexsize*sin60) + " h -" + hexsize + " l -" + (hexsize/2) + " -" + (hexsize*sin60) + " z");
-  hex.setAttribute("fill", "hsl(0,0%," + lightning + "%)");
+  hex.setAttribute("fill", "hsl(0,0%," + light + "%)");
   hex.setAttribute("stroke", "none");
   hex.setAttribute("stroke-width", "1");
   hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
-  colorPicker.appendChild(hex);
+  g.appendChild(hex);
   for (var i=1; i<=n; i++)
   {
     hexdx = 0;
@@ -61,52 +106,42 @@ function init() {
       hexdx += (hexsize*1.5) + (spacing*sin60);
       hexdy += (hexsize*sin60) + (spacing/2);
       hex = hex.cloneNode(true);
-      hex.setAttribute("fill", "hsl(" + Math.trunc((60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("fill", "hsl(" + Math.trunc((60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + light + "%)");
       hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
-      colorPicker.appendChild(hex);
+      g.appendChild(hex);
       hex = hex.cloneNode(true);
-      hex.setAttribute("fill", "hsl(" + Math.trunc(180+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("fill", "hsl(" + Math.trunc(180+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + light + "%)");
       hex.setAttribute("transform",  "translate(" + (midx-hexdx) + "," + (midy-hexdy) + ")");
-      colorPicker.appendChild(hex);
+      g.appendChild(hex);
     }
     for (var j=0; j<i; j++)
     {
       hexdy += (hexsize*sin60*2) + spacing;
       hex = hex.cloneNode(true);
-      hex.setAttribute("fill", "hsl(" + Math.trunc(60+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("fill", "hsl(" + Math.trunc(60+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + light + "%)");
       hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
-      colorPicker.appendChild(hex);
+      g.appendChild(hex);
       hex = hex.cloneNode(true);
-      hex.setAttribute("fill", "hsl(" + Math.trunc(240+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("fill", "hsl(" + Math.trunc(240+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + light + "%)");
       hex.setAttribute("transform",  "translate(" + (midx-hexdx) + "," + (midy-hexdy) + ")");
-      colorPicker.appendChild(hex);
+      g.appendChild(hex);
     }
     for (var j=0; j<i; j++)
     {
       hexdx -= (hexsize*1.5) + (spacing*sin60);
       hexdy += (hexsize*sin60) + (spacing/2);
       hex = hex.cloneNode(true);
-      hex.setAttribute("fill", "hsl(" + Math.trunc(120+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("fill", "hsl(" + Math.trunc(120+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + light + "%)");
       hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
-      colorPicker.appendChild(hex);
+      g.appendChild(hex);
       hex = hex.cloneNode(true);
-      hex.setAttribute("fill", "hsl(" + Math.trunc(300+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + lightning + "%)");
+      hex.setAttribute("fill", "hsl(" + Math.trunc(300+(60/i)*(j+1)) + "," + Math.trunc(i/n*100) + "%," + light + "%)");
       hex.setAttribute("transform",  "translate(" + (midx-hexdx) + "," + (midy-hexdy) + ")");
-      colorPicker.appendChild(hex);
+      g.appendChild(hex);
     }
     hexdx = 0;
     hexdy = i*((hexsize*sin60*2) + spacing);
   }
-  hexdx = 2*((hexsize*1.5) + (spacing*sin60));
-  hexdy = 0 - 2*((hexsize*sin60*2) + spacing);
-  hex = hex.cloneNode(true);
-  hex.setAttribute("fill", "none");
-  hex.setAttribute("stroke", "white");
-  hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
-  hex.removeAttribute("onmouseenter");
-  hex.removeAttribute("onmouseleave");
-  hex.removeAttribute("onclick");
-  colorPicker.appendChild(hex);
 }
 
 function prepParams(element)
