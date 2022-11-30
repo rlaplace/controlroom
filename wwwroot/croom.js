@@ -9,6 +9,7 @@ var oldX, oldY;
 var params=new Array();
 var itemCount;
 var elementBeingChanged;
+var oldColorEl, currentColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 
 function plusButtonTouch(targetId)
 {
@@ -30,7 +31,6 @@ function plusButtonDrop()
 
 function clickColor(evt)
 {
-  var currentColorEl = document.getElementById("currentColor");
   var fill=evt.target.getAttribute ("fill");
   if (fill==null)
   {
@@ -51,11 +51,13 @@ function clickColor(evt)
   var alphaElements = document.getElementById("alphagroup").getElementsByTagName("rect");
   for (var i=0; i<alphaElements.length; i++)
     alphaElements[i].setAttribute ("fill", fill);
+  selectedColorEl.setAttribute("stroke", "none");
+  selectedColorEl = evt.target;
+  selectedColorEl.setAttribute("stroke", "white");
 }
 
 function clickLight(evt)
 {
-  var currentColorEl = document.getElementById("currentColor");
   var fill=evt.target.getAttribute ("fill");
   if (fill.startsWith("hsl("))
     var light = fill.replace(/hsl\(\d*,\d*\%,/, ",");
@@ -72,7 +74,6 @@ function clickLight(evt)
 
 function clickAlpha(evt)
 {
-  var currentColorEl = document.getElementById("currentColor");
   currentColorEl.setAttribute ("fill-opacity", evt.target.getAttribute ("fill-opacity"));
 }
 
@@ -94,7 +95,7 @@ function init() {
   hex.setAttribute("d", "M 0 0 h " + hexsize + " l " + (hexsize/2) + " " + (hexsize*sin60) + "l -" + (hexsize/2) + " " + (hexsize*sin60) + " h -" + hexsize + " l -" + (hexsize/2) + " -" + (hexsize*sin60) + " z");
   hex.setAttribute("fill", "hsl(0,0%," + light + "%)");
   hex.setAttribute("stroke", "none");
-  hex.setAttribute("stroke-width", "1");
+  hex.setAttribute("stroke-width", "2");
   hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
   g.appendChild(hex);
   for (var i=1; i<=n; i++)
@@ -142,6 +143,11 @@ function init() {
     hexdx = 0;
     hexdy = i*((hexsize*sin60*2) + spacing);
   }
+  oldColorEl = document.getElementById("oldColor");
+  currentColorEl = document.getElementById("currentColor");
+  selectedColorEl = oldColorEl;
+  selectedLightEl = document.getElementById("lightgroup").getElementsByTagName("rect")[5];
+  selectedAlphaEl = document.getElementById("alphagroup").getElementsByTagName("rect")[0];
 }
 
 function prepParams(element)
@@ -316,12 +322,14 @@ function openColorPicker(evt)
 
 function enterColor(evt)
 {
-  evt.target.setAttribute("stroke", "white");
+  if (selectedColorEl!=evt.target)
+    evt.target.setAttribute("stroke", "white");
 }
 
 function leaveColor(evt)
 {
-  evt.target.setAttribute("stroke", "none");
+  if (selectedColorEl!=evt.target)
+    evt.target.setAttribute("stroke", "none");
 }
 
 function drop(evt)
