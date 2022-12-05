@@ -215,56 +215,56 @@
 	<path d="M 1,9 v -8 h 249 v 8" fill="#664444" stroke="#000022" stroke-width="2"/>
 	<path d="M 4,4 h 243 M 4,7 h 243" stroke="#222244" stroke-linecap="round" stroke-width="2"/>
       </g>
-      <path transform="translate(19.6602540378,22)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt)"/>
+      <path id="fillnotset" transform="translate(19.6602540378,22)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
       <text x="41" y="30" text-anchor="left" fill="#DDDDFF">not set</text>
-      <path transform="translate(9,39)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt)"/>
+      <path id="fillnone" transform="translate(9,39)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
       <text x="31" y="47" text-anchor="left" fill="#DDDDFF">none</text>
-      <path transform="translate(19.6602540378,56)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="black" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt)"/>
+      <path transform="translate(19.6602540378,56)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="black" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
       <text x="41" y="64" text-anchor="left" fill="#DDDDFF">black</text>
-      <path transform="translate(9,73)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="white" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt)"/>
+      <path transform="translate(9,73)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="white" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
       <text x="31" y="81" text-anchor="left" fill="#DDDDFF">white</text>
 
       <path transform="translate(9,119)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none"/>
-      <path transform="translate(9,119)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="red" stroke="white" stroke-width="2"/>
+      <path id="oldcolor" transform="translate(9,119)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,100%,50%)" stroke="white" stroke-width="2"/>
       <text x="31" y="127" text-anchor="left" fill="#DDDDFF">old color</text>
       <path transform="translate(19.6602540378,136)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none"/>
-      <path id="currentColor" transform="translate(19.6602540378,136)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="red" stroke="none"/>
+      <path id="currentcolor" transform="translate(19.6602540378,136)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="red" stroke="none"/>
       <text x="41" y="144" text-anchor="left" fill="#DDDDFF">current color</text>
 
       <g id="lightgroup">
-      <rect x="196" y="17" width="15" height="8" fill="hsl(0,100%,100%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="26" width="15" height="8" fill="hsl(0,100%,90%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="35" width="15" height="8" fill="hsl(0,100%,80%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="44" width="15" height="8" fill="hsl(0,100%,70%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="53" width="15" height="8" fill="hsl(0,100%,60%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="62" width="15" height="8" fill="hsl(0,100%,50%)" stroke="white" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="71" width="15" height="8" fill="hsl(0,100%,40%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="80" width="15" height="8" fill="hsl(0,100%,30%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="89" width="15" height="8" fill="hsl(0,100%,20%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="98" width="15" height="8" fill="hsl(0,100%,10%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
-      <rect x="196" y="107" width="15" height="8" fill="hsl(0,100%,0%)" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt)"/>
+      <rect x="196" y="17" width="15" height="8" fill="hsl(0,100%,100%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="26" width="15" height="8" fill="hsl(0,100%,90%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="35" width="15" height="8" fill="hsl(0,100%,80%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="44" width="15" height="8" fill="hsl(0,100%,70%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="53" width="15" height="8" fill="hsl(0,100%,60%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="62" width="15" height="8" fill="hsl(0,100%,50%)" stroke="white" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="71" width="15" height="8" fill="hsl(0,100%,40%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="80" width="15" height="8" fill="hsl(0,100%,30%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="89" width="15" height="8" fill="hsl(0,100%,20%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="98" width="15" height="8" fill="hsl(0,100%,10%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+      <rect x="196" y="107" width="15" height="8" fill="hsl(0,100%,0%)" stroke="white" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
       </g>
 
       <rect x="216" y="15" width="19" height="103" fill="url(#ptrn_squared)" stroke="none"/>
       <g id="alphagroup">
-      <rect x="218" y="17" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="1" stroke="black" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="26" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.9" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="35" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.8" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="44" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.7" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="53" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.6" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="62" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.5" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="71" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.4" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="80" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.3" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="89" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.2" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="98" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.1" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
-      <rect x="218" y="107" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0" stroke="none" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt)"/>
+      <rect x="218" y="17" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="1" stroke="black" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="26" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.9" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="35" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.8" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="44" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.7" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="53" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.6" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="62" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.5" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="71" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.4" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="80" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.3" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="89" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.2" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="98" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.1" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+      <rect x="218" y="107" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
       </g>
 
-      <g transform="translate(130,128)">
+      <g transform="translate(130,128)" onclick="clickReset(evt)">
 	<rect x="0" y="0" rx="3" ry="3" width="50" height="23" fill="#444466" stroke="#000022" stroke-width="1"/>
         <text x="25" y="15" text-anchor="middle" fill="#DDDDFF">reset</text>
       </g>
-      <g transform="translate(190,128)">
+      <g transform="translate(190,128)" onclick="clickSet(evt)">
 	<rect x="0" y="0" rx="3" ry="3" width="50" height="23" fill="#444466" stroke="#000022" stroke-width="1"/>
         <text x="25" y="15" text-anchor="middle" fill="#DDDDFF">set</text>
       </g>

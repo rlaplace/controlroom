@@ -11,27 +11,9 @@ var itemCount;
 var elementBeingChanged;
 var oldColorEl, currentColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 
-function plusButtonTouch(targetId)
+function clickColor(target)
 {
-  elementBeingChanged = document.getElementById("dinamic_id_"+targetId);
-  if (elementBeingChanged!=null)
-    elementBeingChanged.textContent=parseFloat(elementBeingChanged.textContent)+1;
-}
-
-function plusButtonScrub()
-{
-  if (elementBeingChanged!=null)
-    elementBeingChanged.textContent=parseFloat(elementBeingChanged.textContent)+1;
-}
-
-function plusButtonDrop()
-{
-  elementBeingChanged=null;
-}
-
-function clickColor(evt)
-{
-  var fill=evt.target.getAttribute ("fill");
+  var fill=target.getAttribute ("fill");
   if (fill==null)
   {
     currentColorEl.removeAttribute ("fill");
@@ -51,14 +33,14 @@ function clickColor(evt)
   var alphaElements = document.getElementById("alphagroup").getElementsByTagName("rect");
   for (var i=0; i<alphaElements.length; i++)
     alphaElements[i].setAttribute ("fill", fill);
-  selectedColorEl.setAttribute("stroke", "none");
-  selectedColorEl = evt.target;
-  selectedColorEl.setAttribute("stroke", "white");
+  selectedColorEl.setAttribute("stroke-width", "0");
+  selectedColorEl = target;
+  selectedColorEl.setAttribute("stroke-width", "2");
 }
 
-function clickLight(evt)
+function clickLight(target)
 {
-  var fill=evt.target.getAttribute ("fill");
+  var fill=target.getAttribute ("fill");
   if (fill.startsWith("hsl("))
     var light = fill.replace(/hsl\(\d*,\d*\%,/, ",");
   else
@@ -70,11 +52,41 @@ function clickLight(evt)
   for (var i=0; i<alphaElements.length; i++)
     alphaElements[i].setAttribute ("fill", fill);
   currentColorEl.setAttribute ("fill", fill);
+  selectedLightEl.setAttribute("stroke-width", "0");
+  selectedLightEl = target;
+  selectedLightEl.setAttribute("stroke-width", "2");
 }
 
-function clickAlpha(evt)
+function clickAlpha(target)
 {
-  currentColorEl.setAttribute ("fill-opacity", evt.target.getAttribute ("fill-opacity"));
+  currentColorEl.setAttribute ("fill-opacity", target.getAttribute ("fill-opacity"));
+  selectedAlphaEl.setAttribute("stroke-width", "0");
+  selectedAlphaEl = target;
+  selectedAlphaEl.setAttribute("stroke-width", "2");
+}
+
+function clickReset(evt)
+{
+  var fill=oldColorEl.getAttribute ("fill");
+  if (fill.startsWith("hsl("))
+    var light = parseInt(fill.replace(/hsl\(\d*,\d*\%,/, "").match(/\d*/));
+  else
+    var light = 50;
+  var lightindex = Math.trunc((100-light)/10);
+  clickLight(document.getElementById("lightgroup").getElementsByTagName("rect")[lightindex]);
+  clickColor(oldColorEl);
+  var alpha=oldColorEl.getAttribute ("fill-opacity");
+  if (alpha==null)
+    alpha = 1;
+  else
+    alpha = parseFloat(alpha);
+  var alphaindex = Math.trunc((1-alpha)*10);
+  clickAlpha(document.getElementById("alphagroup").getElementsByTagName("rect")[alphaindex]);
+}
+
+function clickSet(evt)
+{
+alert("set");
 }
 
 function init() {
@@ -91,11 +103,11 @@ function init() {
   var hex = document.createElementNS(svgNS,"path");
   hex.setAttribute("onmouseenter", "enterColor(evt)");
   hex.setAttribute("onmouseleave", "leaveColor(evt)");
-  hex.setAttribute("onclick", "clickColor(evt)");
+  hex.setAttribute("onclick", "clickColor(evt.target)");
   hex.setAttribute("d", "M 0 0 h " + hexsize + " l " + (hexsize/2) + " " + (hexsize*sin60) + "l -" + (hexsize/2) + " " + (hexsize*sin60) + " h -" + hexsize + " l -" + (hexsize/2) + " -" + (hexsize*sin60) + " z");
   hex.setAttribute("fill", "hsl(0,0%," + light + "%)");
-  hex.setAttribute("stroke", "none");
-  hex.setAttribute("stroke-width", "2");
+  hex.setAttribute("stroke", "white");
+  hex.setAttribute("stroke-width", "0");
   hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
   g.appendChild(hex);
   for (var i=1; i<=n; i++)
@@ -143,8 +155,8 @@ function init() {
     hexdx = 0;
     hexdy = i*((hexsize*sin60*2) + spacing);
   }
-  oldColorEl = document.getElementById("oldColor");
-  currentColorEl = document.getElementById("currentColor");
+  oldColorEl = document.getElementById("oldcolor");
+  currentColorEl = document.getElementById("currentcolor");
   selectedColorEl = oldColorEl;
   selectedLightEl = document.getElementById("lightgroup").getElementsByTagName("rect")[5];
   selectedAlphaEl = document.getElementById("alphagroup").getElementsByTagName("rect")[0];
@@ -317,19 +329,24 @@ function createItem(fieldName, fieldClass, fieldValue)
 
 function openColorPicker(evt)
 {
+  oldColorEl.setAttribute("fill", "hsl(270,100%,70%)");
+  oldColorEl.setAttribute("fill-opacity", "0.6");
+  clickColor(oldColorEl);
+  clickLight(document.getElementById("lightgroup").getElementsByTagName("rect")[3]);
+  clickAlpha(document.getElementById("alphagroup").getElementsByTagName("rect")[4]);
   colorPicker.setAttribute("visibility", "display");
 }
 
 function enterColor(evt)
 {
-  if (selectedColorEl!=evt.target)
-    evt.target.setAttribute("stroke", "white");
+  if ((selectedColorEl!=evt.target)&&(selectedLightEl!=evt.target)&&(selectedAlphaEl!=evt.target))
+    evt.target.setAttribute("stroke-width", "2");
 }
 
 function leaveColor(evt)
 {
-  if (selectedColorEl!=evt.target)
-    evt.target.setAttribute("stroke", "none");
+  if ((selectedColorEl!=evt.target)&&(selectedLightEl!=evt.target)&&(selectedAlphaEl!=evt.target))
+    evt.target.setAttribute("stroke-width", "0");
 }
 
 function drop(evt)
