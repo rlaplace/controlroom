@@ -8,7 +8,7 @@ var pntDragged=null;
 var oldX, oldY;
 var params=new Array();
 var itemCount;
-var elementBeingChanged;
+var elementBeingChanged, attrElBeingChanged;
 var oldColorEl, currentColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 
 function clickColor(target)
@@ -65,10 +65,12 @@ function clickAlpha(target)
   selectedAlphaEl.setAttribute("stroke-width", "2");
 }
 
-function clickReset(evt)
+function resetToOldColor()
 {
   var fill=oldColorEl.getAttribute ("fill");
-  if (fill.startsWith("hsl("))
+  if (fill==null)
+    var light = 0;
+  else if (fill.startsWith("hsl("))
     var light = parseInt(fill.replace(/hsl\(\d*,\d*\%,/, "").match(/\d*/));
   else
     var light = 50;
@@ -84,9 +86,20 @@ function clickReset(evt)
   clickAlpha(document.getElementById("alphagroup").getElementsByTagName("rect")[alphaindex]);
 }
 
-function clickSet(evt)
+function setToCurrentColor()
 {
-alert("set");
+  var colorBox = attrElBeingChanged.getElementsByTagName("rect")[1];
+  var fill = currentColorEl.getAttribute("fill");
+  if (fill==null)
+    colorBox.removeAttribute("fill");
+  else
+    colorBox.setAttribute("fill", fill);
+  var opacity = currentColorEl.getAttribute("fill-opacity");
+  if (opacity==null)
+    colorBox.removeAttribute("fill-opacity");
+  else
+    colorBox.setAttribute("fill-opacity", opacity);
+  colorPicker.setAttribute("visibility", "hidden");
 }
 
 function init() {
@@ -95,7 +108,7 @@ function init() {
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
   colorPicker = document.getElementById("uiColorPickerWindow");
-  var midx=130, midy=60, hexdx=0, hexdy=0, hexsize=8, n=3, spacing=1, light=50;
+  var midx=130, midy=63, hexdx=0, hexdy=0, hexsize=6, n=4, spacing=1, light=50;
   const sin60=0.86602540378;
   var g = document.createElementNS(svgNS,"g");
   g.setAttribute("id", "colorgroup");
@@ -106,7 +119,7 @@ function init() {
   hex.setAttribute("onclick", "clickColor(evt.target)");
   hex.setAttribute("d", "M 0 0 h " + hexsize + " l " + (hexsize/2) + " " + (hexsize*sin60) + "l -" + (hexsize/2) + " " + (hexsize*sin60) + " h -" + hexsize + " l -" + (hexsize/2) + " -" + (hexsize*sin60) + " z");
   hex.setAttribute("fill", "hsl(0,0%," + light + "%)");
-  hex.setAttribute("stroke", "white");
+  hex.setAttribute("stroke", "hsl(0,0%,100%)");
   hex.setAttribute("stroke-width", "0");
   hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
   g.appendChild(hex);
@@ -276,7 +289,7 @@ function createItem(fieldName, fieldClass, fieldValue)
   label.setAttribute("x", "5");
   label.setAttribute("y", ""+(itemCount*25+16));
   label.setAttribute("text-anchor", "left");
-  label.setAttribute("fill", "#FFDDDD");
+  label.setAttribute("fill", "hsl(0,100%,93%)");
   editItems.appendChild(label);
   switch (fieldClass) {
     case "uiText":
@@ -311,11 +324,6 @@ function createItem(fieldName, fieldClass, fieldValue)
 	colorBox.setAttribute("fill", "none");
       else
 	colorBox.setAttribute("fill", fieldValue);
-      var inputText = newNode.getElementsByTagName("text")[0];
-      if (fieldValue==null)
-	inputText.textContent="not set";
-      else
-	inputText.textContent=""+fieldValue;
       editItems.appendChild(newNode);
       break;
     default:
@@ -329,11 +337,19 @@ function createItem(fieldName, fieldClass, fieldValue)
 
 function openColorPicker(evt)
 {
-  oldColorEl.setAttribute("fill", "hsl(270,100%,70%)");
-  oldColorEl.setAttribute("fill-opacity", "0.6");
-  clickColor(oldColorEl);
-  clickLight(document.getElementById("lightgroup").getElementsByTagName("rect")[3]);
-  clickAlpha(document.getElementById("alphagroup").getElementsByTagName("rect")[4]);
+  attrElBeingChanged = evt.target.parentNode;
+  var colorBox = attrElBeingChanged.getElementsByTagName("rect")[1];
+  var fill = colorBox.getAttribute("fill");
+  if (fill==null)
+    oldColorEl.removeAttribute("fill");
+  else
+    oldColorEl.setAttribute("fill", fill);
+  var opacity = colorBox.getAttribute("fill-opacity");
+  if (opacity==null)
+    oldColorEl.removeAttribute("fill-opacity");
+  else
+    oldColorEl.setAttribute("fill-opacity", opacity);
+  resetToOldColor();
   colorPicker.setAttribute("visibility", "display");
 }
 
@@ -431,7 +447,7 @@ function insertPath() {
   var newNode = document.createElementNS(svgNS,"path");
   newNode.setAttribute("d","M 70 220 l 70 -150 l 60 100 l 70 -150");
   newNode.setAttribute("fill","none");
-  newNode.setAttribute("stroke","black");
+  newNode.setAttribute("stroke","hsl(0,0%,0%)");
   newNode.setAttribute("stroke-linecap","round");
   newNode.setAttribute("stroke-width","2");
   mainPanel.appendChild(newNode);
@@ -443,8 +459,8 @@ function insertCircle() {
   newNode.setAttribute("cx","70");
   newNode.setAttribute("cy","90");
   newNode.setAttribute("r","40");
-  newNode.setAttribute("fill","blue");
-  newNode.setAttribute("stroke","black");
+  newNode.setAttribute("fill","hsl(240,100%,50%)");
+  newNode.setAttribute("stroke","hsl(0,0%,0%)");
   newNode.setAttribute("stroke-width","2");
   mainPanel.appendChild(newNode);
   menuPanel.setAttribute("visibility", "hidden");
@@ -459,8 +475,8 @@ function insertRect() {
   newNode.setAttribute("rx","5");
   newNode.setAttribute("ry","5");
 //  newNode.setAttribute("fill","url('#myGradient')");
-  newNode.setAttribute("fill","blue");
-  newNode.setAttribute("stroke","black");
+  newNode.setAttribute("fill","hsl(240,100%,50%)");
+  newNode.setAttribute("stroke","hsl(0,0%,0%)");
   newNode.setAttribute("stroke-width","2");
   mainPanel.appendChild(newNode);
   menuPanel.setAttribute("visibility", "hidden");
