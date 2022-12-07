@@ -3,12 +3,13 @@ let mode=editmode;
 var mainPanel, editPanel, editItems, menuPanel;
 var colorPicker;
 var svgNS="http://www.w3.org/2000/svg";
-var objDragged=null;
-var pntDragged=null;
+var objBeingDraged=null;
+var objBeingEdited=null;
+var ptnBeingDraged=null;
 var oldX, oldY;
 var params=new Array();
 var itemCount;
-var elementBeingChanged, attrElBeingChanged;
+var attrElBeingChanged;
 var oldColorEl, currentColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 
 function clickColor(target)
@@ -90,15 +91,23 @@ function setToCurrentColor()
 {
   var colorBox = attrElBeingChanged.getElementsByTagName("rect")[1];
   var fill = currentColorEl.getAttribute("fill");
-  if (fill==null)
+  if (fill==null) {
     colorBox.removeAttribute("fill");
-  else
+    objBeingEdited.removeAttribute("fill");
+  }
+  else {
     colorBox.setAttribute("fill", fill);
+    objBeingEdited.setAttribute("fill", fill);
+  }
   var opacity = currentColorEl.getAttribute("fill-opacity");
-  if (opacity==null)
+  if (opacity==null) {
     colorBox.removeAttribute("fill-opacity");
-  else
+    objBeingEdited.removeAttribute("fill-opacity");
+  }
+  else {
     colorBox.setAttribute("fill-opacity", opacity);
+    objBeingEdited.setAttribute("fill-opacity", opacity);
+  }
   colorPicker.setAttribute("visibility", "hidden");
 }
 
@@ -193,20 +202,20 @@ function touch(evt)
 {
   try
   {
-    objDragged=null;
-    pntDragged=null;
+    objBeingDraged=null;
+    ptnBeingDraged=null;
     oldX=evt.clientX;
     oldY=evt.clientY;
     if (evt.target.getAttribute("class")=="pontojunta")
-      pntDragged=evt.target;
+      ptnBeingDraged=evt.target;
     else if (evt.target.id!="background")
     {
       var realtarget=evt.target;
       while ((realtarget.parentNode!=mainPanel)&&(realtarget.parentNode!=null))
 	realtarget=realtarget.parentNode;
-      objDragged=realtarget;
-      if (objDragged.nodeName=="path")
-	prepParams(objDragged);
+      objBeingDraged=realtarget;
+      if (objBeingDraged.nodeName=="path")
+	prepParams(objBeingDraged);
     }
     menuPanel.setAttribute("visibility", "hidden");
   }
@@ -220,20 +229,20 @@ function drag(evt)
 {
   try
   {
-    if (objDragged==null)
+    if (objBeingDraged==null)
     {
-      if (pntDragged==null)
+      if (ptnBeingDraged==null)
 	return;
       var x=evt.clientX;
       var y=evt.clientY;
-      var altx = (x-dx) - parseFloat(pntDragged.getAttribute("cx"));
-      var alty = (y-dy) - parseFloat(pntDragged.getAttribute("cy"));
-      var segmento = parseInt(pntDragged.getAttribute("segmento"));
+      var altx = (x-dx) - parseFloat(ptnBeingDraged.getAttribute("cx"));
+      var alty = (y-dy) - parseFloat(ptnBeingDraged.getAttribute("cy"));
+      var segmento = parseInt(ptnBeingDraged.getAttribute("segmento"));
       var attr = params[segmento*2+1].split(/[\s,]/);
       attr[attr.length-2] = parseFloat(attr[attr.length-2]) + altx;
       attr[attr.length-1] = parseFloat(attr[attr.length-1]) + alty;
       params[segmento*2+1] = attr.join(" ")
-      objDragged.setAttribute("d", params.join(" "));
+      objBeingDraged.setAttribute("d", params.join(" "));
       movePontos(altx, alty, segmento);
       document.getElementById("d").value=params.join(" ");
     }
@@ -243,24 +252,24 @@ function drag(evt)
       var dy=evt.clientY-oldY;
       oldX=evt.clientX;
       oldY=evt.clientY;
-      switch (objDragged.tagName) {
+      switch (objBeingDraged.tagName) {
 	case "image":
 	case "rect":
 	case "text":
-	  objDragged.setAttribute("x", parseFloat(objDragged.getAttribute("x")) + dx);
-	  objDragged.setAttribute("y", parseFloat(objDragged.getAttribute("y")) + dy);
+	  objBeingDraged.setAttribute("x", parseFloat(objBeingDraged.getAttribute("x")) + dx);
+	  objBeingDraged.setAttribute("y", parseFloat(objBeingDraged.getAttribute("y")) + dy);
 	  break;
 	case "circle":
-	  objDragged.setAttribute("cx", parseFloat(objDragged.getAttribute("cx")) + dx);
-	  objDragged.setAttribute("cy", parseFloat(objDragged.getAttribute("cy")) + dy);
+	  objBeingDraged.setAttribute("cx", parseFloat(objBeingDraged.getAttribute("cx")) + dx);
+	  objBeingDraged.setAttribute("cy", parseFloat(objBeingDraged.getAttribute("cy")) + dy);
 	  break;
 	case "path":
 	  var xey = params[1].split(/[\s,]/);
 	  params[1]= "" + (parseFloat(xey[0].trim()) + dx) + " " + (parseFloat(xey[1].trim()) + dy);
-	  objDragged.setAttribute("d", params.join(" "));
+	  objBeingDraged.setAttribute("d", params.join(" "));
 	  break;
 	case "g":
-	  var trans = objDragged.getAttribute("transform").split(/([\(\)])/);
+	  var trans = objBeingDraged.getAttribute("transform").split(/([\(\)])/);
 	  var newx = dx, newy = dy;
 	  for (var i=0; i<trans.length; i++)
 	    if (trans[i]=="translate")
@@ -269,7 +278,7 @@ function drag(evt)
 	      newx += parseFloat(xey[0].trim());
 	      newy += parseFloat(xey[2].trim());
 	    }
-	  objDragged.setAttribute("transform", "translate(" + newx + "," + newy + ")");
+	  objBeingDraged.setAttribute("transform", "translate(" + newx + "," + newy + ")");
 	  break;
 	default:
 	  window.alert('Error (A31): Unnexpected tagName "'+el.tagName+'"') ;
@@ -367,28 +376,28 @@ function leaveColor(evt)
 
 function drop(evt)
 {
-  objDragged=null;
-  pntDragged=null;
-  var realtarget=evt.target;
-  while ((realtarget.parentNode!=mainPanel)&&(realtarget.parentNode!=null))
-    realtarget=realtarget.parentNode;
+  objBeingDraged=null;
+  ptnBeingDraged=null;
+  objBeingEdited=evt.target;
+  while ((objBeingEdited.parentNode!=mainPanel)&&(objBeingEdited.parentNode!=null))
+    objBeingEdited=objBeingEdited.parentNode;
   while (editItems.hasChildNodes())
     editItems.removeChild(editItems.firstChild);
   itemCount=0;
-  switch (realtarget.tagName) {
+  switch (objBeingEdited.tagName) {
     case "text":
     case "image":
     case "rect":
-      createItem("x", "uiNumberPicker", realtarget.getAttribute("x"));
-      createItem("y", "uiNumberPicker", realtarget.getAttribute("y"));
+      createItem("x", "uiNumberPicker", objBeingEdited.getAttribute("x"));
+      createItem("y", "uiNumberPicker", objBeingEdited.getAttribute("y"));
       break;
     case "circle":
-      createItem("cx", "uiNumberPicker", realtarget.getAttribute("cx"));
-      createItem("cy", "uiNumberPicker", realtarget.getAttribute("cy"));
-      createItem("radius", "uiNumberPicker", realtarget.getAttribute("r"));
+      createItem("cx", "uiNumberPicker", objBeingEdited.getAttribute("cx"));
+      createItem("cy", "uiNumberPicker", objBeingEdited.getAttribute("cy"));
+      createItem("radius", "uiNumberPicker", objBeingEdited.getAttribute("r"));
       break;
     case "g":
-      var trans = realtarget.getAttribute("transform").split(/([\(\)])/);
+      var trans = objBeingEdited.getAttribute("transform").split(/([\(\)])/);
       var x = 0, y = 0;
       for (var i=0; i<trans.length; i++)
 	if (trans[i]=="translate")
@@ -401,37 +410,37 @@ function drop(evt)
       createItem("y", "uiNumberPicker", y);
       break;
     case "path":
-      createItem("d", "uiText", realtarget.getAttribute("d"));
+      createItem("d", "uiText", objBeingEdited.getAttribute("d"));
       break;
   }
-  if (realtarget.getAttribute("class")=="graph") {
-    createItem("width", "uiNumberPicker", realtarget.getAttribute("width"));
-    createItem("height", "uiNumberPicker", realtarget.getAttribute("height"));
+  if (objBeingEdited.getAttribute("class")=="graph") {
+    createItem("width", "uiNumberPicker", objBeingEdited.getAttribute("width"));
+    createItem("height", "uiNumberPicker", objBeingEdited.getAttribute("height"));
   }
-  switch (realtarget.tagName) {
+  switch (objBeingEdited.tagName) {
     case "text":
-      createItem("Text", "uiText", realtarget.textContent);
+      createItem("Text", "uiText", objBeingEdited.textContent);
       break;
     case "image":
     case "rect":
-      createItem("width", "uiNumberPicker", realtarget.getAttribute("width"));
-      createItem("height", "uiNumberPicker", realtarget.getAttribute("height"));
+      createItem("width", "uiNumberPicker", objBeingEdited.getAttribute("width"));
+      createItem("height", "uiNumberPicker", objBeingEdited.getAttribute("height"));
       break;
   }
-  switch (realtarget.tagName) {
+  switch (objBeingEdited.tagName) {
     case "image":
-      createItem("href", "uiText", realtarget.getAttribute("href"));
+      createItem("href", "uiText", objBeingEdited.getAttribute("href"));
       break;
     case "text":
     case "rect":
     case "circle":
     case "g":
     case "path":
-      createItem("fill", "uiColorPicker", realtarget.getAttribute("fill"));
-      createItem("stroke", "uiColorPicker", realtarget.getAttribute("stroke"));
+      createItem("fill", "uiColorPicker", objBeingEdited.getAttribute("fill"));
+      createItem("stroke", "uiColorPicker", objBeingEdited.getAttribute("stroke"));
       break;
   }
-  switch (realtarget.tagName) {
+  switch (objBeingEdited.tagName) {
     case "text":
     case "image":
     case "rect":
