@@ -66,7 +66,11 @@
       </g>
       <g id="uiColorPickerSeed" width="56" height="23" class="uiColorPicker" onclick="openColorPicker(evt)">
 	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="url(#ptrn_squared)" stroke="hsl(0,100%,7%)"/>
-	<rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="none" stroke="hsl(0,100%,7%)" stroke-width="1"/>
+	<rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="none" stroke="hsl(0,100%,0%)" stroke-width="0.5"/>
+      </g>
+      <g id="uiStrokePickerSeed" width="56" height="23" class="uiColorPicker" onclick="openStrokePicker(evt)">
+	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="url(#ptrn_squared)" stroke="hsl(0,100%,7%)"/>
+	<polyline points="5,20 8,6 11,16 14,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="1"/>
       </g>
     </defs>
     <svg onmousedown="touch(evt)" onmousemove="drag(evt)" onmouseup="drop(evt)" style="position:absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
@@ -166,12 +170,12 @@
       <g onclick="insertElement(document.getElementById('el-valve01'))" transform="translate(5,113)">
 	<!-- element.valve01 -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="hsl(120,20%,33%)" stroke="hsl(120,100%,7%)" stroke-width="1"/>
-	<path id="el-valve01" fill="hsl(0,0%,50%)" stroke="hsl(0,0%,0%)" d="M 15,20 l 10,6 v -12 l -20,12 v -12 l 10,6 v -8 h -6 v -6 h 12 v 6 h -6 z"/>
+	<path transform="translate(15,20)" id="el-valve01" fill="hsl(0,0%,50%)" stroke="hsl(0,0%,0%)" d="M 0,0 l 10,6 v -12 l -20,12 v -12 l 10,6 v -8 h -6 v -6 h 12 v 6 h -6 z"/>
       </g>
       <g onclick="insertElement(document.getElementById('el-valve02'))" transform="translate(38,113)">
 	<!-- element.valve02 -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="hsl(120,20%,33%)" stroke="hsl(120,100%,7%)" stroke-width="1"/>
-	<path id="el-valve02" fill="hsl(0,0%,50%)" stroke="hsl(0,0%,0%)" d="M 15,20 l 10,6 v -12 l -20,12 v -12 l 10,6 v -9 h -8 a4,4 0 0,1 16,0 h -8 z"/>
+	<path transform="translate(15,20)" id="el-valve02" fill="hsl(0,0%,50%)" stroke="hsl(0,0%,0%)" d="M 0,0 l 10,6 v -12 l -20,12 v -12 l 10,6 v -9 h -8 a4,4 0 0,1 16,0 h -8 z"/>
       </g>
       <g onclick="insertElement(document.getElementById('el-pump01'))" transform="translate(71,113)">
 	<!-- element.pump -->
@@ -201,8 +205,9 @@
       <g transform="translate(38,146)">
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="hsl(120,20%,33%)" stroke="hsl(120,100%,7%)" stroke-width="1"/>
       </g>
-      <g transform="translate(71,146)">
+      <g onclick="alert(mainPanel.innerHTML);" transform="translate(71,146)">
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="hsl(120,20%,33%)" stroke="hsl(120,100%,7%)" stroke-width="1"/>
+	<text x="4" y="18" fill="hsl(120,100%,5%)" font-family="Arial" font-size="12">&lt;x/&gt;</text>
       </g>
     </g>
 
@@ -227,6 +232,9 @@
       <path transform="translate(19.6602540378,136)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none"/>
       <path id="currentcolor" transform="translate(19.6602540378,136)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,100%,50%)" stroke="none"/>
       <text x="41" y="144" text-anchor="left" fill="hsl(240,100%,93%)">current color</text>
+
+      <g id="colorgroup">
+      <\g>
 
       <g id="lightgroup">
       <rect x="196" y="17" width="15" height="8" fill="hsl(0,100%,100%)" stroke="hsl(0,0%,100%)" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
@@ -263,7 +271,7 @@
       </g>
       <g transform="translate(190,128)" onclick="setToCurrentColor();">
 	<rect x="0" y="0" rx="3" ry="3" width="50" height="23" fill="hsl(240,20%,33%)" stroke="hsl(240,100%,7%)" stroke-width="1"/>
-        <text x="25" y="15" text-anchor="middle" fill="hsl(240,100%,93%)">set</text>
+        <text x="25" y="15" text-anchor="middle" fill="hsl(240,100%,93%)">done</text>
       </g>
     </g>
   </svg>

@@ -34,7 +34,8 @@ function clickColor(target)
   var alphaElements = document.getElementById("alphagroup").getElementsByTagName("rect");
   for (var i=0; i<alphaElements.length; i++)
     alphaElements[i].setAttribute ("fill", fill);
-  selectedColorEl.setAttribute("stroke-width", "0");
+  if (selectedColorEl!=null)
+    selectedColorEl.setAttribute("stroke-width", "0");
   selectedColorEl = target;
   selectedColorEl.setAttribute("stroke-width", "2");
 }
@@ -53,6 +54,11 @@ function clickLight(target)
   for (var i=0; i<alphaElements.length; i++)
     alphaElements[i].setAttribute ("fill", fill);
   currentColorEl.setAttribute ("fill", fill);
+  if (selectedColorEl!=null)
+    if (selectedColorEl.parentNode.id!="colorgroup") {
+      selectedColorEl.setAttribute("stroke-width", "0");
+      selectedColorEl = null;
+    }
   selectedLightEl.setAttribute("stroke-width", "0");
   selectedLightEl = target;
   selectedLightEl.setAttribute("stroke-width", "2");
@@ -119,9 +125,7 @@ function init() {
   colorPicker = document.getElementById("uiColorPickerWindow");
   var midx=130, midy=63, hexdx=0, hexdy=0, hexsize=6, n=4, spacing=1, light=50;
   const sin60=0.86602540378;
-  var g = document.createElementNS(svgNS,"g");
-  g.setAttribute("id", "colorgroup");
-  colorPicker.appendChild(g);
+  var g = document.getElementById("colorgroup");
   var hex = document.createElementNS(svgNS,"path");
   hex.setAttribute("onmouseenter", "enterColor(evt)");
   hex.setAttribute("onmouseleave", "leaveColor(evt)");
@@ -264,10 +268,6 @@ function drag(evt)
 	  objBeingDraged.setAttribute("cy", parseFloat(objBeingDraged.getAttribute("cy")) + dy);
 	  break;
 	case "path":
-	  var xey = params[1].split(/[\s,]/);
-	  params[1]= "" + (parseFloat(xey[0].trim()) + dx) + " " + (parseFloat(xey[1].trim()) + dy);
-	  objBeingDraged.setAttribute("d", params.join(" "));
-	  break;
 	case "g":
 	  var trans = objBeingDraged.getAttribute("transform").split(/([\(\)])/);
 	  var newx = dx, newy = dy;
@@ -335,11 +335,18 @@ function createItem(fieldName, fieldClass, fieldValue)
 	colorBox.setAttribute("fill", fieldValue);
       editItems.appendChild(newNode);
       break;
-    default:
-//      if (fieldValue==null)
-//	inputText.textContent="";
-//      else
-//	inputText.textContent=""+fieldValue;
+    case "uiStrokePicker":
+      var newNode = document.getElementById("uiStrokePickerSeed").cloneNode(true);
+      newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
+      newNode.removeAttribute("id");
+      editItems.appendChild(newNode);
+      var polyline = newNode.getElementsByTagName("polyline")[0];
+      if ((fieldValue==null)||(fieldValue=="none"))
+	polyline.setAttribute("stroke", "none");
+      else
+	polyline.setAttribute("stroke", fieldValue);
+      editItems.appendChild(newNode);
+      break;
   }
   itemCount++;
 }
@@ -358,6 +365,24 @@ function openColorPicker(evt)
     oldColorEl.removeAttribute("fill-opacity");
   else
     oldColorEl.setAttribute("fill-opacity", opacity);
+  resetToOldColor();
+  colorPicker.setAttribute("visibility", "display");
+}
+
+function openStrokePicker(evt)
+{
+  attrElBeingChanged = evt.target.parentNode;
+  var polyline = attrElBeingChanged.getElementsByTagName("polyline")[0];
+  var stroke = polyline.getAttribute("stroke");
+  if (stroke==null)
+    oldColorEl.removeAttribute("stroke");
+  else
+    oldColorEl.setAttribute("stroke", stroke);
+  var opacity = polyline.getAttribute("stroke-opacity");
+  if (opacity==null)
+    oldColorEl.removeAttribute("stroke-opacity");
+  else
+    oldColorEl.setAttribute("stroke-opacity", opacity);
   resetToOldColor();
   colorPicker.setAttribute("visibility", "display");
 }
@@ -397,6 +422,7 @@ function drop(evt)
       createItem("radius", "uiNumberPicker", objBeingEdited.getAttribute("r"));
       break;
     case "g":
+    case "path":
       var trans = objBeingEdited.getAttribute("transform").split(/([\(\)])/);
       var x = 0, y = 0;
       for (var i=0; i<trans.length; i++)
@@ -408,9 +434,6 @@ function drop(evt)
 	}
       createItem("x", "uiNumberPicker", x);
       createItem("y", "uiNumberPicker", y);
-      break;
-    case "path":
-      createItem("d", "uiText", objBeingEdited.getAttribute("d"));
       break;
   }
   if (objBeingEdited.getAttribute("class")=="graph") {
@@ -426,6 +449,9 @@ function drop(evt)
       createItem("width", "uiNumberPicker", objBeingEdited.getAttribute("width"));
       createItem("height", "uiNumberPicker", objBeingEdited.getAttribute("height"));
       break;
+    case "path":
+      createItem("d", "uiText", objBeingEdited.getAttribute("d"));
+      break;
   }
   switch (objBeingEdited.tagName) {
     case "image":
@@ -437,7 +463,7 @@ function drop(evt)
     case "g":
     case "path":
       createItem("fill", "uiColorPicker", objBeingEdited.getAttribute("fill"));
-      createItem("stroke", "uiColorPicker", objBeingEdited.getAttribute("stroke"));
+      createItem("stroke", "uiStrokePicker", objBeingEdited.getAttribute("stroke"));
       break;
   }
   switch (objBeingEdited.tagName) {
@@ -454,7 +480,8 @@ function drop(evt)
 
 function insertPath() {
   var newNode = document.createElementNS(svgNS,"path");
-  newNode.setAttribute("d","M 70 220 l 70 -150 l 60 100 l 70 -150");
+  newNode.setAttribute("transform", "translate(70,220)");
+  newNode.setAttribute("d","M 0 0 l 70 -150 l 60 100 l 70 -150");
   newNode.setAttribute("fill","none");
   newNode.setAttribute("stroke","hsl(0,0%,0%)");
   newNode.setAttribute("stroke-linecap","round");
@@ -506,10 +533,6 @@ function insertElement(element) {
       newNode.setAttribute("cy", "50");
       break;
     case "path":
-      prepParams(newNode);
-      params[1]= "50 50";
-      newNode.setAttribute("d", params.join(" "));
-      break;
     case "g":
       newNode.setAttribute("transform", "translate(50,50)");
       break;

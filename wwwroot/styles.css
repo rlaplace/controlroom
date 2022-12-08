@@ -13,6 +13,7 @@ svg text {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  paint-order: stroke;
 }
 svg text::selection {
   background: none;

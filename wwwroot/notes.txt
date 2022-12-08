@@ -1,0 +1,6 @@
+stroke
+stroke-opacity
+stroke-width
+stroke-linecap
+stroke-linejoin
+stroke-dasharray
