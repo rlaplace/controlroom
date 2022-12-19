@@ -18,3 +18,7 @@ svg text {
 svg text::selection {
   background: none;
 }
+svg .menuitem:hover,
+    .menuitem:focus {
+  filter: invert(100%);
+}
