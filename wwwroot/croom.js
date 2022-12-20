@@ -329,10 +329,14 @@ function createItem(fieldName, fieldClass, fieldValue)
       newNode.removeAttribute("id");
       editItems.appendChild(newNode);
       var colorBox = newNode.getElementsByTagName("rect")[1];
-      if ((fieldValue==null)||(fieldValue=="none"))
-	colorBox.setAttribute("fill", "none");
+      if (fieldValue["fill"]==null)
+	colorBox.removeAttribute("fill");
       else
-	colorBox.setAttribute("fill", fieldValue);
+	colorBox.setAttribute("fill", fieldValue["fill"]);
+      if (fieldValue["fill-opacity"]==null)
+	colorBox.removeAttribute("fill-opacity");
+      else
+	colorBox.setAttribute("fill-opacity", fieldValue["fill-opacity"]);
       editItems.appendChild(newNode);
       break;
     case "uiStrokePicker":
@@ -341,10 +345,21 @@ function createItem(fieldName, fieldClass, fieldValue)
       newNode.removeAttribute("id");
       editItems.appendChild(newNode);
       var polyline = newNode.getElementsByTagName("polyline")[0];
-      if ((fieldValue==null)||(fieldValue=="none"))
-	polyline.setAttribute("stroke", "none");
-      else
-	polyline.setAttribute("stroke", fieldValue);
+      var text = newNode.getElementsByTagName("text")[0];
+      polyline.setAttribute("stroke", "none");
+      if (fieldValue["stroke"]==null)
+	text.textContent = "not set";
+      else if (fieldValue["stroke"]=="none")
+	text.textContent = "none";
+      else {
+	text.textContent = "";
+	for (const [key, value] of Object.entries(fieldValue)) {
+	  if (value==null)
+	    polyline.removeAttribute(key);
+	  else
+	    polyline.setAttribute(key, value);
+	}
+      }
       editItems.appendChild(newNode);
       break;
   }
@@ -417,8 +432,8 @@ function drop(evt)
       createItem("y", "uiNumberPicker", objBeingEdited.getAttribute("y"));
       break;
     case "circle":
-      createItem("cx", "uiNumberPicker", objBeingEdited.getAttribute("cx"));
-      createItem("cy", "uiNumberPicker", objBeingEdited.getAttribute("cy"));
+      createItem("center x", "uiNumberPicker", objBeingEdited.getAttribute("cx"));
+      createItem("center y", "uiNumberPicker", objBeingEdited.getAttribute("cy"));
       createItem("radius", "uiNumberPicker", objBeingEdited.getAttribute("r"));
       break;
     case "g":
@@ -462,8 +477,16 @@ function drop(evt)
     case "circle":
     case "g":
     case "path":
-      createItem("fill", "uiColorPicker", objBeingEdited.getAttribute("fill"));
-      createItem("stroke", "uiStrokePicker", objBeingEdited.getAttribute("stroke"));
+      createItem("fill", "uiColorPicker", {
+	"fill": objBeingEdited.getAttribute("fill"),
+	"fill-opacity": objBeingEdited.getAttribute("fill-opacity")});
+      createItem("stroke", "uiStrokePicker", {
+	"stroke": objBeingEdited.getAttribute("stroke"),
+	"stroke-opacity": objBeingEdited.getAttribute("stroke-opacity"),
+	"stroke-width": objBeingEdited.getAttribute("stroke-width"),
+	"stroke-linecap": objBeingEdited.getAttribute("stroke-linecap"),
+	"stroke-linejoin": objBeingEdited.getAttribute("stroke-linejoin"),
+	"stroke-dasharray": objBeingEdited.getAttribute("stroke-dasharray")});
       break;
   }
   switch (objBeingEdited.tagName) {
