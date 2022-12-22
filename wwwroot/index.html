@@ -50,11 +50,10 @@
 	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="none" stroke="hsl(0,100%,7%)" stroke-width="1"/>
       </g>
       <g id="uiNumberPickerSeed" width="56" height="23" class="uiNumberPicker">
-	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="none"/>
+	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
 	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
 	  <text x="3" y="16" text-anchor="left"></text>
 	</svg>
-	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="none" stroke="hsl(0,100%,7%)" stroke-width="1"/>
 	<g transform="translate(45,2)">
 	  <rect x="0.5" y="0.5" width="8" height="8" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
 	  <path d="M 2 4.5 h 5 m -2.5 -2.5 v 5" fill="none" stroke="hsl(0,100%,7%)" stroke-width="1"/>
@@ -64,37 +63,42 @@
 	  <path d="M 2 4.5 h 5" fill="none" stroke="hsl(0,100%,7%)" stroke-width="1"/>
 	</g>
       </g>
-      <g id="uiColorPickerSeed" width="56" height="23" class="uiColorPicker" onclick="openColorPicker(evt)">
-	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="url(#ptrn_squared)" stroke="hsl(0,100%,7%)"/>
+      <g id="uiFillPickerSeed" width="56" height="23" class="uiFillPicker" onclick="openFillPicker(evt)">
+	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
+	  <text x="3" y="16" text-anchor="left"></text>
+	</svg>
+	<rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="url(#ptrn_squared)" stroke="none"/>
 	<rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="none" stroke="hsl(0,100%,0%)" stroke-width="0.5"/>
       </g>
-      <g id="uiStrokePickerSeed" width="56" height="23" class="uiColorPicker">
+      <g id="uiStrokePickerSeed" width="56" height="23" class="uiStrokePicker" onclick="openStrokePicker(evt)">
 	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
 	  <text x="3" y="16" text-anchor="left"></text>
 	  <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/>
 	</svg>
-	<svg x="0" y="22" width="94" height="112" viewbox="0 0 94 112" visibility="hidden">
-	  <rect x="0.5" y="0.5" width="93" height="111" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
-	  <g class="menuitem" transform="translate(1,1)">
+	<svg x="0" y="22" width="94" height="152" viewbox="0 0 94 152" visibility="hidden">
+	  <rect x="0.5" y="0.5" width="93" height="151" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
+	  <use href="#uiFillPickerSeed" x="10" y="5"></use>
+	  <g class="menuitem" transform="translate(1,41)">
 	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	    <text x="3" y="16" text-anchor="left">not set</text>
 	  </g>
-	  <g class="menuitem" transform="translate(1,23)">
+	  <g class="menuitem" transform="translate(1,63)">
 	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	    <text x="3" y="16" text-anchor="left">none</text>
 	  </g>
-	  <g class="menuitem" transform="translate(1,45)">
+	  <g class="menuitem" transform="translate(1,85)">
 	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	    <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="black" stroke-width="1"/>
 	    <text x="52" y="14" text-anchor="left" font-family="Arial" font-size="8">black 1px</text>
 	  </g>
-	  <g class="menuitem" transform="translate(1,67)">
+	  <g class="menuitem" transform="translate(1,107)">
 	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	    <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="black" stroke-width="2"/>
 	    <text x="52" y="14" text-anchor="left" font-family="Arial" font-size="8">black 2px</text>
 	  </g>
-	  <g class="menuitem" transform="translate(1,89)">
+	  <g class="menuitem" transform="translate(1,129)">
 	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	    <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="black" stroke-width="3"/>
 	    <text x="52" y="14" text-anchor="left" font-family="Arial" font-size="8">custom</text>
@@ -248,12 +252,35 @@
       </g>
     </g>
 
-    <g id="uiColorPickerWindow" class="uiWindow" transform="translate(80,80)" visibility="hidden">
-      <path d="M 1,9 v 152 h 249 v -152" fill="hsl(240,33%,20%)" stroke="hsl(240,100%,7%)" stroke-width="2"/>
+    <g id="uiFillPickerWindow" class="uiWindow" transform="translate(80,80)" visibility="hidden">
+      <path d="M 1,9 v 252 h 249 v -252" fill="hsl(240,33%,20%)" stroke="hsl(240,100%,7%)" stroke-width="2"/>
       <g class="uiDrager">
 	<path d="M 1,9 v -8 h 249 v 8" fill="hsl(0,20%,33%)" stroke="hsl(240,100%,7%)" stroke-width="2"/>
 	<path d="M 4,4 h 243 M 4,7 h 243" stroke="hsl(240,33%,20%)" stroke-linecap="round" stroke-width="2"/>
       </g>
+      <text x="10" y="172" text-anchor="left" fill="hsl(240,100%,93%)">width</text>
+      <use href="#uiNumberPickerSeed" x="80" y="155"></use>
+      <text x="10" y="197" text-anchor="left" fill="hsl(240,100%,93%)">linecap</text>
+      <g transform="translate(80,180)" class="uiComboBox">
+        <g onclick="var trgt=this.parentNode.getElementsByTagName('g')[1]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
+	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
+	    <text x="3" y="16" text-anchor="left"></text>
+	    <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/>
+	  </svg>
+	</g>
+        <g visibility="hidden">
+	  <rect x="0.5" y="22.5" width="100" height="122" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <option comment="defaults to butt"><text x="5" y="5">not set (defaults to butt)</text></use>
+	  <option value="butt"><text x="5" y="5">butt</text><polyline stroke-linecap="butt" points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/></use>
+	  <option value="round"><text x="5" y="5">round</text><polyline stroke-linecap="round" points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/></use>
+	  <option value="square"><text x="5" y="5">square</text><polyline stroke-linecap="square" points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/></use>
+	</g>
+      </g>
+      <text x="10" y="222" text-anchor="left" fill="hsl(240,100%,93%)">linejoin</text>
+      <text x="10" y="247" text-anchor="left" fill="hsl(240,100%,93%)">dasharray</text>
+
+
       <path id="fillnotset" transform="translate(19.6602540378,22)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" stroke="hsl(0,0%,100%)" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
       <text x="41" y="30" text-anchor="left" fill="hsl(240,100%,93%)">not set</text>
       <path id="fillnone" transform="translate(9,39)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="hsl(0,0%,100%)" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>

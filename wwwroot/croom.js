@@ -1,7 +1,7 @@
 const editmode=0, runmode=1;
 let mode=editmode;
 var mainPanel, editPanel, editItems, menuPanel;
-var colorPicker;
+var fillPicker;
 var svgNS="http://www.w3.org/2000/svg";
 var objBeingDraged=null;
 var objBeingEdited=null;
@@ -114,7 +114,7 @@ function setToCurrentColor()
     colorBox.setAttribute("fill-opacity", opacity);
     objBeingEdited.setAttribute("fill-opacity", opacity);
   }
-  colorPicker.setAttribute("visibility", "hidden");
+  fillPicker.setAttribute("visibility", "hidden");
 }
 
 function init() {
@@ -122,7 +122,7 @@ function init() {
   editPanel = document.getElementById("editpanel");
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
-  colorPicker = document.getElementById("uiColorPickerWindow");
+  fillPicker = document.getElementById("uiFillPickerWindow");
   var midx=130, midy=63, hexdx=0, hexdy=0, hexsize=6, n=4, spacing=1, light=50;
   const sin60=0.86602540378;
   var g = document.getElementById("colorgroup");
@@ -186,6 +186,25 @@ function init() {
   selectedColorEl = oldColorEl;
   selectedLightEl = document.getElementById("lightgroup").getElementsByTagName("rect")[5];
   selectedAlphaEl = document.getElementById("alphagroup").getElementsByTagName("rect")[0];
+//alert("Q1");
+//const targetNode = currentColorEl;
+//const config = {
+//  attributes: true, 
+//  childList: false, 
+//  characterData: false
+//};
+//	  
+//const callback = mutations => {  
+//  mutations.forEach(mutation => {
+//    if (mutation.type === 'attributes') {
+//alert("X fill='"+targetNode.getAttribute("fill")+"'");
+//    }
+//  });
+//}
+//
+//const observer = new MutationObserver(callback);
+//observer.observe(targetNode, config);
+//alert("Q2");
 }
 
 function prepParams(element)
@@ -323,11 +342,10 @@ function createItem(fieldName, fieldClass, fieldValue)
 	inputText.textContent=""+parseFloat(fieldValue);
       editItems.appendChild(newNode);
       break;
-    case "uiColorPicker":
-      var newNode = document.getElementById("uiColorPickerSeed").cloneNode(true);
+    case "uiFillPicker":
+      var newNode = document.getElementById("uiFillPickerSeed").cloneNode(true);
       newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
-      editItems.appendChild(newNode);
       var colorBox = newNode.getElementsByTagName("rect")[1];
       if (fieldValue["fill"]==null)
 	colorBox.removeAttribute("fill");
@@ -343,7 +361,6 @@ function createItem(fieldName, fieldClass, fieldValue)
       var newNode = document.getElementById("uiStrokePickerSeed").cloneNode(true);
       newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
-      editItems.appendChild(newNode);
       var polyline = newNode.getElementsByTagName("polyline")[0];
       var text = newNode.getElementsByTagName("text")[0];
       polyline.setAttribute("stroke", "none");
@@ -366,7 +383,7 @@ function createItem(fieldName, fieldClass, fieldValue)
   itemCount++;
 }
 
-function openColorPicker(evt)
+function openFillPicker(evt)
 {
   attrElBeingChanged = evt.target.parentNode;
   var colorBox = attrElBeingChanged.getElementsByTagName("rect")[1];
@@ -381,25 +398,32 @@ function openColorPicker(evt)
   else
     oldColorEl.setAttribute("fill-opacity", opacity);
   resetToOldColor();
-  colorPicker.setAttribute("visibility", "display");
+  fillPicker.setAttribute("visibility", "display");
 }
 
 function openStrokePicker(evt)
 {
   attrElBeingChanged = evt.target.parentNode;
+  while (attrElBeingChanged.nodeName!="g")
+    attrElBeingChanged = attrElBeingChanged.parentNode;
   var polyline = attrElBeingChanged.getElementsByTagName("polyline")[0];
   var stroke = polyline.getAttribute("stroke");
-  if (stroke==null)
-    oldColorEl.removeAttribute("stroke");
+//  if (stroke==null)
+//    oldColorEl.removeAttribute("stroke");
+//  else
+//    oldColorEl.setAttribute("stroke", stroke);
+//  var opacity = polyline.getAttribute("stroke-opacity");
+//  if (opacity==null)
+//    oldColorEl.removeAttribute("stroke-opacity");
+//  else
+//    oldColorEl.setAttribute("stroke-opacity", opacity);
+//  resetToOldColor();
+//  fillPicker.setAttribute("visibility", "display");
+  var box = attrElBeingChanged.getElementsByTagName("svg")[1];
+  if (box.getAttribute("visibility")=="hidden")
+    box.setAttribute("visibility", "display");
   else
-    oldColorEl.setAttribute("stroke", stroke);
-  var opacity = polyline.getAttribute("stroke-opacity");
-  if (opacity==null)
-    oldColorEl.removeAttribute("stroke-opacity");
-  else
-    oldColorEl.setAttribute("stroke-opacity", opacity);
-  resetToOldColor();
-  colorPicker.setAttribute("visibility", "display");
+    box.setAttribute("visibility", "hidden");
 }
 
 function enterColor(evt)
@@ -477,7 +501,7 @@ function drop(evt)
     case "circle":
     case "g":
     case "path":
-      createItem("fill", "uiColorPicker", {
+      createItem("fill", "uiFillPicker", {
 	"fill": objBeingEdited.getAttribute("fill"),
 	"fill-opacity": objBeingEdited.getAttribute("fill-opacity")});
       createItem("stroke", "uiStrokePicker", {
