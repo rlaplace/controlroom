@@ -264,22 +264,86 @@
       <g transform="translate(80,180)" class="uiComboBox">
         <g onclick="var trgt=this.parentNode.getElementsByTagName('g')[1]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
 	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	  <svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
-	    <text x="3" y="16" text-anchor="left"></text>
-	    <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/>
-	  </svg>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="7"/>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/>
 	</g>
-        <g visibility="hidden">
-	  <rect x="0.5" y="22.5" width="100" height="122" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	  <option comment="defaults to butt"><text x="5" y="5">not set (defaults to butt)</text></use>
-	  <option value="butt"><text x="5" y="5">butt</text><polyline stroke-linecap="butt" points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/></use>
-	  <option value="round"><text x="5" y="5">round</text><polyline stroke-linecap="round" points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/></use>
-	  <option value="square"><text x="5" y="5">square</text><polyline stroke-linecap="square" points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/></use>
+        <g transform="translate(0,22)" visibility="hidden">
+	  <rect x="0.5" y="0.5" width="160" height="89" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <g class="menuitem" transform="translate(1,1)" class="uiOption" comment="defaults to butt">
+	    <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (defaults to butt)</text></g>
+	  <g class="menuitem" transform="translate(1,23)" class="uiOption" value="butt">
+	    <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">butt</text>
+	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="butt"/>
+	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
+	  <g class="menuitem" transform="translate(1,45)" class="uiOption" value="round">
+	    <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">round</text>
+	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="round"/>
+	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
+	  <g class="menuitem" transform="translate(1,67)" class="uiOption" value="square">
+	    <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">square</text>
+	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="square"/>
+	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
 	</g>
       </g>
       <text x="10" y="222" text-anchor="left" fill="hsl(240,100%,93%)">linejoin</text>
+      <g transform="translate(80,205)" class="uiComboBox">
+        <g onclick="var trgt=this.parentNode.getElementsByTagName('g')[1]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
+	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none"/>
+	  <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
+	</g>
+        <g transform="translate(0,22)" visibility="hidden">
+	  <rect x="0.5" y="0.5" width="170" height="133" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <g class="menuitem" transform="translate(1,1)" class="uiOption">
+	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (defaults to miter)</text></g>
+	  <g class="menuitem" transform="translate(1,23)" class="uiOption" value="miter">
+	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">miter</text>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="miter"/>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	  <g class="menuitem" transform="translate(1,45)" class="uiOption" value="round">
+	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">round</text>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="round"/>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	  <g class="menuitem" transform="translate(1,67)" class="uiOption" value="bevel">
+	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">bevel</text>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="bevel"/>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	  <g class="menuitem" transform="translate(1,89)" class="uiOption" value="miter-clip">
+	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">miter-clip</text>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="miter-clip"/>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	  <g class="menuitem" transform="translate(1,111)" class="uiOption" value="arcs">
+	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">arcs</text>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="arcs"/>
+	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	</g>
+      </g>
       <text x="10" y="247" text-anchor="left" fill="hsl(240,100%,93%)">dasharray</text>
-
+      <g transform="translate(80,230)" class="uiComboBox">
+        <g onclick="var trgt=this.parentNode.getElementsByTagName('g')[1]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
+	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1"/>
+	</g>
+        <g transform="translate(0,22)" visibility="hidden">
+	  <rect x="0.5" y="0.5" width="138" height="133" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <g class="menuitem" transform="translate(1,1)" class="uiOption">
+	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (continuous)</text></g>
+	  <g class="menuitem" transform="translate(1,23)" class="uiOption" value="4">
+	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	    <line x1="11.5" y1="11.5" x2="121.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="4"/></g>
+	  <g class="menuitem" transform="translate(1,45)" class="uiOption" value="6 2">
+	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	    <line x1="11.5" y1="11.5" x2="121.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="6 2"/></g>
+	  <g class="menuitem" transform="translate(1,67)" class="uiOption" value="8 2 4">
+	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	    <line x1="11.5" y1="11.5" x2="121.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 2 4"/></g>
+	  <g class="menuitem" transform="translate(1,89)" class="uiOption" value="8 4 2 4">
+	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	    <line x1="11.5" y1="11.5" x2="121.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 4 2 4"/></g>
+	  <g class="menuitem" transform="translate(1,111)" class="uiOption">
+	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">custom</text></g>
+	</g>
+      </g>
 
       <path id="fillnotset" transform="translate(19.6602540378,22)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" stroke="hsl(0,0%,100%)" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
       <text x="41" y="30" text-anchor="left" fill="hsl(240,100%,93%)">not set</text>
