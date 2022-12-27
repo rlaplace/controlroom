@@ -9,6 +9,16 @@
 <body onload="init()" style="margin:0">
   <svg style="position:absolute" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
     <defs>
+      <marker id="arrow1_start" markerWidth="8" markerHeight="4" refX="0" refY="2" orient="auto" markerUnits="strokeWidth"><polygon points="0 2.5 0 1.5 8 0 8 4"/></marker>
+      <marker id="arrow1_end" markerWidth="8" markerHeight="4" refX="8" refY="2" orient="auto" markerUnits="strokeWidth"><polygon points="0 0 8 1.5 8 2.5 0 4"/></marker>
+      <marker id="arrow2_start" markerWidth="10" markerHeight="5" refX="0" refY="2.5" orient="auto" markerUnits="strokeWidth"><polygon points="0 3 0 2 10 0 10 5"/></marker>
+      <marker id="arrow2_end" markerWidth="10" markerHeight="5" refX="10" refY="2.5" orient="auto" markerUnits="strokeWidth"><polygon points="0 0 10 2 10 3 0 5"/></marker>
+      <marker id="arrow3_start" markerWidth="10" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="strokeWidth"><polygon points="0 3.5 0 2.5 10 0 10 6"/></marker>
+      <marker id="arrow3_end" markerWidth="10" markerHeight="6" refX="10" refY="3" orient="auto" markerUnits="strokeWidth"><polygon points="0 0 10 2.5 10 3.5 0 6"/></marker>
+      <marker id="arrow4_start" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" markerUnits="strokeWidth"><polygon points="0 4 0 3 10 0 10 7"/></marker>
+      <marker id="arrow4_end" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="strokeWidth"><polygon points="0 0 10 3 10 4 0 7"/></marker>
+      <marker id="arrow5_start" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="strokeWidth"><polygon points="0 4.5 0 3.5 12 0 12 8"/></marker>
+      <marker id="arrow5_end" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="strokeWidth"><polygon points="0 0 12 3.5 12 4.5 0 8"/></marker>
       <linearGradient id="myGradient" gradientTransform="rotate(90)">
 	<stop offset="0" stop-opacity="0"/>
 	<stop offset="20%" stop-opacity="0"/>
@@ -77,41 +87,209 @@
 	  <text x="3" y="16" text-anchor="left"></text>
 	  <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/>
 	</svg>
-	<svg x="0" y="22" width="94" height="152" viewbox="0 0 94 152" visibility="hidden">
-	  <rect x="0.5" y="0.5" width="93" height="151" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
-	  <use href="#uiFillPickerSeed" x="10" y="5"></use>
-	  <g class="menuitem" transform="translate(1,41)">
-	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <text x="3" y="16" text-anchor="left">not set</text>
+      </g>
+      <g id="widthComboOptions">
+	<rect x="0.5" y="0.5" width="106" height="134" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<g class="menuitem" transform="translate(1,1)" class="uiOption" value="butt">
+	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="0.25"/><text x="50" y="15">0.25 px</text></g>
+	<g class="menuitem" transform="translate(1,23)" class="uiOption" value="butt">
+	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="0.5"/><text x="50" y="15">0.5 px</text></g>
+	<g class="menuitem" transform="translate(1,45)" class="uiOption" value="round">
+	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="1"/><text x="50" y="15">1 px</text></g>
+	<g class="menuitem" transform="translate(1,67)" class="uiOption" value="round">
+	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="2"/><text x="50" y="15">2 px</text></g>
+	<g class="menuitem" transform="translate(1,89)" class="uiOption" value="round">
+	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="3"/><text x="50" y="15">3 px</text></g>
+	<g class="menuitem" transform="translate(1,111)" class="uiOption" value="round">
+	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="5"/><text x="50" y="15">5 px</text></g>
+      </g>
+      <g id="linecapComboOptions">
+	<rect x="0.5" y="0.5" width="160" height="89" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<g class="menuitem" transform="translate(1,1)" class="uiOption" comment="defaults to butt">
+	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (defaults to butt)</text></g>
+	<g class="menuitem" transform="translate(1,23)" class="uiOption" value="butt">
+	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">butt</text>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="butt"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
+	<g class="menuitem" transform="translate(1,45)" class="uiOption" value="round">
+	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">round</text>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="round"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
+	<g class="menuitem" transform="translate(1,67)" class="uiOption" value="square">
+	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">square</text>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="square"/>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
+      </g>
+      <g id="linejoinComboOptions">
+	<rect x="0.5" y="0.5" width="170" height="133" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<g class="menuitem" transform="translate(1,1)" class="uiOption">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (defaults to miter)</text></g>
+	<g class="menuitem" transform="translate(1,23)" class="uiOption" value="miter">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">miter</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="miter"/>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	<g class="menuitem" transform="translate(1,45)" class="uiOption" value="round">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">round</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="round"/>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	<g class="menuitem" transform="translate(1,67)" class="uiOption" value="bevel">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">bevel</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="bevel"/>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	<g class="menuitem" transform="translate(1,89)" class="uiOption" value="miter-clip">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">miter-clip</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="miter-clip"/>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	<g class="menuitem" transform="translate(1,111)" class="uiOption" value="arcs">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">arcs</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="arcs"/>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+      </g>
+      <g id="dasharrayComboOptions">
+	<rect x="0.5" y="0.5" width="138" height="111" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<g class="menuitem" transform="translate(1,1)" class="uiOption">
+	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (continuous)</text></g>
+	<g class="menuitem" transform="translate(1,23)" class="uiOption" value="4">
+	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="4"/></g>
+	<g class="menuitem" transform="translate(1,45)" class="uiOption" value="6 2">
+	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="6 2"/></g>
+	<g class="menuitem" transform="translate(1,67)" class="uiOption" value="8 2 4">
+	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 2 4"/></g>
+	<g class="menuitem" transform="translate(1,89)" class="uiOption" value="8 4 2 4">
+	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 4 2 4"/></g>
+      </g>
+      <g id="arrowheadComboOptions">
+	<rect x="0.5" y="0.5" width="110" height="68" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<g class="menuitem" transform="translate(1,1)" class="uiOption">
+	  <rect x="0" y="0" width="54" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1"/></g>
+	<g class="menuitem" transform="translate(1,23)" class="uiOption" value="4">
+	  <rect x="0" y="0" width="54" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow1_start)" marker-end="url(#arrow1_end)"/></g>
+	<g class="menuitem" transform="translate(1,45)" class="uiOption" value="6 2">
+	  <rect x="0" y="0" width="54" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow2_start)" marker-end="url(#arrow2_end)"/></g>
+	<g class="menuitem" transform="translate(56,1)" class="uiOption" value="8 2 4">
+	  <rect x="0" y="0" width="54" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow3_start)" marker-end="url(#arrow3_end)"/></g>
+	<g class="menuitem" transform="translate(56,23)" class="uiOption" value="8 4 2 4">
+	  <rect x="0" y="0" width="54" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow4_start)" marker-end="url(#arrow4_end)"/></g>
+	<g class="menuitem" transform="translate(56,45)" class="uiOption" value="8 4 2 4">
+	  <rect x="0" y="0" width="54" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow5_start)" marker-end="url(#arrow5_end)"/></g>
+      </g>
+      <g id="uiStrokePickerWindow" visibility="hidden">
+	<rect x="0.5" y="0.5" width="128" height="153" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<text x="6" y="19" text-anchor="left">color</text>
+	<use href="#uiFillPickerSeed" x="70" y="3"></use>
+	<text x="6" y="44" text-anchor="left">width</text>
+	<g transform="translate(70,28)" class="uiComboBox">
+	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
+	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1"/>
 	  </g>
-	  <g class="menuitem" transform="translate(1,63)">
-	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <text x="3" y="16" text-anchor="left">none</text>
+	  <use href="#widthComboOptions" x="0" y="22" visibility="hidden"></use>
+	</g>
+	<text x="6" y="69" text-anchor="left">linecap</text>
+	<g transform="translate(70,53)" class="uiComboBox">
+	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
+	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="7"/>
+	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/>
 	  </g>
-	  <g class="menuitem" transform="translate(1,85)">
-	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="black" stroke-width="1"/>
-	    <text x="52" y="14" text-anchor="left" font-family="Arial" font-size="8">black 1px</text>
+	  <use href="#linecapComboOptions" x="0" y="22" visibility="hidden"></use>
+	</g>
+	<text x="6" y="94" text-anchor="left">linejoin</text>
+	<g transform="translate(70,78)" class="uiComboBox">
+	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
+	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	    <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none"/>
+	    <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
 	  </g>
-	  <g class="menuitem" transform="translate(1,107)">
-	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="black" stroke-width="2"/>
-	    <text x="52" y="14" text-anchor="left" font-family="Arial" font-size="8">black 2px</text>
+	  <use href="#linejoinComboOptions" x="0" y="22" visibility="hidden"></use>
+	</g>
+	<text x="6" y="119" text-anchor="left">dasharray</text>
+	<g transform="translate(70,103)" class="uiComboBox">
+	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
+	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1"/>
 	  </g>
-	  <g class="menuitem" transform="translate(1,129)">
-	    <rect x="0" y="0" width="92" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="black" stroke-width="3"/>
-	    <text x="52" y="14" text-anchor="left" font-family="Arial" font-size="8">custom</text>
-	    <g transform="translate(78,5)">
-	      <rect x="0.5" y="0.5" width="12" height="12" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
-	      <circle cx="6.5" cy="6.5" r="4" fill="hsl(0,100%,7%)" stroke="none"/>
-	      <rect x="1.5" y="5.5" width="10" height="2" rx="0.5" ry="0.5" fill="hsl(0,100%,7%)" stroke="none"/>
-	      <rect x="1.5" y="5.5" width="10" height="2" rx="0.5" ry="0.5" fill="hsl(0,100%,7%)" stroke="none" transform="translate(6.5,6.5) rotate(60) translate(-6.5,-6.5)"/>
-	      <rect x="1.5" y="5.5" width="10" height="2" rx="0.5" ry="0.5" fill="hsl(0,100%,7%)" stroke="none" transform="translate(6.5,6.5) rotate(-60) translate(-6.5,-6.5)"/>
-	      <circle cx="6.5" cy="6.5" r="2.5" fill="hsl(0,100%,93%)" stroke="none"/>
-	    </g>
+	  <use href="#dasharrayComboOptions" x="0" y="22" visibility="hidden"></use>
+	</g>
+	<text x="6" y="144" text-anchor="left">arrow head</text>
+	<g transform="translate(70,128)" class="uiComboBox">
+	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
+	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow1_start)" marker-end="url(#arrow1_end)"/>
 	  </g>
-	</svg>
+	  <use href="#arrowheadComboOptions" x="0" y="22" visibility="hidden"></use>
+	</g>
+      </g>
+      <g id="uiFillPickerWindow" visibility="hidden">
+	<rect x="0.5" y="0.5" width="233" height="146" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<path id="fillnotset" transform="translate(15.6602540378,10)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
+	<text x="37" y="18" text-anchor="left">not set</text>
+	<path id="fillnone" transform="translate(5,27)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
+	<text x="27" y="35" text-anchor="left">none</text>
+	<path transform="translate(15.6602540378,44)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,0%,0%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
+	<text x="37" y="52" text-anchor="left">black</text>
+	<path transform="translate(5,61)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,0%,100%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
+	<text x="27" y="69" text-anchor="left">white</text>
+
+	<path transform="translate(5,107)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none"/>
+	<path id="oldcolor" transform="translate(5,107)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,100%,50%)" stroke="black" stroke-width="2"/>
+	<text x="27" y="115" text-anchor="left">old color</text>
+	<path transform="translate(15.6602540378,124)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none"/>
+	<path id="currentcolor" transform="translate(15.6602540378,124)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,100%,50%)" stroke="none"/>
+	<text x="37" y="132" text-anchor="left">current color</text>
+	<g transform="translate(-4,-12)" id="colorgroup">
+	</g>
+	<g transform="translate(188,7)" id="lightgroup">
+	  <rect x="0" y="0" width="15" height="8" fill="hsl(0,100%,100%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="9" width="15" height="8" fill="hsl(0,100%,90%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="18" width="15" height="8" fill="hsl(0,100%,80%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="27" width="15" height="8" fill="hsl(0,100%,70%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="36" width="15" height="8" fill="hsl(0,100%,60%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="45" width="15" height="8" fill="hsl(0,100%,50%)" stroke="black" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="54" width="15" height="8" fill="hsl(0,100%,40%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="63" width="15" height="8" fill="hsl(0,100%,30%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="72" width="15" height="8" fill="hsl(0,100%,20%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="81" width="15" height="8" fill="hsl(0,100%,10%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	  <rect x="0" y="90" width="15" height="8" fill="hsl(0,100%,0%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
+	</g>
+	<rect x="208" y="5" width="19" height="103" fill="url(#ptrn_squared)" stroke="none"/>
+	<g transform="translate(210,7)" id="alphagroup">
+	  <rect x="0" y="0" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="1" stroke="black" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="9" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.9" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="18" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.8" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="27" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.7" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="36" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.6" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="45" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.5" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="54" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.4" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="63" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.3" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="72" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.2" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="81" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.1" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	  <rect x="0" y="90" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
+	</g>
+	<g transform="translate(128,116)" onclick="resetToOldColor();">
+	  <rect x="0" y="0" rx="3" ry="3" width="45" height="23" fill="hsl(240,20%,33%)" stroke="hsl(240,100%,7%)" stroke-width="1"/>
+	  <text x="23" y="16" text-anchor="middle" fill="hsl(240,100%,93%)">reset</text>
+	</g>
+	<g transform="translate(181,116)" onclick="setToCurrentColor();">
+	  <rect x="0" y="0" rx="3" ry="3" width="45" height="23" fill="hsl(240,20%,33%)" stroke="hsl(240,100%,7%)" stroke-width="1"/>
+	  <text x="23" y="16" text-anchor="middle" fill="hsl(240,100%,93%)">done</text>
+	</g>
       </g>
     </defs>
     <svg onmousedown="touch(evt)" onmousemove="drag(evt)" onmouseup="drop(evt)" style="position:absolute" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
@@ -252,151 +430,9 @@
       </g>
     </g>
 
-    <g id="uiFillPickerWindow" class="uiWindow" transform="translate(80,80)" visibility="hidden">
-      <rect x="0.5" y="0.5" width="250" height="250" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-      <text x="10" y="22" text-anchor="left">width</text>
-      <use href="#uiNumberPickerSeed" x="10" y="28"></use>
-      <text x="70" y="22" text-anchor="left">linecap</text>
-      <g transform="translate(70,28)" class="uiComboBox">
-        <g onclick="var trgt=this.parentNode.getElementsByTagName('g')[1]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
-	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="7"/>
-	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/>
-	</g>
-        <g transform="translate(0,22)" visibility="hidden">
-	  <rect x="0.5" y="0.5" width="160" height="89" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	  <g class="menuitem" transform="translate(1,1)" class="uiOption" comment="defaults to butt">
-	    <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (defaults to butt)</text></g>
-	  <g class="menuitem" transform="translate(1,23)" class="uiOption" value="butt">
-	    <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">butt</text>
-	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="butt"/>
-	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
-	  <g class="menuitem" transform="translate(1,45)" class="uiOption" value="round">
-	    <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">round</text>
-	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="round"/>
-	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
-	  <g class="menuitem" transform="translate(1,67)" class="uiOption" value="square">
-	    <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">square</text>
-	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="square"/>
-	    <line x1="10.5" y1="10.5" x2="40.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
-	</g>
-      </g>
-      <text x="130" y="22" text-anchor="left">linejoin</text>
-      <g transform="translate(130,28)" class="uiComboBox">
-        <g onclick="var trgt=this.parentNode.getElementsByTagName('g')[1]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
-	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	  <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none"/>
-	  <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
-	</g>
-        <g transform="translate(0,22)" visibility="hidden">
-	  <rect x="0.5" y="0.5" width="170" height="133" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	  <g class="menuitem" transform="translate(1,1)" class="uiOption">
-	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (defaults to miter)</text></g>
-	  <g class="menuitem" transform="translate(1,23)" class="uiOption" value="miter">
-	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">miter</text>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="miter"/>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	  <g class="menuitem" transform="translate(1,45)" class="uiOption" value="round">
-	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">round</text>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="round"/>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	  <g class="menuitem" transform="translate(1,67)" class="uiOption" value="bevel">
-	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">bevel</text>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="bevel"/>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	  <g class="menuitem" transform="translate(1,89)" class="uiOption" value="miter-clip">
-	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">miter-clip</text>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="miter-clip"/>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	  <g class="menuitem" transform="translate(1,111)" class="uiOption" value="arcs">
-	    <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">arcs</text>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="arcs"/>
-	    <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	</g>
-      </g>
-      <text x="190" y="22" text-anchor="left">dasharray</text>
-      <g transform="translate(190,28)" class="uiComboBox">
-        <g onclick="var trgt=this.parentNode.getElementsByTagName('g')[1]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
-	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1"/>
-	</g>
-        <g transform="translate(0,22)" visibility="hidden">
-	  <rect x="0.5" y="0.5" width="138" height="133" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	  <g class="menuitem" transform="translate(1,1)" class="uiOption">
-	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (continuous)</text></g>
-	  <g class="menuitem" transform="translate(1,23)" class="uiOption" value="4">
-	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <line x1="11.5" y1="11.5" x2="121.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="4"/></g>
-	  <g class="menuitem" transform="translate(1,45)" class="uiOption" value="6 2">
-	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <line x1="11.5" y1="11.5" x2="121.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="6 2"/></g>
-	  <g class="menuitem" transform="translate(1,67)" class="uiOption" value="8 2 4">
-	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <line x1="11.5" y1="11.5" x2="121.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 2 4"/></g>
-	  <g class="menuitem" transform="translate(1,89)" class="uiOption" value="8 4 2 4">
-	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	    <line x1="11.5" y1="11.5" x2="121.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 4 2 4"/></g>
-	  <g class="menuitem" transform="translate(1,111)" class="uiOption">
-	    <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">custom</text></g>
-	</g>
-      </g>
-
-      <path id="fillnotset" transform="translate(19.6602540378,72)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
-      <text x="41" y="80" text-anchor="left">not set</text>
-      <path id="fillnone" transform="translate(9,89)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
-      <text x="31" y="97" text-anchor="left">none</text>
-      <path transform="translate(19.6602540378,106)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,0%,0%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
-      <text x="41" y="114" text-anchor="left">black</text>
-      <path transform="translate(9,123)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,0%,100%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
-      <text x="31" y="131" text-anchor="left">white</text>
-
-      <path transform="translate(9,169)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none"/>
-      <path id="oldcolor" transform="translate(9,169)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,100%,50%)" stroke="black" stroke-width="2"/>
-      <text x="31" y="177" text-anchor="left">old color</text>
-      <path transform="translate(19.6602540378,186)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="url(#ptrn_squared)" stroke="none"/>
-      <path id="currentcolor" transform="translate(19.6602540378,186)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" fill="hsl(0,100%,50%)" stroke="none"/>
-      <text x="41" y="194" text-anchor="left">current color</text>
-
-      <g transform="translate(0,50)" id="colorgroup">
-      </g>
-
-      <g transform="translate(196,67)" id="lightgroup">
-	<rect x="0" y="0" width="15" height="8" fill="hsl(0,100%,100%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="9" width="15" height="8" fill="hsl(0,100%,90%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="18" width="15" height="8" fill="hsl(0,100%,80%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="27" width="15" height="8" fill="hsl(0,100%,70%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="36" width="15" height="8" fill="hsl(0,100%,60%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="45" width="15" height="8" fill="hsl(0,100%,50%)" stroke="black" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="54" width="15" height="8" fill="hsl(0,100%,40%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="63" width="15" height="8" fill="hsl(0,100%,30%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="72" width="15" height="8" fill="hsl(0,100%,20%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="81" width="15" height="8" fill="hsl(0,100%,10%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-	<rect x="0" y="90" width="15" height="8" fill="hsl(0,100%,0%)" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickLight(evt.target)"/>
-      </g>
-
-      <rect x="216" y="65" width="19" height="103" fill="url(#ptrn_squared)" stroke="none"/>
-      <g transform="translate(218,67)" id="alphagroup">
-	<rect x="0" y="0" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="1" stroke="black" stroke-width="2" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="9" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.9" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="18" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.8" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="27" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.7" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="36" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.6" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="45" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.5" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="54" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.4" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="63" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.3" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="72" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.2" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="81" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0.1" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-	<rect x="0" y="90" width="15" height="8" fill="hsl(0,100%,50%)" fill-opacity="0" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickAlpha(evt.target)"/>
-      </g>
-
-      <g transform="translate(130,178)" onclick="resetToOldColor();">
-	<rect x="0" y="0" rx="3" ry="3" width="50" height="23" fill="hsl(240,20%,33%)" stroke="hsl(240,100%,7%)" stroke-width="1"/>
-        <text x="25" y="15" text-anchor="middle" fill="hsl(240,100%,93%)">reset</text>
-      </g>
-      <g transform="translate(190,178)" onclick="setToCurrentColor();">
-	<rect x="0" y="0" rx="3" ry="3" width="50" height="23" fill="hsl(240,20%,33%)" stroke="hsl(240,100%,7%)" stroke-width="1"/>
-        <text x="25" y="15" text-anchor="middle" fill="hsl(240,100%,93%)">done</text>
-      </g>
+    <g id="dinamicWindowStack">
+      <use href="#uiFillPickerWindow" x="80" y="80"></use>
+      <use href="#uiStrokePickerWindow" x="80" y="170"></use>
     </g>
   </svg>
 </body>

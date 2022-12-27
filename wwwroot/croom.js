@@ -132,7 +132,7 @@ function init() {
   hex.setAttribute("onclick", "clickColor(evt.target)");
   hex.setAttribute("d", "M 0 0 h " + hexsize + " l " + (hexsize/2) + " " + (hexsize*sin60) + "l -" + (hexsize/2) + " " + (hexsize*sin60) + " h -" + hexsize + " l -" + (hexsize/2) + " -" + (hexsize*sin60) + " z");
   hex.setAttribute("fill", "hsl(0,0%," + light + "%)");
-  hex.setAttribute("stroke", "hsl(0,0%,100%)");
+  hex.setAttribute("stroke", "black");
   hex.setAttribute("stroke-width", "0");
   hex.setAttribute("transform",  "translate(" + (midx+hexdx) + "," + (midy+hexdy) + ")");
   g.appendChild(hex);
@@ -186,25 +186,6 @@ function init() {
   selectedColorEl = oldColorEl;
   selectedLightEl = document.getElementById("lightgroup").getElementsByTagName("rect")[5];
   selectedAlphaEl = document.getElementById("alphagroup").getElementsByTagName("rect")[0];
-//alert("Q1");
-//const targetNode = currentColorEl;
-//const config = {
-//  attributes: true, 
-//  childList: false, 
-//  characterData: false
-//};
-//	  
-//const callback = mutations => {  
-//  mutations.forEach(mutation => {
-//    if (mutation.type === 'attributes') {
-//alert("X fill='"+targetNode.getAttribute("fill")+"'");
-//    }
-//  });
-//}
-//
-//const observer = new MutationObserver(callback);
-//observer.observe(targetNode, config);
-//alert("Q2");
 }
 
 function prepParams(element)
@@ -383,9 +364,16 @@ function createItem(fieldName, fieldClass, fieldValue)
   itemCount++;
 }
 
+function stackWindow(evt)
+{
+  document.getElementById("dinamicWindowStack");
+}
+
 function openFillPicker(evt)
 {
   attrElBeingChanged = evt.target.parentNode;
+  while (attrElBeingChanged.nodeName!="g")
+    attrElBeingChanged = attrElBeingChanged.parentNode;
   var colorBox = attrElBeingChanged.getElementsByTagName("rect")[1];
   var fill = colorBox.getAttribute("fill");
   if (fill==null)
@@ -408,17 +396,7 @@ function openStrokePicker(evt)
     attrElBeingChanged = attrElBeingChanged.parentNode;
   var polyline = attrElBeingChanged.getElementsByTagName("polyline")[0];
   var stroke = polyline.getAttribute("stroke");
-//  if (stroke==null)
-//    oldColorEl.removeAttribute("stroke");
-//  else
-//    oldColorEl.setAttribute("stroke", stroke);
-//  var opacity = polyline.getAttribute("stroke-opacity");
-//  if (opacity==null)
-//    oldColorEl.removeAttribute("stroke-opacity");
-//  else
-//    oldColorEl.setAttribute("stroke-opacity", opacity);
-//  resetToOldColor();
-//  fillPicker.setAttribute("visibility", "display");
+
   var box = attrElBeingChanged.getElementsByTagName("svg")[1];
   if (box.getAttribute("visibility")=="hidden")
     box.setAttribute("visibility", "display");
@@ -557,7 +535,6 @@ function insertRect() {
   newNode.setAttribute("height","150");
   newNode.setAttribute("rx","5");
   newNode.setAttribute("ry","5");
-//  newNode.setAttribute("fill","url('#myGradient')");
   newNode.setAttribute("fill","hsl(240,100%,50%)");
   newNode.setAttribute("stroke","hsl(0,0%,0%)");
   newNode.setAttribute("stroke-width","2");
