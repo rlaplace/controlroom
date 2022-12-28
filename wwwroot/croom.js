@@ -1,7 +1,6 @@
 const editmode=0, runmode=1;
 let mode=editmode;
 var mainPanel, editPanel, editItems, menuPanel;
-var fillPicker;
 var svgNS="http://www.w3.org/2000/svg";
 var objBeingDraged=null;
 var objBeingEdited=null;
@@ -114,7 +113,7 @@ function setToCurrentColor()
     colorBox.setAttribute("fill-opacity", opacity);
     objBeingEdited.setAttribute("fill-opacity", opacity);
   }
-  fillPicker.setAttribute("visibility", "hidden");
+//  fillPicker.setAttribute("visibility", "hidden");
 }
 
 function init() {
@@ -122,7 +121,6 @@ function init() {
   editPanel = document.getElementById("editpanel");
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
-  fillPicker = document.getElementById("uiFillPickerWindow");
   var midx=130, midy=63, hexdx=0, hexdy=0, hexsize=6, n=4, spacing=1, light=50;
   const sin60=0.86602540378;
   var g = document.getElementById("colorgroup");
@@ -364,9 +362,18 @@ function createItem(fieldName, fieldClass, fieldValue)
   itemCount++;
 }
 
-function stackWindow(evt)
+function openClose(evt, elementId)
 {
-  document.getElementById("dinamicWindowStack");
+  var element = document.getElementById(elementId);
+  if (element!=null) {
+    if (element.parentNode.nodeName=="defs") {
+      var bBox = evt.currentTarget.firstElementChild.getBoundingClientRect();
+      element.setAttribute("transform", "translate("+bBox.x+","+bBox.bottom+")");
+      document.getElementById("dinamicWindowTree").appendChild(element);
+    }
+    else
+      document.getElementsByTagName("defs")[0].appendChild(element);
+  }
 }
 
 function openFillPicker(evt)
@@ -386,7 +393,7 @@ function openFillPicker(evt)
   else
     oldColorEl.setAttribute("fill-opacity", opacity);
   resetToOldColor();
-  fillPicker.setAttribute("visibility", "display");
+//  fillPicker.setAttribute("visibility", "display");
 }
 
 function openStrokePicker(evt)

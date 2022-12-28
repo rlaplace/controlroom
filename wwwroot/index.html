@@ -73,7 +73,7 @@
 	  <path d="M 2 4.5 h 5" fill="none" stroke="hsl(0,100%,7%)" stroke-width="1"/>
 	</g>
       </g>
-      <g id="uiFillPickerSeed" width="56" height="23" class="uiFillPicker" onclick="openFillPicker(evt)">
+      <g id="uiFillPickerSeed" width="56" height="23" class="uiFillPicker" onclick="openClose(evt, 'fillPickerWindow')">
 	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
 	  <text x="3" y="16" text-anchor="left"></text>
@@ -81,7 +81,7 @@
 	<rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="url(#ptrn_squared)" stroke="none"/>
 	<rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="none" stroke="hsl(0,100%,0%)" stroke-width="0.5"/>
       </g>
-      <g id="uiStrokePickerSeed" width="56" height="23" class="uiStrokePicker" onclick="openStrokePicker(evt)">
+      <g id="uiStrokePickerSeed" width="56" height="23" class="uiStrokePicker" onclick="openClose(evt, 'strokePickerWindow')">
 	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
 	  <text x="3" y="16" text-anchor="left"></text>
@@ -168,7 +168,7 @@
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 4 2 4"/></g>
       </g>
-      <g id="arrowheadComboOptions">
+      <g id="markersComboOptions">
 	<rect x="0.5" y="0.5" width="110" height="68" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<g class="menuitem" transform="translate(1,1)" class="uiOption">
 	  <rect x="0" y="0" width="54" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
@@ -189,54 +189,39 @@
 	  <rect x="0" y="0" width="54" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="11.5" x2="41.5" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow5_start)" marker-end="url(#arrow5_end)"/></g>
       </g>
-      <g id="uiStrokePickerWindow" visibility="hidden">
+      <g id="strokePickerWindow">
 	<rect x="0.5" y="0.5" width="128" height="153" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<text x="6" y="19" text-anchor="left">color</text>
 	<use href="#uiFillPickerSeed" x="70" y="3"></use>
 	<text x="6" y="44" text-anchor="left">width</text>
-	<g transform="translate(70,28)" class="uiComboBox">
-	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
-	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1"/>
-	  </g>
-	  <use href="#widthComboOptions" x="0" y="22" visibility="hidden"></use>
+	<g transform="translate(70,28)" onclick="openClose(evt, 'widthComboOptions');">
+	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1"/>
 	</g>
 	<text x="6" y="69" text-anchor="left">linecap</text>
-	<g transform="translate(70,53)" class="uiComboBox">
-	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
-	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="7"/>
-	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/>
-	  </g>
-	  <use href="#linecapComboOptions" x="0" y="22" visibility="hidden"></use>
+	<g transform="translate(70,53)" onclick="openClose(evt, 'linecapComboOptions');">
+	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="7"/>
+	  <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/>
 	</g>
 	<text x="6" y="94" text-anchor="left">linejoin</text>
-	<g transform="translate(70,78)" class="uiComboBox">
-	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
-	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	    <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none"/>
-	    <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
-	  </g>
-	  <use href="#linejoinComboOptions" x="0" y="22" visibility="hidden"></use>
+	<g transform="translate(70,78)" onclick="openClose(evt, 'linejoinComboOptions');">
+	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none"/>
+	  <path d="M 22,6 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
 	</g>
 	<text x="6" y="119" text-anchor="left">dasharray</text>
-	<g transform="translate(70,103)" class="uiComboBox">
-	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
-	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1"/>
-	  </g>
-	  <use href="#dasharrayComboOptions" x="0" y="22" visibility="hidden"></use>
+	<g transform="translate(70,103)" onclick="openClose(evt, 'dasharrayComboOptions');">
+	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1"/>
 	</g>
-	<text x="6" y="144" text-anchor="left">arrow head</text>
-	<g transform="translate(70,128)" class="uiComboBox">
-	  <g onclick="var trgt=this.parentNode.getElementsByTagName('use')[0]; if (trgt.getAttribute('visibility')=='visible') trgt.setAttribute('visibility', 'hidden'); else trgt.setAttribute('visibility', 'visible');">
-	    <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	    <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow1_start)" marker-end="url(#arrow1_end)"/>
-	  </g>
-	  <use href="#arrowheadComboOptions" x="0" y="22" visibility="hidden"></use>
+	<text x="6" y="144" text-anchor="left">markers</text>
+	<g transform="translate(70,128)" onclick="openClose(evt, 'markersComboOptions');">
+	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	  <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1"/>
 	</g>
       </g>
-      <g id="uiFillPickerWindow" visibility="hidden">
+      <g id="fillPickerWindow">
 	<rect x="0.5" y="0.5" width="233" height="146" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<path id="fillnotset" transform="translate(15.6602540378,10)" d="M 0.5 0.5 l 8.6602540378 -5 l 8.6602540378 5 v 10 l -8.6602540378 5 l -8.6602540378 -5 z" stroke="black" stroke-width="0" onmouseenter="enterColor(evt)" onmouseleave="leaveColor(evt)" onclick="clickColor(evt.target)"/>
 	<text x="37" y="18" text-anchor="left">not set</text>
@@ -430,9 +415,7 @@
       </g>
     </g>
 
-    <g id="dinamicWindowStack">
-      <use href="#uiFillPickerWindow" x="80" y="80"></use>
-      <use href="#uiStrokePickerWindow" x="80" y="170"></use>
+    <g id="dinamicWindowTree">
     </g>
   </svg>
 </body>
