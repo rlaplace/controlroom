@@ -4,11 +4,11 @@ var mainPanel, editPanel, editItems, menuPanel;
 var svgNS="http://www.w3.org/2000/svg";
 var objBeingDraged=null;
 var objBeingEdited=null;
+var targetInput=null;
 var ptnBeingDraged=null;
 var oldX, oldY;
 var params=new Array();
 var itemCount;
-var attrElBeingChanged;
 var oldColorEl, currentColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 
 function clickColor(target)
@@ -94,7 +94,7 @@ function resetToOldColor()
 
 function setToCurrentColor()
 {
-  var colorBox = attrElBeingChanged.getElementsByTagName("rect")[1];
+  var colorBox = targetInput.getElementsByTagName("rect")[2];
   var fill = currentColorEl.getAttribute("fill");
   if (fill==null) {
     colorBox.removeAttribute("fill");
@@ -325,7 +325,7 @@ function createItem(fieldName, fieldClass, fieldValue)
       var newNode = document.getElementById("uiFillPickerSeed").cloneNode(true);
       newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
       newNode.removeAttribute("id");
-      var colorBox = newNode.getElementsByTagName("rect")[1];
+      var colorBox = newNode.getElementsByTagName("rect")[2];
       if (fieldValue["fill"]==null)
 	colorBox.removeAttribute("fill");
       else
@@ -367,48 +367,30 @@ function openClose(evt, elementId)
   var element = document.getElementById(elementId);
   if (element!=null) {
     if (element.parentNode.nodeName=="defs") {
-      var bBox = evt.currentTarget.firstElementChild.getBoundingClientRect();
+      targetInput = evt.currentTarget;
+      if (elementId=="fillPickerWindow") {
+	var colorBox = targetInput.getElementsByTagName("rect")[2];
+	var fill = colorBox.getAttribute("fill");
+	if (fill==null)
+	  oldColorEl.removeAttribute("fill");
+	else
+	  oldColorEl.setAttribute("fill", fill);
+	var opacity = colorBox.getAttribute("fill-opacity");
+	if (opacity==null)
+	  oldColorEl.removeAttribute("fill-opacity");
+	else
+	  oldColorEl.setAttribute("fill-opacity", opacity);
+	resetToOldColor();
+      }
+      var bBox = targetInput.firstElementChild.getBoundingClientRect();
       element.setAttribute("transform", "translate("+bBox.x+","+bBox.bottom+")");
       document.getElementById("dinamicWindowTree").appendChild(element);
     }
-    else
+    else {
+      targetInput=null;
       document.getElementsByTagName("defs")[0].appendChild(element);
+    }
   }
-}
-
-function openFillPicker(evt)
-{
-  attrElBeingChanged = evt.target.parentNode;
-  while (attrElBeingChanged.nodeName!="g")
-    attrElBeingChanged = attrElBeingChanged.parentNode;
-  var colorBox = attrElBeingChanged.getElementsByTagName("rect")[1];
-  var fill = colorBox.getAttribute("fill");
-  if (fill==null)
-    oldColorEl.removeAttribute("fill");
-  else
-    oldColorEl.setAttribute("fill", fill);
-  var opacity = colorBox.getAttribute("fill-opacity");
-  if (opacity==null)
-    oldColorEl.removeAttribute("fill-opacity");
-  else
-    oldColorEl.setAttribute("fill-opacity", opacity);
-  resetToOldColor();
-//  fillPicker.setAttribute("visibility", "display");
-}
-
-function openStrokePicker(evt)
-{
-  attrElBeingChanged = evt.target.parentNode;
-  while (attrElBeingChanged.nodeName!="g")
-    attrElBeingChanged = attrElBeingChanged.parentNode;
-  var polyline = attrElBeingChanged.getElementsByTagName("polyline")[0];
-  var stroke = polyline.getAttribute("stroke");
-
-  var box = attrElBeingChanged.getElementsByTagName("svg")[1];
-  if (box.getAttribute("visibility")=="hidden")
-    box.setAttribute("visibility", "display");
-  else
-    box.setAttribute("visibility", "hidden");
 }
 
 function enterColor(evt)
