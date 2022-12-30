@@ -9,18 +9,42 @@ var ptnBeingDraged=null;
 var oldX, oldY;
 var params=new Array();
 var itemCount;
-var oldColorEl, currentColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
+var oldColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
+
+function fillChange(value)
+{
+  var colorBox = targetInput.getElementsByTagName("rect")[2];
+  var name = "fill";
+  if (value==null) {
+    colorBox.removeAttribute(name);
+    objBeingEdited.removeAttribute(name);
+  }
+  else {
+    colorBox.setAttribute(name, value);
+    objBeingEdited.setAttribute(name, value);
+  }
+}
+
+function opacityChange(value)
+{
+  var colorBox = targetInput.getElementsByTagName("rect")[2];
+  var name = "fill-opacity";
+  if (value==null) {
+    colorBox.removeAttribute(name);
+    objBeingEdited.removeAttribute(name);
+  }
+  else {
+    colorBox.setAttribute(name, value);
+    objBeingEdited.setAttribute(name, value);
+  }
+}
 
 function clickColor(target)
 {
   var fill=target.getAttribute ("fill");
+  fillChange (fill);
   if (fill==null)
-  {
-    currentColorEl.removeAttribute ("fill");
     fill="hsl(0,0%,0%)";
-  }
-  else
-    currentColorEl.setAttribute ("fill", fill);
   if (fill=="none")
     fill="hsl(0,0%,0%)";
   if (fill.startsWith("hsl("))
@@ -52,7 +76,7 @@ function clickLight(target)
   var alphaElements = document.getElementById("alphagroup").getElementsByTagName("rect");
   for (var i=0; i<alphaElements.length; i++)
     alphaElements[i].setAttribute ("fill", fill);
-  currentColorEl.setAttribute ("fill", fill);
+  fillChange (fill);
   if (selectedColorEl!=null)
     if (selectedColorEl.parentNode.id!="colorgroup") {
       selectedColorEl.setAttribute("stroke-width", "0");
@@ -65,7 +89,7 @@ function clickLight(target)
 
 function clickAlpha(target)
 {
-  currentColorEl.setAttribute ("fill-opacity", target.getAttribute ("fill-opacity"));
+  opacityChange (target.getAttribute ("fill-opacity"));
   selectedAlphaEl.setAttribute("stroke-width", "0");
   selectedAlphaEl = target;
   selectedAlphaEl.setAttribute("stroke-width", "2");
@@ -90,30 +114,6 @@ function resetToOldColor()
     alpha = parseFloat(alpha);
   var alphaindex = Math.trunc((1-alpha)*10);
   clickAlpha(document.getElementById("alphagroup").getElementsByTagName("rect")[alphaindex]);
-}
-
-function setToCurrentColor()
-{
-  var colorBox = targetInput.getElementsByTagName("rect")[2];
-  var fill = currentColorEl.getAttribute("fill");
-  if (fill==null) {
-    colorBox.removeAttribute("fill");
-    objBeingEdited.removeAttribute("fill");
-  }
-  else {
-    colorBox.setAttribute("fill", fill);
-    objBeingEdited.setAttribute("fill", fill);
-  }
-  var opacity = currentColorEl.getAttribute("fill-opacity");
-  if (opacity==null) {
-    colorBox.removeAttribute("fill-opacity");
-    objBeingEdited.removeAttribute("fill-opacity");
-  }
-  else {
-    colorBox.setAttribute("fill-opacity", opacity);
-    objBeingEdited.setAttribute("fill-opacity", opacity);
-  }
-//  fillPicker.setAttribute("visibility", "hidden");
 }
 
 function init() {
@@ -180,7 +180,6 @@ function init() {
     hexdy = i*((hexsize*sin60*2) + spacing);
   }
   oldColorEl = document.getElementById("oldcolor");
-  currentColorEl = document.getElementById("currentcolor");
   selectedColorEl = oldColorEl;
   selectedLightEl = document.getElementById("lightgroup").getElementsByTagName("rect")[5];
   selectedAlphaEl = document.getElementById("alphagroup").getElementsByTagName("rect")[0];
@@ -362,7 +361,7 @@ function createItem(fieldName, fieldClass, fieldValue)
   itemCount++;
 }
 
-function openClose(evt, elementId)
+function expandCollapse(evt, elementId)
 {
   var element = document.getElementById(elementId);
   if (element!=null) {
