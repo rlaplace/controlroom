@@ -82,14 +82,6 @@
 	  <path d="M 2 4.5 h 5" fill="none" stroke="hsl(0,100%,7%)" stroke-width="1"/>
 	</g>
       </g>
-      <g id="uiFillPickerSeed" width="56" height="23" class="uiFillPicker" onclick="expandCollapse(evt, 'fillPickerWindow')">
-	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
-	  <text x="3" y="16" text-anchor="left"></text>
-	</svg>
-	<rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="url(#ptrn_squared)" stroke="none"/>
-	<rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="none" stroke="hsl(0,100%,0%)" stroke-width="0.5"/>
-      </g>
       <g id="uiStrokePickerSeed" width="56" height="23" class="uiStrokePicker" onclick="expandCollapse(evt, 'strokePickerWindow')">
 	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
@@ -288,7 +280,14 @@
       <g id="strokePickerWindow">
 	<rect x="0.5" y="0.5" width="128" height="153" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<text x="6" y="19" text-anchor="left">color</text>
-	<use href="#uiFillPickerSeed" x="70" y="3"></use>
+	<g transform="translate(70,3)" id="uiFillPickerSeed" width="56" height="23" class="uiFillPicker" onclick="expandCollapse(evt, 'fillPickerWindow');">
+          <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+          <svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
+            <text x="3" y="16" text-anchor="left"></text>
+          </svg>
+          <rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="url(#ptrn_squared)" stroke="none"/>
+          <rect x="8.5" y="3.5" width="39" height="16" rx="1" ry="1" fill="none" stroke="hsl(0,100%,0%)" stroke-width="0.5"/>
+	</g>
 	<text x="6" y="44" text-anchor="left">width</text>
 	<g transform="translate(70,28)" onclick="expandCollapse(evt, 'widthComboOptions');">
 	  <rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>

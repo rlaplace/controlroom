@@ -384,9 +384,16 @@ function expandCollapse(evt, elementId)
       var bBox = targetInput.firstElementChild.getBoundingClientRect();
       element.setAttribute("transform", "translate("+bBox.x+","+bBox.bottom+")");
       document.getElementById("dinamicWindowTree").appendChild(element);
+      var zindex=0;
+      if (element.parentNode.getAttribute("id")=="dinamicWindowTree")
+	zindex=1;
+      else
+	zindex=2;
+      element.setAttribute("zindex", zindex);
     }
     else {
       targetInput=null;
+      element.removeAttribute("zindex");
       document.getElementsByTagName("defs")[0].appendChild(element);
     }
   }
