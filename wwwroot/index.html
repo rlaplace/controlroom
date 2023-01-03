@@ -91,189 +91,200 @@
       </g>
       <g id="widthComboOptions">
 	<rect x="0.5" y="0.5" width="106" height="134" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	<g class="menuitem" transform="translate(1,1)" value="butt">
+	<g class="menuitem" transform="translate(1,1)" onclick="changeStrokeAttr(evt, 'stroke-width')">
 	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="0.25"/><text x="50" y="15">0.25 px</text></g>
-	<g class="menuitem" transform="translate(1,23)" value="butt">
+	<g class="menuitem" transform="translate(1,23)" onclick="changeStrokeAttr(evt, 'stroke-width')">
 	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="0.5"/><text x="50" y="15">0.5 px</text></g>
-	<g class="menuitem" transform="translate(1,45)" value="round">
+	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'stroke-width')">
 	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="1"/><text x="50" y="15">1 px</text></g>
-	<g class="menuitem" transform="translate(1,67)" value="round">
+	<g class="menuitem" transform="translate(1,67)" onclick="changeStrokeAttr(evt, 'stroke-width')">
 	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="2"/><text x="50" y="15">2 px</text></g>
-	<g class="menuitem" transform="translate(1,89)" value="round">
+	<g class="menuitem" transform="translate(1,89)" onclick="changeStrokeAttr(evt, 'stroke-width')">
 	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="3"/><text x="50" y="15">3 px</text></g>
-	<g class="menuitem" transform="translate(1,111)" value="round">
+	<g class="menuitem" transform="translate(1,111)" onclick="changeStrokeAttr(evt, 'stroke-width')">
 	  <rect x="0" y="0" width="105" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="5"/><text x="50" y="15">5 px</text></g>
       </g>
       <g id="linecapComboOptions">
 	<rect x="0.5" y="0.5" width="160" height="89" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	<g class="menuitem" transform="translate(1,1)" comment="defaults to butt">
-	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (defaults to butt)</text></g>
-	<g class="menuitem" transform="translate(1,23)" value="butt">
-	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">butt</text>
+	<g class="menuitem" transform="translate(1,1)" onclick="changeStrokeAttr(evt, 'stroke-linecap')">
+	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <text x="5" y="15">not set (defaults to butt)</text></g>
+	<g class="menuitem" transform="translate(1,23)" onclick="changeStrokeAttr(evt, 'stroke-linecap')">
+	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="butt"/>
-	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
-	<g class="menuitem" transform="translate(1,45)" value="round">
-	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">round</text>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/>
+	  <text x="50" y="15">butt</text></g>
+	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'stroke-linecap')">
+	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="round"/>
-	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
-	<g class="menuitem" transform="translate(1,67)" value="square">
-	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">square</text>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/>
+	  <text x="50" y="15">round</text></g>
+	<g class="menuitem" transform="translate(1,67)" onclick="changeStrokeAttr(evt, 'stroke-linecap')">
+	  <rect x="0" y="0" width="159" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="black" stroke-width="7" stroke-linecap="square"/>
-	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/></g>
+	  <line x1="11.5" y1="10.5" x2="41.5" y2="10.5" stroke="hsl(0,100%,93%)"stroke-width="0.5"/>
+	  <text x="50" y="15">square</text></g>
       </g>
       <g id="linejoinComboOptions">
 	<rect x="0.5" y="0.5" width="170" height="133" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	<g class="menuitem" transform="translate(1,1)">
-	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (defaults to miter)</text></g>
-	<g class="menuitem" transform="translate(1,23)" value="miter">
-	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">miter</text>
+	<g class="menuitem" transform="translate(1,1)" onclick="changeStrokeAttr(evt, 'stroke-linejoin')">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <text x="5" y="15">not set (defaults to miter)</text></g>
+	<g class="menuitem" transform="translate(1,23)" onclick="changeStrokeAttr(evt, 'stroke-linejoin')">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="miter"/>
-	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	<g class="menuitem" transform="translate(1,45)" value="round">
-	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">round</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
+	  <text x="50" y="15">miter</text></g>
+	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'stroke-linejoin')">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="round"/>
-	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	<g class="menuitem" transform="translate(1,67)" value="bevel">
-	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">bevel</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
+	  <text x="50" y="15">round</text></g>
+	<g class="menuitem" transform="translate(1,67)" onclick="changeStrokeAttr(evt, 'stroke-linejoin')">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="bevel"/>
-	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	<g class="menuitem" transform="translate(1,89)" value="miter-clip">
-	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">miter-clip</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
+	  <text x="50" y="15">bevel</text></g>
+	<g class="menuitem" transform="translate(1,89)" onclick="changeStrokeAttr(evt, 'stroke-linejoin')">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="miter-clip"/>
-	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
-	<g class="menuitem" transform="translate(1,111)" value="arcs">
-	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="50" y="15">arcs</text>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
+	  <text x="50" y="15">miter-clip</text></g>
+	<g class="menuitem" transform="translate(1,111)" onclick="changeStrokeAttr(evt, 'stroke-linejoin')">
+	  <rect x="0" y="0" width="169" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="black" stroke-width="7" fill="none" stroke-linejoin="arcs"/>
-	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/></g>
+	  <path d="M 22,4 a 20,20 0 0 0 10,8 a 30,30 0 0 1 -20,0" stroke="hsl(0,100%,93%)" stroke-width="0.5" fill="none"/>
+	  <text x="50" y="15">arcs</text></g>
       </g>
       <g id="dasharrayComboOptions">
 	<rect x="0.5" y="0.5" width="138" height="111" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	<g class="menuitem" transform="translate(1,1)">
-	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/><text x="5" y="15">not set (continuous)</text></g>
-	<g class="menuitem" transform="translate(1,23)" value="4">
+	<g class="menuitem" transform="translate(1,1)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
+	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <text x="5" y="15">not set (continuous)</text></g>
+	<g class="menuitem" transform="translate(1,23)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="4"/></g>
-	<g class="menuitem" transform="translate(1,45)" value="6 2">
+	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="6 2"/></g>
-	<g class="menuitem" transform="translate(1,67)" value="8 2 4">
+	<g class="menuitem" transform="translate(1,67)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 2 4"/></g>
-	<g class="menuitem" transform="translate(1,89)" value="8 4 2 4">
+	<g class="menuitem" transform="translate(1,89)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 4 2 4"/></g>
       </g>
-      <g id="startmarkerComboOptions">
+      <g id="startComboOptions">
 	<rect x="0.5" y="0.5" width="89" height="67" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	<g class="menuitem" transform="translate(1,1)">
+	<g class="menuitem" transform="translate(1,1)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1"/></g>
-	<g class="menuitem" transform="translate(1,23)">
+	<g class="menuitem" transform="translate(1,23)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow1_start)"/></g>
-	<g class="menuitem" transform="translate(1,45)">
+	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow2_start)"/></g>
-	<g class="menuitem" transform="translate(23,1)">
+	<g class="menuitem" transform="translate(23,1)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow3_start)"/></g>
-	<g class="menuitem" transform="translate(23,23)">
+	<g class="menuitem" transform="translate(23,23)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow4_start)"/></g>
-	<g class="menuitem" transform="translate(23,45)">
+	<g class="menuitem" transform="translate(23,45)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow5_start)"/></g>
-	<g class="menuitem" transform="translate(45,1)">
+	<g class="menuitem" transform="translate(45,1)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="7" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#circle1)"/></g>
-	<g class="menuitem" transform="translate(45,23)">
+	<g class="menuitem" transform="translate(45,23)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="7" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#circle2)"/></g>
-	<g class="menuitem" transform="translate(45,45)">
+	<g class="menuitem" transform="translate(45,45)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="7" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#circle3)"/></g>
-	<g class="menuitem" transform="translate(67,1)">
+	<g class="menuitem" transform="translate(67,1)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="7" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#circle4)"/></g>
-	<g class="menuitem" transform="translate(67,23)">
+	<g class="menuitem" transform="translate(67,23)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="7" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#square2)"/></g>
-	<g class="menuitem" transform="translate(67,45)">
+	<g class="menuitem" transform="translate(67,45)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="7" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#trans2)"/></g>
       </g>
-      <g id="midmarkerComboOptions">
+      <g id="midComboOptions">
 	<rect x="0.5" y="0.5" width="67" height="67" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	<g class="menuitem" transform="translate(1,1)">
+	<g class="menuitem" transform="translate(1,1)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1"/></g>
-	<g class="menuitem" transform="translate(1,23)">
+	<g class="menuitem" transform="translate(1,23)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1" marker-mid="url(#trans1)"/></g>
-	<g class="menuitem" transform="translate(1,45)">
+	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1" marker-mid="url(#trans2)"/></g>
-	<g class="menuitem" transform="translate(23,1)">
+	<g class="menuitem" transform="translate(23,1)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1" marker-mid="url(#circle1)"/></g>
-	<g class="menuitem" transform="translate(23,23)">
+	<g class="menuitem" transform="translate(23,23)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1" marker-mid="url(#circle2)"/></g>
-	<g class="menuitem" transform="translate(23,45)">
+	<g class="menuitem" transform="translate(23,45)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1" marker-mid="url(#circle3)"/></g>
-	<g class="menuitem" transform="translate(45,1)">
+	<g class="menuitem" transform="translate(45,1)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1" marker-mid="url(#circle4)"/></g>
-	<g class="menuitem" transform="translate(45,23)">
+	<g class="menuitem" transform="translate(45,23)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1" marker-mid="url(#square1)"/></g>
-	<g class="menuitem" transform="translate(45,45)">
+	<g class="menuitem" transform="translate(45,45)" onclick="changeStrokeAttr(evt, 'marker-mid')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <polyline points="2,7.5 8.5,7.5 12.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1" marker-mid="url(#triangle1)"/></g>
       </g>
-      <g id="endmarkerComboOptions">
+      <g id="endComboOptions">
 	<rect x="0.5" y="0.5" width="89" height="67" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
-	<g class="menuitem" transform="translate(1,1)">
+	<g class="menuitem" transform="translate(1,1)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="17" y2="11.5" stroke="black" stroke-width="1"/></g>
-	<g class="menuitem" transform="translate(1,23)">
+	<g class="menuitem" transform="translate(1,23)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="17" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#arrow1_end)"/></g>
-	<g class="menuitem" transform="translate(1,45)">
+	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="17" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#arrow2_end)"/></g>
-	<g class="menuitem" transform="translate(23,1)">
+	<g class="menuitem" transform="translate(23,1)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="17" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#arrow3_end)"/></g>
-	<g class="menuitem" transform="translate(23,23)">
+	<g class="menuitem" transform="translate(23,23)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="17" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#arrow4_end)"/></g>
-	<g class="menuitem" transform="translate(23,45)">
+	<g class="menuitem" transform="translate(23,45)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="17" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#arrow5_end)"/></g>
-	<g class="menuitem" transform="translate(45,1)">
+	<g class="menuitem" transform="translate(45,1)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="15" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#circle1)"/></g>
-	<g class="menuitem" transform="translate(45,23)">
+	<g class="menuitem" transform="translate(45,23)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="15" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#circle2)"/></g>
-	<g class="menuitem" transform="translate(45,45)">
+	<g class="menuitem" transform="translate(45,45)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="15" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#circle3)"/></g>
-	<g class="menuitem" transform="translate(67,1)">
+	<g class="menuitem" transform="translate(67,1)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="15" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#circle4)"/></g>
-	<g class="menuitem" transform="translate(67,23)">
+	<g class="menuitem" transform="translate(67,23)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="15" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#square2)"/></g>
-	<g class="menuitem" transform="translate(67,45)">
+	<g class="menuitem" transform="translate(67,45)" onclick="changeStrokeAttr(evt, 'marker-end')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="1" y1="11.5" x2="15" y2="11.5" stroke="black" stroke-width="1" marker-end="url(#trans2)"/></g>
       </g>
@@ -311,15 +322,15 @@
 	  <line x1="12.5" y1="11.5" x2="42.5" y2="11.5" stroke="black" stroke-width="1"/>
 	</g>
 	<text x="6" y="144" text-anchor="left">markers</text>
-	<g transform="translate(70,128)" onclick="expandCollapse(evt, 'startmarkerComboOptions');">
+	<g transform="translate(70,128)" onclick="expandCollapse(evt, 'startComboOptions');">
 	  <rect x="0.5" y="0.5" width="20" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	  <line x1="5" y1="7.5" x2="18" y2="7.5" stroke="black" stroke-width="1"/>
 	</g>
-	<g transform="translate(105,128)" onclick="expandCollapse(evt, 'endmarkerComboOptions');">
+	<g transform="translate(105,128)" onclick="expandCollapse(evt, 'endComboOptions');">
 	  <rect x="0.5" y="0.5" width="20" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	  <line x1="3" y1="15.5" x2="15" y2="15.5" stroke="black" stroke-width="1"/>
 	</g>
-	<g transform="translate(88,128)" onclick="expandCollapse(evt, 'midmarkerComboOptions');">
+	<g transform="translate(88,128)" onclick="expandCollapse(evt, 'midComboOptions');">
 	  <rect x="0.5" y="0.5" width="19" height="22" rx="0" ry="0" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	  <polyline points="1,7.5 7.5,7.5 11.5,15.5 19,15.5" fill="none" stroke="black" stroke-width="1"/>
 	</g>

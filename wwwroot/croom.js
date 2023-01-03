@@ -11,38 +11,10 @@ var params=new Array();
 var itemCount;
 var oldColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 
-function fillChange(value)
-{
-  var colorBox = targetInput.getElementsByTagName("rect")[2];
-  var name = "fill";
-  if (value==null) {
-    colorBox.removeAttribute(name);
-    objBeingEdited.removeAttribute(name);
-  }
-  else {
-    colorBox.setAttribute(name, value);
-    objBeingEdited.setAttribute(name, value);
-  }
-}
-
-function opacityChange(value)
-{
-  var colorBox = targetInput.getElementsByTagName("rect")[2];
-  var name = "fill-opacity";
-  if (value==null) {
-    colorBox.removeAttribute(name);
-    objBeingEdited.removeAttribute(name);
-  }
-  else {
-    colorBox.setAttribute(name, value);
-    objBeingEdited.setAttribute(name, value);
-  }
-}
-
 function clickColor(target)
 {
   var fill=target.getAttribute ("fill");
-  fillChange (fill);
+  changeInputValue(targetInput, {"fill": fill});
   if (fill==null)
     fill="hsl(0,0%,0%)";
   if (fill=="none")
@@ -66,6 +38,7 @@ function clickColor(target)
 function clickLight(target)
 {
   var fill=target.getAttribute ("fill");
+  changeInputValue(targetInput, {"fill": fill});
   if (fill.startsWith("hsl("))
     var light = fill.replace(/hsl\(\d*,\d*\%,/, ",");
   else
@@ -76,7 +49,6 @@ function clickLight(target)
   var alphaElements = document.getElementById("alphagroup").getElementsByTagName("rect");
   for (var i=0; i<alphaElements.length; i++)
     alphaElements[i].setAttribute ("fill", fill);
-  fillChange (fill);
   if (selectedColorEl!=null)
     if (selectedColorEl.parentNode.id!="colorgroup") {
       selectedColorEl.setAttribute("stroke-width", "0");
@@ -89,7 +61,7 @@ function clickLight(target)
 
 function clickAlpha(target)
 {
-  opacityChange (target.getAttribute ("fill-opacity"));
+  changeInputValue(targetInput, {"fill-opacity": target.getAttribute ("fill-opacity")});
   selectedAlphaEl.setAttribute("stroke-width", "0");
   selectedAlphaEl = target;
   selectedAlphaEl.setAttribute("stroke-width", "2");
@@ -288,59 +260,62 @@ function drag(evt)
   }
 }
 
-function createItem(fieldName, fieldClass, fieldValue)
+function changeStrokeAttr(evt, attributeName)
 {
-  var label = document.createElementNS(svgNS,"text");
-  label.textContent=fieldName;
-  label.setAttribute("x", "5");
-  label.setAttribute("y", ""+(itemCount*25+16));
-  label.setAttribute("text-anchor", "left");
-  label.setAttribute("fill", "hsl(0,100%,93%)");
-  editItems.appendChild(label);
+  var attributeValue=evt.currentTarget.children[1].getAttribute(attributeName);
+  changeInputValue(targetInput, {[attributeName]: attributeValue});
+  expandCollapse(evt, attributeName.substring(7)+'ComboOptions');
+}
+
+function changeInputValue(node, fieldValue)
+{
+  var fieldClass = node.getAttribute("class");
   switch (fieldClass) {
     case "uiText":
-      var newNode = document.getElementById("uiTextSeed").cloneNode(true);
-      newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
-      newNode.removeAttribute("id");
-      var inputText = newNode.getElementsByTagName("text")[0];
+      var inputText = node.getElementsByTagName("text")[0];
       if (fieldValue==null)
 	inputText.textContent="";
       else
 	inputText.textContent=""+fieldValue;
-      editItems.appendChild(newNode);
       break;
     case "uiNumberPicker":
-      var newNode = document.getElementById("uiNumberPickerSeed").cloneNode(true);
-      newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
-      newNode.removeAttribute("id");
-      var inputText = newNode.getElementsByTagName("text")[0];
+      var inputText = node.getElementsByTagName("text")[0];
       if (fieldValue==null)
 	inputText.textContent="0";
       else
 	inputText.textContent=""+parseFloat(fieldValue);
-      editItems.appendChild(newNode);
       break;
     case "uiFillPicker":
-      var newNode = document.getElementById("uiFillPickerSeed").cloneNode(true);
-      newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
-      newNode.removeAttribute("id");
-      var colorBox = newNode.getElementsByTagName("rect")[2];
-      if (fieldValue["fill"]==null)
-	colorBox.removeAttribute("fill");
-      else
-	colorBox.setAttribute("fill", fieldValue["fill"]);
-      if (fieldValue["fill-opacity"]==null)
-	colorBox.removeAttribute("fill-opacity");
-      else
-	colorBox.setAttribute("fill-opacity", fieldValue["fill-opacity"]);
-      editItems.appendChild(newNode);
+      var text = node.getElementsByTagName("text")[0];
+      var squaredBox = node.getElementsByTagName("rect")[1];
+      var colorBox = node.getElementsByTagName("rect")[2];
+      if (fieldValue.hasOwnProperty("fill")) {
+	if (fieldValue["fill"]==null) {
+	  text.textContent = "not set";
+	  squaredBox.setAttribute("visibility", "hidden");
+	  colorBox.setAttribute("visibility", "hidden");
+	}
+	else if (fieldValue["fill"]=="none") {
+	  text.textContent = "none";
+	  squaredBox.setAttribute("visibility", "hidden");
+	  colorBox.setAttribute("visibility", "hidden");
+	}
+	else {
+	  text.textContent = "";
+	  squaredBox.setAttribute("visibility", "visible");
+	  colorBox.setAttribute("visibility", "visible");
+	}
+      }
+      for (const [key, value] of Object.entries(fieldValue)) {
+	if (value==null)
+	  colorBox.removeAttribute(key);
+	else
+	  colorBox.setAttribute(key, value);
+      }
       break;
     case "uiStrokePicker":
-      var newNode = document.getElementById("uiStrokePickerSeed").cloneNode(true);
-      newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
-      newNode.removeAttribute("id");
-      var polyline = newNode.getElementsByTagName("polyline")[0];
-      var text = newNode.getElementsByTagName("text")[0];
+      var polyline = node.getElementsByTagName("polyline")[0];
+      var text = node.getElementsByTagName("text")[0];
       polyline.setAttribute("stroke", "none");
       if (fieldValue["stroke"]==null)
 	text.textContent = "not set";
@@ -355,8 +330,33 @@ function createItem(fieldName, fieldClass, fieldValue)
 	    polyline.setAttribute(key, value);
 	}
       }
-      editItems.appendChild(newNode);
       break;
+  }
+  var parentNode = node.parentNode;
+  if (parentNode!=null)
+    if (parentNode.getAttribute("id")=="strokePickerWindow") {
+      for (const [key, value] of Object.entries(fieldValue)) {
+	targetInput.children[1].setAttribute(key, value);
+      }
+    }
+}
+
+function createItem(fieldName, fieldClass, fieldValue)
+{
+  var label = document.createElementNS(svgNS,"text");
+  label.textContent=fieldName;
+  label.setAttribute("x", "5");
+  label.setAttribute("y", ""+(itemCount*25+16));
+  label.setAttribute("text-anchor", "left");
+  label.setAttribute("fill", "hsl(0,100%,93%)");
+  editItems.appendChild(label);
+  var oldNode = document.getElementById(fieldClass+"Seed");
+  if (oldNode!=null) {
+    var newNode = oldNode.cloneNode(true);
+    newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
+    newNode.removeAttribute("id");
+    changeInputValue(newNode, fieldValue);
+    editItems.appendChild(newNode);
   }
   itemCount++;
 }
