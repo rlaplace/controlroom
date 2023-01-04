@@ -1,4 +1,5 @@
 const editmode=0, runmode=1;
+const drillDown=0, drillUp=1, noDrill=2;
 let mode=editmode;
 var mainPanel, editPanel, editItems, menuPanel;
 var svgNS="http://www.w3.org/2000/svg";
@@ -14,7 +15,7 @@ var oldColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 function clickColor(target)
 {
   var fill=target.getAttribute ("fill");
-  changeInputValue(targetInput, {"fill": fill});
+  changeInputValue(targetInput, {"fill": fill}, drillUp);
   if (fill==null)
     fill="hsl(0,0%,0%)";
   if (fill=="none")
@@ -38,7 +39,7 @@ function clickColor(target)
 function clickLight(target)
 {
   var fill=target.getAttribute ("fill");
-  changeInputValue(targetInput, {"fill": fill});
+  changeInputValue(targetInput, {"fill": fill}, drillUp);
   if (fill.startsWith("hsl("))
     var light = fill.replace(/hsl\(\d*,\d*\%,/, ",");
   else
@@ -61,7 +62,7 @@ function clickLight(target)
 
 function clickAlpha(target)
 {
-  changeInputValue(targetInput, {"fill-opacity": target.getAttribute ("fill-opacity")});
+  changeInputValue(targetInput, {"fill-opacity": target.getAttribute ("fill-opacity")}, drillUp);
   selectedAlphaEl.setAttribute("stroke-width", "0");
   selectedAlphaEl = target;
   selectedAlphaEl.setAttribute("stroke-width", "2");
@@ -263,11 +264,11 @@ function drag(evt)
 function changeStrokeAttr(evt, attributeName)
 {
   var attributeValue=evt.currentTarget.children[1].getAttribute(attributeName);
-  changeInputValue(targetInput, {[attributeName]: attributeValue});
+  changeInputValue(targetInput, {[attributeName]: attributeValue}, drillUp);
   expandCollapse(evt, attributeName.substring(7)+'ComboOptions');
 }
 
-function changeInputValue(node, fieldValue)
+function changeInputValue(node, fieldValue, drillDirection)
 {
   var fieldClass = node.getAttribute("class");
   switch (fieldClass) {
@@ -330,15 +331,28 @@ function changeInputValue(node, fieldValue)
 	    polyline.setAttribute(key, value);
 	}
       }
+      if (drillDirection==drillDown) {
+	var inputs = document.getElementById("strokePickerWindow").getElementsByTagName("g");
+	changeInputValue(inputs[0], {"fill": fieldValue["stroke"], "fill-opacity": fieldValue["stroke-opacity"]}, drillDown);
+	changeInputValue(inputs[1], {"stroke-width": fieldValue["stroke-width"]}, noDrill);
+	changeInputValue(inputs[2], {"stroke-linecap": fieldValue["stroke-linecap"]}, noDrill);
+	changeInputValue(inputs[3], {"stroke-linejoin": fieldValue["stroke-linejoin"]}, noDrill);
+	changeInputValue(inputs[4], {"stroke-dasharray": fieldValue["stroke-dasharray"]}, noDrill);
+	changeInputValue(inputs[5], {"marker-start": fieldValue["marker-start"]}, noDrill);
+	changeInputValue(inputs[6], {"marker-end": fieldValue["marker-end"]}, noDrill);
+	changeInputValue(inputs[7], {"marker-mid": fieldValue["marker-mid"]}, noDrill);
+      }
+      break;
+    default:
+      var parentNode = node.parentNode;
+      if (parentNode!=null)
+	if (parentNode.getAttribute("id")=="strokePickerWindow")
+	  for (const [key, value] of Object.entries(fieldValue))
+	    node.children[1].setAttribute(key, value);
       break;
   }
-  var parentNode = node.parentNode;
-  if (parentNode!=null)
-    if (parentNode.getAttribute("id")=="strokePickerWindow") {
-      for (const [key, value] of Object.entries(fieldValue)) {
-	targetInput.children[1].setAttribute(key, value);
-      }
-    }
+  if (drillDirection==drillUp) {
+  }
 }
 
 function createItem(fieldName, fieldClass, fieldValue)
@@ -355,7 +369,7 @@ function createItem(fieldName, fieldClass, fieldValue)
     var newNode = oldNode.cloneNode(true);
     newNode.setAttribute("transform", "translate(55,"+(itemCount*25)+")");
     newNode.removeAttribute("id");
-    changeInputValue(newNode, fieldValue);
+    changeInputValue(newNode, fieldValue, drillDown);
     editItems.appendChild(newNode);
   }
   itemCount++;
