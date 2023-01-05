@@ -19,12 +19,17 @@
       <marker id="arrow4_end" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="strokeWidth"><polygon points="0 0 10 3 10 4 0 7"/></marker>
       <marker id="arrow5_start" markerWidth="12" markerHeight="8" refX="0" refY="4" orient="auto" markerUnits="strokeWidth"><polygon points="0 4.5 0 3.5 12 0 12 8"/></marker>
       <marker id="arrow5_end" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="strokeWidth"><polygon points="0 0 12 3.5 12 4.5 0 8"/></marker>
+      <marker id="arrow6_start" markerWidth="10" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="strokeWidth"><polyline points="10 6 0 3 10 0" fill="none" stroke="black"/></marker>
+      <marker id="arrow6_end" markerWidth="10" markerHeight="6" refX="10" refY="3" orient="auto" markerUnits="strokeWidth"><polyline points="0 0 10 3 0 6" fill="none" stroke="black"/></marker>
+      <marker id="arrow7_start" markerWidth="10" markerHeight="6" refX="0" refY="3" orient="auto" markerUnits="strokeWidth"><polyline points="10 6 0 3 10 0" fill="none" stroke="black"/></marker>
+      <marker id="arrow7_end" markerWidth="10" markerHeight="6" refX="10" refY="3" orient="auto" markerUnits="strokeWidth"><polyline points="0 0 10 3 0 6" fill="none" stroke="black"/></marker>
       <marker id="trans1" markerWidth="1" markerHeight="4" refX="0.5" refY="2" orient="auto" markerUnits="strokeWidth"><rect x="0" y="0" width="1" height="4"/></marker>
       <marker id="trans2" markerWidth="1" markerHeight="7" refX="0.5" refY="3.5" orient="auto" markerUnits="strokeWidth"><rect x="0" y="0" width="1" height="7"/></marker>
-      <marker id="circle1" markerWidth="3" markerHeight="3" refX="1.5" refY="1.5" markerUnits="strokeWidth"><circle cx="1.5" cy="1.5" r="1.5"/></marker>
-      <marker id="circle2" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" markerUnits="strokeWidth"><circle cx="2.5" cy="2.5" r="2.5"/></marker>
+      <marker id="circle1" markerWidth="1.6" markerHeight="1.6" refX="0.8" refY="0.8" markerUnits="strokeWidth"><circle cx="0.8" cy="0.8" r="0.8"/></marker>
+      <marker id="circle2" markerWidth="3" markerHeight="3" refX="1.5" refY="1.5" markerUnits="strokeWidth"><circle cx="1.5" cy="1.5" r="1.5"/></marker>
       <marker id="circle3" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" markerUnits="strokeWidth"><circle cx="3.5" cy="3.5" r="3.5"/></marker>
-      <marker id="circle4" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" markerUnits="strokeWidth"><circle cx="3.5" cy="3.5" r="3" fill="none" stroke="black"/><circle cx="3.5" cy="3.5" r="1.5"/></marker>
+      <marker id="circle4" markerWidth="3" markerHeight="3" refX="1.5" refY="1.5" markerUnits="strokeWidth"><circle cx="1.5" cy="1.5" r="0.8" fill="none" stroke="black"/><circle cx="1.5" cy="1.5" r="1.5"/></marker>
+      <marker id="circle5" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" markerUnits="strokeWidth"><circle cx="3.5" cy="3.5" r="3" fill="none" stroke="black"/><circle cx="3.5" cy="3.5" r="1.5"/></marker>
       <marker id="square1" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" markerUnits="strokeWidth"><rect x="0" y="0" width="5" height="5"/></marker>
       <marker id="square2" markerWidth="5" markerHeight="5" refX="2.5" refY="2.5" orient="auto" markerUnits="strokeWidth"><rect x="0" y="0" width="5" height="5"/></marker>
       <marker id="triangle1" markerWidth="6" markerHeight="6" refX="3" refY="3" markerUnits="strokeWidth"><polygon points="0 6 6 6 3 0"/></marker>
@@ -86,7 +91,7 @@
 	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<svg x="1" y="1" width="54" height="21" viewbox="0 0 54 21">
 	  <text x="3" y="16" text-anchor="left"></text>
-	  <polyline points="4,19 19,5 34,15 49,2" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/>
+	  <polyline transform="scale(0.2,0.2)" points="20,95 95,25 170,75 245,10" fill="none" stroke="hsl(0,100%,0%)" stroke-width="2"/>
 	</svg>
       </g>
       <g id="widthComboOptions">
@@ -169,19 +174,19 @@
 	  <text x="5" y="15">not set (continuous)</text></g>
 	<g class="menuitem" transform="translate(1,23)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="4"/></g>
+	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="4 6"/></g>
 	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="6 2"/></g>
+	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="6 12"/></g>
 	<g class="menuitem" transform="translate(1,67)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 2 4"/></g>
+	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="10 6 1 6"/></g>
 	<g class="menuitem" transform="translate(1,89)" onclick="changeStrokeAttr(evt, 'stroke-dasharray')">
 	  <rect x="0" y="0" width="137" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
-	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="8 4 2 4"/></g>
+	  <line x1="11.5" y1="11.5" x2="122.5" y2="11.5" stroke="black" stroke-width="1" stroke-dasharray="14 10 1 10"/></g>
       </g>
       <g id="startComboOptions">
-	<rect x="0.5" y="0.5" width="89" height="67" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
+	<rect x="0.5" y="0.5" width="89" height="89" fill="hsl(0,100%,93%)" stroke="hsl(0,100%,7%)"/>
 	<g class="menuitem" transform="translate(1,1)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1"/></g>
@@ -191,15 +196,21 @@
 	<g class="menuitem" transform="translate(1,45)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow2_start)"/></g>
-	<g class="menuitem" transform="translate(23,1)" onclick="changeStrokeAttr(evt, 'marker-start')">
+	<g class="menuitem" transform="translate(1,67)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow3_start)"/></g>
-	<g class="menuitem" transform="translate(23,23)" onclick="changeStrokeAttr(evt, 'marker-start')">
+	<g class="menuitem" transform="translate(23,1)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow4_start)"/></g>
-	<g class="menuitem" transform="translate(23,45)" onclick="changeStrokeAttr(evt, 'marker-start')">
+	<g class="menuitem" transform="translate(23,23)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow5_start)"/></g>
+	<g class="menuitem" transform="translate(23,45)" onclick="changeStrokeAttr(evt, 'marker-start')">
+	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow6_start)"/></g>
+	<g class="menuitem" transform="translate(23,67)" onclick="changeStrokeAttr(evt, 'marker-start')">
+	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
+	  <line x1="5" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#arrow7_start)"/></g>
 	<g class="menuitem" transform="translate(45,1)" onclick="changeStrokeAttr(evt, 'marker-start')">
 	  <rect x="0" y="0" width="22" height="22" fill="hsl(0,100%,93%)" stroke="none"/>
 	  <line x1="7" y1="11.5" x2="21" y2="11.5" stroke="black" stroke-width="1" marker-start="url(#circle1)"/></g>
@@ -390,7 +401,7 @@
 	<path d="M 1,9 v -8 h 104 v 8" fill="hsl(0,20%,33%)" stroke="hsl(0,100%,7%)" stroke-width="2"/>
 	<path d="M 4,4 h 90 M 4,7 h 90" stroke="hsl(0,33%,20%)" stroke-linecap="round" stroke-width="2"/>
       </g>
-      <g onclick="editPanel.setAttribute('visibility', 'hidden'); menuPanel.setAttribute('visibility', 'visible');">
+      <g onclick="editPanel.setAttribute('visibility', 'hidden'); menuPanel.removeAttribute('visibility');">
 	<rect x="97" y="2" width="7" height="7" fill="hsl(0,69%,57%)" stroke="none"/>
 	<path d="M 99,4 l 3,3 m 0,-3 l -3,3" stroke="hsl(0,20%,33%)" stroke-linecap="round" stroke-width="1.5"/>
       </g>
@@ -440,7 +451,7 @@
       <g onclick="insertPath()" transform="translate(71,47)">
 	<!-- element.path -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="hsl(120,20%,33%)" stroke="hsl(120,100%,7%)" stroke-width="1"/>
-	<path d="M 5,25 l 7,-15 l 6,10 l 7,-15" fill="none" stroke="hsl(0,0%,0%)" stroke-linecap="round" stroke-width="1"/>
+	<path d="M 5,25 l 7,-15 l 6,10 l 7,-15" fill="none" stroke="hsl(0,0%,0%)" stroke-join="round" stroke-width="1"/>
       </g>
 
       <g onclick="insertCircle()" transform="translate(5,80)">

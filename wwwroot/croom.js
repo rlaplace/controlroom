@@ -15,6 +15,8 @@ var oldColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 function clickColor(target)
 {
   var fill=target.getAttribute ("fill");
+  if (fill=="url(#ptrn_squared)")
+    fill="none";
   changeInputValue(targetInput, {"fill": fill}, drillUp);
   if (fill==null)
     fill="hsl(0,0%,0%)";
@@ -303,8 +305,8 @@ function changeInputValue(node, fieldValue, drillDirection)
 	}
 	else {
 	  text.textContent = "";
-	  squaredBox.setAttribute("visibility", "visible");
-	  colorBox.setAttribute("visibility", "visible");
+	  squaredBox.removeAttribute("visibility");
+	  colorBox.removeAttribute("visibility");
 	}
       }
       for (const [key, value] of Object.entries(fieldValue)) {
@@ -317,19 +319,26 @@ function changeInputValue(node, fieldValue, drillDirection)
     case "uiStrokePicker":
       var polyline = node.getElementsByTagName("polyline")[0];
       var text = node.getElementsByTagName("text")[0];
-      polyline.setAttribute("stroke", "none");
-      if (fieldValue["stroke"]==null)
-	text.textContent = "not set";
-      else if (fieldValue["stroke"]=="none")
-	text.textContent = "none";
-      else {
-	text.textContent = "";
-	for (const [key, value] of Object.entries(fieldValue)) {
-	  if (value==null)
-	    polyline.removeAttribute(key);
-	  else
-	    polyline.setAttribute(key, value);
+      if (fieldValue.hasOwnProperty("stroke")) {
+        polyline.setAttribute("stroke", "none");
+	if (fieldValue["stroke"]==null) {
+	  text.textContent = "not set";
+	  polyline.setAttribute("visibility", "hidden");
 	}
+	else if (fieldValue["stroke"]=="none") {
+	  text.textContent = "none";
+	  polyline.setAttribute("visibility", "hidden");
+	}
+	else {
+	  text.textContent = "";
+	  polyline.removeAttribute("visibility");
+	}
+      }
+      for (const [key, value] of Object.entries(fieldValue)) {
+        if (value==null)
+          polyline.removeAttribute(key);
+        else
+          polyline.setAttribute(key, value);
       }
       if (drillDirection==drillDown) {
 	var inputs = document.getElementById("strokePickerWindow").getElementsByTagName("g");
@@ -352,6 +361,26 @@ function changeInputValue(node, fieldValue, drillDirection)
       break;
   }
   if (drillDirection==drillUp) {
+    var parentNode = node.parentNode;
+    if (parentNode!=null) {
+      var parentId = parentNode.getAttribute("id");
+      if (parentId=="strokePickerWindow") {
+	var strokePicker = document.getElementsByClassName("uiStrokePicker")[1];
+	if (fieldClass=="uiFillPicker") {
+	  if (!fieldValue.hasOwnProperty("fill"))
+	    changeInputValue(strokePicker, {"stroke-opacity": fieldValue["fill-opacity"]}, drillUp);
+	  else if (!fieldValue.hasOwnProperty("fill-opacity"))
+	    changeInputValue(strokePicker, {"stroke": fieldValue["fill"]}, drillUp);
+	  else
+	    changeInputValue(strokePicker, {"stroke": fieldValue["fill"], "stroke-opacity": fieldValue["fill-opacity"]}, drillUp);
+	}
+	else
+	  changeInputValue(strokePicker, fieldValue, drillUp);
+      }
+      else if (parentId=="edititems")
+	for (const [key, value] of Object.entries(fieldValue))
+	  objBeingEdited.setAttribute(key, value);
+    }
   }
 }
 
@@ -497,7 +526,10 @@ function drop(evt)
 	"stroke-width": objBeingEdited.getAttribute("stroke-width"),
 	"stroke-linecap": objBeingEdited.getAttribute("stroke-linecap"),
 	"stroke-linejoin": objBeingEdited.getAttribute("stroke-linejoin"),
-	"stroke-dasharray": objBeingEdited.getAttribute("stroke-dasharray")});
+	"stroke-dasharray": objBeingEdited.getAttribute("stroke-dasharray"),
+	"marker-start": objBeingEdited.getAttribute("marker-start"),
+	"marker-mid": objBeingEdited.getAttribute("marker-mid"),
+	"marker-end": objBeingEdited.getAttribute("marker-end")});
       break;
   }
   switch (objBeingEdited.tagName) {
@@ -509,7 +541,7 @@ function drop(evt)
     case "path":
       break;
   }
-  editPanel.setAttribute("visibility", "display");
+  editPanel.removeAttribute("visibility");
 }
 
 function insertPath() {
@@ -519,6 +551,7 @@ function insertPath() {
   newNode.setAttribute("fill","none");
   newNode.setAttribute("stroke","hsl(0,0%,0%)");
   newNode.setAttribute("stroke-linecap","round");
+  newNode.setAttribute("stroke-linejoin","round");
   newNode.setAttribute("stroke-width","2");
   mainPanel.appendChild(newNode);
   menuPanel.setAttribute("visibility", "hidden");
