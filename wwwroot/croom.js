@@ -355,7 +355,7 @@ function changeInputValue(node, fieldValue, drillDirection)
     default:
       var parentNode = node.parentNode;
       if (parentNode!=null)
-	if (parentNode.getAttribute("id")=="strokePickerWindow")
+	if (parentNode.id=="strokePickerWindow")
 	  for (const [key, value] of Object.entries(fieldValue))
 	    node.children[1].setAttribute(key, value);
       break;
@@ -363,8 +363,7 @@ function changeInputValue(node, fieldValue, drillDirection)
   if (drillDirection==drillUp) {
     var parentNode = node.parentNode;
     if (parentNode!=null) {
-      var parentId = parentNode.getAttribute("id");
-      if (parentId=="strokePickerWindow") {
+      if (parentNode.id=="strokePickerWindow") {
 	var strokePicker = document.getElementsByClassName("uiStrokePicker")[1];
 	if (fieldClass=="uiFillPicker") {
 	  if (!fieldValue.hasOwnProperty("fill"))
@@ -377,7 +376,7 @@ function changeInputValue(node, fieldValue, drillDirection)
 	else
 	  changeInputValue(strokePicker, fieldValue, drillUp);
       }
-      else if (parentId=="edititems")
+      else if (parentNode.id=="edititems")
 	for (const [key, value] of Object.entries(fieldValue))
 	  objBeingEdited.setAttribute(key, value);
     }
@@ -428,7 +427,7 @@ function expandCollapse(evt, elementId)
       element.setAttribute("transform", "translate("+bBox.x+","+bBox.bottom+")");
       document.getElementById("dinamicWindowTree").appendChild(element);
       var zindex=0;
-      if (element.parentNode.getAttribute("id")=="dinamicWindowTree")
+      if (element.parentNode.id=="dinamicWindowTree")
 	zindex=1;
       else
 	zindex=2;
@@ -468,8 +467,10 @@ function drop(evt)
     case "text":
     case "image":
     case "rect":
-      createItem("x", "uiNumberPicker", objBeingEdited.getAttribute("x"));
-      createItem("y", "uiNumberPicker", objBeingEdited.getAttribute("y"));
+      if (objBeingEdited.id!="background") {
+	createItem("x", "uiNumberPicker", objBeingEdited.getAttribute("x"));
+	createItem("y", "uiNumberPicker", objBeingEdited.getAttribute("y"));
+      }
       break;
     case "circle":
       createItem("center x", "uiNumberPicker", objBeingEdited.getAttribute("cx"));
@@ -520,16 +521,18 @@ function drop(evt)
       createItem("fill", "uiFillPicker", {
 	"fill": objBeingEdited.getAttribute("fill"),
 	"fill-opacity": objBeingEdited.getAttribute("fill-opacity")});
-      createItem("stroke", "uiStrokePicker", {
-	"stroke": objBeingEdited.getAttribute("stroke"),
-	"stroke-opacity": objBeingEdited.getAttribute("stroke-opacity"),
-	"stroke-width": objBeingEdited.getAttribute("stroke-width"),
-	"stroke-linecap": objBeingEdited.getAttribute("stroke-linecap"),
-	"stroke-linejoin": objBeingEdited.getAttribute("stroke-linejoin"),
-	"stroke-dasharray": objBeingEdited.getAttribute("stroke-dasharray"),
-	"marker-start": objBeingEdited.getAttribute("marker-start"),
-	"marker-mid": objBeingEdited.getAttribute("marker-mid"),
-	"marker-end": objBeingEdited.getAttribute("marker-end")});
+      if (objBeingEdited.id!="background") {
+	createItem("stroke", "uiStrokePicker", {
+	  "stroke": objBeingEdited.getAttribute("stroke"),
+	  "stroke-opacity": objBeingEdited.getAttribute("stroke-opacity"),
+	  "stroke-width": objBeingEdited.getAttribute("stroke-width"),
+	  "stroke-linecap": objBeingEdited.getAttribute("stroke-linecap"),
+	  "stroke-linejoin": objBeingEdited.getAttribute("stroke-linejoin"),
+	  "stroke-dasharray": objBeingEdited.getAttribute("stroke-dasharray"),
+	  "marker-start": objBeingEdited.getAttribute("marker-start"),
+	  "marker-mid": objBeingEdited.getAttribute("marker-mid"),
+	  "marker-end": objBeingEdited.getAttribute("marker-end")});
+      }
       break;
   }
   switch (objBeingEdited.tagName) {
