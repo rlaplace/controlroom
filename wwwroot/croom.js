@@ -12,6 +12,40 @@ var params=new Array();
 var itemCount;
 var oldColorEl, selectedColorEl, selectedLightEl, selectedAlphaEl;
 
+function bringElementToFront()
+{
+  mainPanel.appendChild(objBeingEdited);
+}
+
+function bringElementForward()
+{
+  var referenceNode = objBeingEdited.nextSibling;
+  if (referenceNode!=null)
+    mainPanel.insertBefore(objBeingEdited, referenceNode.nextSibling);
+}
+
+function sendElementBackward()
+{
+  var referenceNode = objBeingEdited.previousSibling;
+  if (referenceNode!=null)
+    if (referenceNode.id!="background")
+      mainPanel.insertBefore(objBeingEdited, referenceNode);
+}
+
+function sendElementToBack()
+{
+  mainPanel.insertBefore(objBeingEdited, document.getElementById("background").nextSibling);
+}
+
+function deleteElement()
+{
+  objBeingEdited.parentNode.removeChild(objBeingEdited);
+  objBeingEdited=null;
+  menuPanel.removeAttribute("visibility");
+  editPanel.setAttribute("visibility", "hidden");
+}
+
+
 function clickColor(target)
 {
   var fill=target.getAttribute ("fill");
@@ -93,6 +127,15 @@ function resetToOldColor()
 
 function init() {
   mainPanel = document.getElementById("mainpanel");
+  let childNodes = mainPanel.childNodes;
+  var i = 0;
+  while (childNodes.length>1) {
+    var node = childNodes.item(i);
+    if (node.id=="background")
+      i++;
+    else
+      mainPanel.removeChild(node);
+  }
   editPanel = document.getElementById("editpanel");
   editItems = document.getElementById("edititems");
   menuPanel = document.getElementById("menupanel");
@@ -194,6 +237,7 @@ function touch(evt)
 	prepParams(objBeingDraged);
     }
     menuPanel.setAttribute("visibility", "hidden");
+    editPanel.setAttribute("visibility", "hidden");
   }
   catch (err)
   {
@@ -455,11 +499,12 @@ function leaveColor(evt)
 
 function drop(evt)
 {
+  if (objBeingDraged==null)
+    objBeingEdited=document.getElementById("background");
+  else
+    objBeingEdited=objBeingDraged;
   objBeingDraged=null;
   ptnBeingDraged=null;
-  objBeingEdited=evt.target;
-  while ((objBeingEdited.parentNode!=mainPanel)&&(objBeingEdited.parentNode!=null))
-    objBeingEdited=objBeingEdited.parentNode;
   while (editItems.hasChildNodes())
     editItems.removeChild(editItems.firstChild);
   itemCount=0;
@@ -543,6 +588,12 @@ function drop(evt)
     case "g":
     case "path":
       break;
+  }
+  if (objBeingEdited.id=="background")
+    document.getElementById("uiActions").setAttribute("visibility", "hidden");
+  else {
+    document.getElementById("uiActions").removeAttribute("visibility");
+    document.getElementById("uiActions").setAttribute("transform", "translate(7,"+(itemCount*25+16)+")");
   }
   editPanel.removeAttribute("visibility");
 }

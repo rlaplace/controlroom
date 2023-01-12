@@ -59,29 +59,12 @@
 	<text x="-16" y="20" fill="hsl(0,33%,80%)" font-family="Arial Black" font-size="8">None</text>
 	<circle cx="11" cy="17" r="2" fill="hsl(0,33%,80%)" stroke="none"/>
       </pattern>
-      <g id="el-graph" class="graph" fill="hsl(60,100%,94%)" fill-opacity="0.5" stroke="hsl(0,0%,0%)" stroke-width="2">
+      <g id="el-graph" class="graph" fill="hsl(60,100%,90%)" fill-opacity="0.5" stroke="hsl(0,0%,0%)" stroke-width="2">
 	<rect x="0" y="0" rx="10" ry="10" width="100" height="100" stroke-width="2"/>
 	<svg x="10" y="10" width="80" height="80">
 	  <rect x="-10" y="-10" width="100" height="100" stroke="none"/>
 	</svg>
 	<path d="M 6.5,90.5 h 85 M 9.5,93.5 v -85" stroke="hsl(0,0%,0%)" stroke-width="1"/>
-      </g>
-      <g id="uiActionsSeed" width="23" height="23">
-	<rect x="0.5" y="0.5" width="22" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="none"/>
-	<g class="uiButton">
-	  <rect x="1.5" y="1.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
-	  <rect x="3.5" y="3.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
-	  <rect x="5.5" y="5.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
-	  <rect x="7.5" y="7.5" width="10" height="8" fill="red" stroke="black" stroke-width="0.5"/>
-	  <path d="M 0.5 12 l 4 4 l 0.5 -0.5 l 1 2 l -2 -1 l 0.5 -0.5" fill="none" stroke="black" stroke-width="0.5" stroke-linejoin="round"/>
-	</g>
-	<g transform="translate(23,0)" class="uiButton">
-	  <rect x="1.5" y="1.5" width="10" height="8" fill="red" stroke="black" stroke-width="0.5"/>
-	  <rect x="3.5" y="3.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
-	  <rect x="5.5" y="5.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
-	  <rect x="7.5" y="7.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
-	  <path d="M 0.5 12 l 4 4 l 0.5 -0.5 l 1 2 l -2 -1 l 0.5 -0.5" fill="none" stroke="black" stroke-width="0.5" stroke-linejoin="round"/>
-	</g>
       </g>
       <g id="uiTextSeed" width="56" height="23" class="uiText">
 	<rect x="0.5" y="0.5" width="55" height="22" rx="2" ry="2" fill="hsl(0,100%,93%)" stroke="none"/>
@@ -437,16 +420,55 @@
       </g>
     </svg>
     <g id="editpanel" visibility="hidden">
-      <path d="M 1,9 v 272 h 104 v -272" fill="hsl(0,33%,20%)" stroke="hsl(0,100%,7%)" stroke-width="2"/>
+      <path d="M 1,9 v 272 h 119 v -272" fill="hsl(0,33%,20%)" stroke="hsl(0,100%,7%)" stroke-width="2"/>
       <g>
-	<path d="M 1,9 v -8 h 104 v 8" fill="hsl(0,20%,33%)" stroke="hsl(0,100%,7%)" stroke-width="2"/>
-	<path d="M 4,4 h 90 M 4,7 h 90" stroke="hsl(0,33%,20%)" stroke-linecap="round" stroke-width="2"/>
+	<path d="M 1,9 v -8 h 119 v 8" fill="hsl(0,20%,33%)" stroke="hsl(0,100%,7%)" stroke-width="2"/>
+	<path d="M 4,4 h 105 M 4,7 h 105" stroke="hsl(0,33%,20%)" stroke-linecap="round" stroke-width="2"/>
       </g>
       <g onclick="editPanel.setAttribute('visibility', 'hidden'); menuPanel.removeAttribute('visibility');">
-	<rect x="97" y="2" width="7" height="7" fill="hsl(0,69%,57%)" stroke="none"/>
-	<path d="M 99,4 l 3,3 m 0,-3 l -3,3" stroke="hsl(0,20%,33%)" stroke-linecap="round" stroke-width="1.5"/>
+	<rect x="112" y="2" width="7" height="7" fill="hsl(0,69%,57%)" stroke="none"/>
+	<path d="M 114,4 l 3,3 m 0,-3 l -3,3" stroke="hsl(0,20%,33%)" stroke-linecap="round" stroke-width="1.5"/>
       </g>
       <g id="edititems" transform="translate(5,14)"/>
+      <g id="uiActions">
+	<g onclick="bringElementToFront()">
+	  <rect x="0" y="0" rx="3" ry="3" width="20" height="20" fill="hsl(0,20%,33%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
+	  <rect x="2.5" y="2.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="4.5" y="4.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="6.5" y="6.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="8.5" y="8.5" width="10" height="8" fill="red" stroke="black" stroke-width="0.5"/>
+	  <path d="M 2 12.5 l 4 4 l 0.5 -0.5 l 1 2 l -2 -1 l 0.5 -0.5" fill="none" stroke="white" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+	</g>
+	<g transform="translate(22,0)" onclick="bringElementForward()">
+	  <rect x="0" y="0" rx="3" ry="3" width="20" height="20" fill="hsl(0,20%,33%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
+	  <rect x="2.5" y="2.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="4.5" y="4.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="6.5" y="6.5" width="10" height="8" fill="red" stroke="black" stroke-width="0.5"/>
+	  <rect x="8.5" y="8.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <path d="M 3.5 14 c -3 3 -1 5 1 3 l -0.5 -0.5 l 2 -1 l -1 2 l -0.5 -0.5" fill="none" stroke="white" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+	</g>
+	<g transform="translate(44,0)" onclick="sendElementBackward()">
+	  <rect x="0" y="0" rx="3" ry="3" width="20" height="20" fill="hsl(0,20%,33%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
+	  <rect x="2.5" y="2.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="4.5" y="4.5" width="10" height="8" fill="red" stroke="black" stroke-width="0.5"/>
+	  <rect x="6.5" y="6.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="8.5" y="8.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <path d="M 5.5 16 c -3 3 -5 1 -3 -1 l -0.5 -0.5 l 2 -1 l -1 2 l -0.5 -0.5" fill="none" stroke="white" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+	</g>
+	<g transform="translate(66,0)" onclick="sendElementToBack()">
+	  <rect x="0" y="0" rx="3" ry="3" width="20" height="20" fill="hsl(0,20%,33%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
+	  <rect x="2.5" y="2.5" width="10" height="8" fill="red" stroke="black" stroke-width="0.5"/>
+	  <rect x="4.5" y="4.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="6.5" y="6.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <rect x="8.5" y="8.5" width="10" height="8" fill="white" stroke="black" stroke-width="0.5"/>
+	  <path d="M 7.5 18 l -4 -4 l -0.5 0.5 l -1 -2 l 2 1 l -0.5 0.5" fill="none" stroke="white" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"/>
+	</g>
+	<g transform="translate(88,0)" onclick="deleteElement()">
+	  <rect x="0" y="0" rx="3" ry="3" width="20" height="20" fill="hsl(0,20%,33%)" stroke="hsl(0,100%,7%)" stroke-width="1"/>
+	  <circle cx="10" cy="10" r="6" fill="red" stroke="white"/>
+	  <path id="test" d="M 7.5 7.5 l 5 5 m -5 0 l 5 -5" fill="none" stroke="white" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round">
+	</g>
+      </g>
     </g>
     <g id="menupanel">
       <path d="M 1,9 v 172 h 104 v -172" fill="hsl(120,33%,20%)" stroke="hsl(120,100%,7%)" stroke-width="2"/>
@@ -549,7 +571,7 @@
       <g onclick="insertElement(document.getElementById('el-graph'))" transform="translate(5,146)">
 	<!-- element.graph -->
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="hsl(120,20%,33%)" stroke="hsl(120,100%,7%)" stroke-width="1"/>
-	<g transform="translate(15.5,15.5) scale(0.2,0.2)" fill="hsl(60,100%,94%)" fill-opacity="0.5" stroke="hsl(0,0%,0%)" stroke-width="2">
+	<g transform="translate(15.5,15.5) scale(0.2,0.2)" fill="hsl(60,100%,90%)" fill-opacity="0.5" stroke="hsl(0,0%,0%)" stroke-width="2">
 	  <rect x="-50" y="-50" rx="10" ry="10" width="100" height="100" stroke-width="4"/>
 	  <svg x="-40" y="-40" width="80" height="80">
 	    <g transform="translate(-6,-4) scale(0.15,0.12)">
@@ -563,7 +585,7 @@
       <g transform="translate(38,146)">
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="hsl(120,20%,33%)" stroke="hsl(120,100%,7%)" stroke-width="1"/>
       </g>
-      <g onclick="alert(mainPanel.innerHTML);" transform="translate(71,146)">
+      <g onclick="alert(mainPanel.innerHTML)" transform="translate(71,146)">
 	<rect x="0" y="0" rx="3" ry="3" width="30" height="30" fill="hsl(120,20%,33%)" stroke="hsl(120,100%,7%)" stroke-width="1"/>
 	<text x="4" y="18" fill="hsl(120,100%,5%)" font-family="Arial" font-size="12">&lt;x/&gt;</text>
       </g>
