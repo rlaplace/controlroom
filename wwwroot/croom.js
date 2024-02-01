@@ -447,6 +447,20 @@ function createItem(fieldName, fieldClass, fieldValue)
   itemCount++;
 }
 
+function increaseNumber(evt)
+{
+  targetInput = evt.currentTarget.parentNode;
+  var inputText = targetInput.getElementsByTagName("text")[0];
+  var number = parseFloat(inputText.textContent)+1;
+  changeInputValue(targetInput, number, drillUp);
+//  objBeingEdited.setAttribute("x", number);
+}
+
+function decreaseNumber(evt)
+{
+  targetInput = evt.currentTarget;
+}
+
 function expandCollapse(evt, elementId)
 {
   var element = document.getElementById(elementId);
